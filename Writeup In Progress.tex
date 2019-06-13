@@ -12,6 +12,9 @@
 \usepackage{etoolbox}
 \usepackage{hyperref}
 \usepackage{soul}
+\usepackage{todonotes}
+\usepackage{braket}
+\usepackage{physics}
 \usepackage[capitalise]{cleveref}
 \patchcmd{\section}{\scshape}{\bfseries}{}{}
 \makeatletter
@@ -25,18 +28,22 @@
 	\author{Hunter Lehmann}
 	\maketitle
 	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Introduction}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	We will explore the connection between statistical mechanics models and quantum Hamiltonians, primarily via examples. 
 	
 	More stuff here later. Basic objects/definitions.
 	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Ising Models}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	The Ising models are a family of statistical mechanics models with nearest-neighbor interaction. 
 	Given any lattice $\cL \subset \Z^d$ with $N$ total points, define a \emph{spin} at each site of the lattice via a variable $s \in \Omega_0=\{\pm 1\}$. 
 	A \emph{configuration} is a collection $\{s\}=\{s_\ell\}_{\ell\in\cL}$. 
-	For convenience, we will usually work with cubical lattices and impose periodic boundary conditions. 
+	For convenience, we will usually work with cubic lattices of the form $\cL=\{-n,-n+1,\ldots, n-1,n\}^d$ and impose periodic boundary conditions. 
 	The \emph{action} associated to this model is the function 
 	\[\mathcal{S}(\{s\},\tau)=-\beta_\tau(\tau)\sum_{i\sim j} s_is_j - \beta(\tau)h\sum_{i}s_i , \] 
 	where $\tau$ is the lattice spacing in the ``time" direction, $h$ is the strength of an external magnetic field, and the first sum is over nearest neighbor sites of the lattice. 
@@ -44,17 +51,16 @@
 	
 	We will be interested in the \emph{partition function} $Z$ defined as \[Z=\sum_{\{s\}\in\Omega_0^N}e^{-\mathcal{S}(\{s\},\tau)}. \]
 	
-	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{1+0 Ising}
 	
-	In the 1+0 Ising model, we take a 1-dimensional statistical mechanics system and relate it to a 0-dimensional (point) quantum Hamiltonian. 
+	In the 1+0 Ising model, we take a 1-dimensional statistical mechanics system and relate it to a 0-dimensional (point) quantum Hamiltonian. See \cite{FradkinSusskind78} and \cite{KogutGaugeSummary}.
 	The definitions above simplify to the following. The lattice is now a set of $N$ points $x_0,\ldots,x_{N-1}$ on a circle so that $s_0=s_N$. The action is given by 
 	\[\mathcal{S}(\{s\},\tau)=-\beta_\tau(\tau)\sum_{i=0}^{N-1} s_is_{i+1} - \beta(\tau)h\sum_{i=0}^{N-1}s_i. \] 
 	It will be helpful to rewrite this expression to be symmetric and expressed in terms of sums and differences of the $s_i$. 
 	Up to a constant factor of $-\beta_\tau\sum_{i=0}^{N-1}s_i$, we find
 	 \[\mathcal{S}(\{s\},\tau)=\frac{1}{2}\beta_\tau(\tau)\sum_{i=0}^{N-1} (s_i-s_{i+1})^2 - \frac{1}{2}\beta(\tau)h\sum_{i=0}^{N-1}(s_i+s_{i+1}). \]
-	
-	Note that we needed periodicity in order to rewrite the second term in this way.
+	Note that we needed periodicity in order to rewrite the second term in this way. Further, we now have $\mathcal{S}=0$ when all of the spins are identical and $h=0$.
 	
 	Now the partition function becomes 
 	\begin{align*}
@@ -71,10 +77,10 @@
 	e^{-2\beta_\tau} & e^{\beta h}
 	\end{bmatrix}. \]
 	
-	%Expand on this claim later.
 	Now we can write $Z=\Tr T^N$. 
-	
-	%Question: Should I insert more of the action formalism stuff here for this model before moving to the Hamiltonian?
+	%TODO: expand on this claim
+		
+	%TODO: Should I insert more of the action formalism/statisical mechanics stuff here for this model before moving to the Hamiltonian?
 	Our goal is to choose functions $\beta_\tau(\tau)$ and $\beta(\tau)$ so that the transfer matrix operator $T$ has the form $T=e^{-\tau H} \approx I-\tau H$ for some quantum Hamiltonian $H$ (independent of $\tau$) acting on a $2$-dimensional vector space. 
 	This is the \emph{$\tau$-continuum Hamiltonian} for the model. 
 	Here the idea is that statistical mechanics properties of the lattice action system (e.g. magnetization per site, average magnetization, two-point correlations, correlation length) will map to properties of the operator $H$ related to its eigenvalues and eigenvectors.
@@ -95,7 +101,7 @@
 	Analyzing each of the four matrix entries shows that for small $\tau$ we need 
 	\[e^{-\beta h} \approx 1-\tau H_{0,0}, \quad e^{-2\beta_\tau} \approx -\tau H_{1,0}=-\tau H_{0,1},\quad \text{and} \ e^{\beta h} \approx 1- \tau H_{1,1}. \]
 	
-	Since $H_{1,0}$ and $H_{0,1}$ are constant with respect to $\tau$ we need $-2\beta_\tau \approx \log (-\lambda\tau)$ for small $\tau$ and some $\lambda\in \R_{>0}$. 
+	Since $H_{1,0}$ and $H_{0,1}$ are constant with respect to $\tau$ we need $-2\beta_\tau \approx \log (\lambda\tau)$ for small $\tau$ and some $\lambda\in \R_{>0}$. 
 	Similarly, if $\beta$ is small when $\tau$ is small we have $e^{-\beta h} \approx 1-\beta h \approx 1-\tau H_{0,0}$ and $e^{\beta h} \approx 1+\beta h \approx 1-\tau H_{1,1}$. 
 	So to first order we have $\beta \approx \tau$ and we see $H_{0,0}=-H_{1,1}=\mu h$ for some $\mu \in \R\sm\{0\}$. 
 	
@@ -106,19 +112,67 @@
 	\end{bmatrix}=-\lambda\sigma_1+\mu h\sigma_3.\]
 	
 	Now we could also attempt to find a second order approximation of $T$ so that $T\approx I - \tau H + \frac{1}{2}\tau^2 H^2$ for an operator $H$ not depending on $\tau$. 
-	However, following the approach above will show us that in fact this is not possible.  
-	To get a higher order approximation (or the actual matrix logarithm solving $T=e^{-\tau H}$ for $H$), we need to allow $H$ to depend on $\tau$. 
+	However, following the approach above will show us that there is no easy solution in this case.  
+	To get a higher order approximation (or the actual matrix logarithm solving $T=e^{-\tau H}$ for $H$), we may need to allow $H$ to depend on $\tau$. 
 	
-	%Add calclulations here
+	In the second order case, we need 
+	\begin{align*}
+		e^{-\beta h} &\approx 1- \tau H_{0,0}+\frac{\tau^2}{2}(H_{0,0}^2+H_{0,1}^2),\\
+		e^{-2\beta_\tau} &\approx -\tau H_{0,1}+\frac{\tau^2}{2}(H_{0,0}H_{0,1}+H_{0,1}H_{1,1}),\\
+		e^{\beta h} &\approx 1 - \tau H_{1,1}+\frac{\tau^2}{2}(H_{0,1}^2+H_{0,0}^2)
+	\end{align*}
+	for small $\tau$, where we have used the fact that $H$ should be Hermitian and so $H_{0,1}=H_{1,0}$.
+	From the first and third equations, we see that $H_{0,0}$ and $H_{1,1}$ must depend on $h$. 
+	But the second equation has no dependence on $h$, so the dependence of $H_{0,1}$ on $h$ must be inversely related to the $H_{0,0}$ and $H_{1,1}$ dependence.
+	On the other hand adding the first and third equations yields
+	\[\cosh(\beta h) \approx 1-\frac{\tau}{2}( H_{0,0}+ H_{1,1})+\frac{\tau^2}{4}(H_{0,0}^2+2H_{0,1}^2+H_{1,1}^2), \]
+	which naturally suggests  taking $\beta=\mu\tau$, $H_{0,0}=-H_{1,1}=\mu h$, and $H_{0,1}=H{1,0}=0$. But this is a contradiction.
 	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsection{1+1 Ising Model}
+	
+	We may analyze the $1+1$ Ising model similarly to the $1+0$ model. 
+	We are going to relate a statistical mechanics system on a 2-dimensional lattice (with one temporal and one spatial dimension) to a quantum mechanical Hamiltonian on a 1-dimensional system of interacting spins.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Infinite Lattice Ising Models}
 	
 	The Ising model can be generalized to an \emph{infinite volume model} by letting the lattice $\cL$ grow to $\Z^d$ appropriately. 
-	We'll briefly sketch the ideas here - a detailed exposition can be found in \cite{friedli_velenik_2017} in chapters 3 and 6.
+	We'll briefly sketch the ideas here - a detailed exposition can be found in \cite{friedli_velenik_2017} in chapters 3 and 6. 
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{O(N) Model}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	These models are extensively treated in \cite{HamerKogutSusskind79} and \cite{FradkinSusskind78}. 
+	As in the Ising model, we have a lattice $\cL \subset \Z^d$ of $M$ points, usually cubic. 
+	The spins at each site $i$ of the lattice are now $\vec{x_i} \in \Omega_0=S^N = \{\vec{x} \in \R^{N+1} \mid \|\vec{x}\|=1 \}$. 
+	The action is
+	\[\mathcal{S}=\sum_{i,j} -J_{i,j}\vec{x_i}\cdot\vec{x_j}, \] where the sum is over nearest-neighbor pairs in $\cL$.
+	Frequently we will take $J_{i,j}$, the interaction constants, to depend only on which coordinate of the lattice the points differ in.
+	As in the earlier examples, it is helpful to renormalize the action so that when all the $\vec{x_i}$ are equal we get $\mathcal{S}=0$. 
+	This results in a renormalized action
+	\[\mathcal{S}=\sum_{i,j}\frac{1}{2} J_{i,j}(\vec{x_i}-\vec{x_j})^2. \]
+	
+	As before, we are interested in thinking of our $d$-dimensional lattice as having $1$ time dimension and $d-1$ spatial dimensions and finding a $\tau$-continuum quantum mechanical Hamiltonian $H$ that corresponds to the action as the lattice spacing $\tau$ goes to $0$.
+	Since the spin configuration space is now continuous, the partition function will now be an integral rather than a summation:
+	\[ Z=\int_{(S^N)^M} d\vec{x_1}\ldots d\vec{x_M} e^{\sum_{i,j}\frac{1}{2} J_{i,j}(\vec{x_i}-\vec{x_j})^2}. \]
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Spherical Model}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Lattice Gauge Theories}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%                       References                          %%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\bibliographystyle{abbrv}
 	\bibliography{biblio}
+	
+	\nocite{HamerKogutSusskind79}
+	\nocite{hall_qtfm_2013}
+
 \end{document}
