@@ -1,0 +1,124 @@
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amsfonts}
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{multicol}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+\usepackage{soul}
+\usepackage[capitalise]{cleveref}
+\patchcmd{\section}{\scshape}{\bfseries}{}{}
+\makeatletter
+\renewcommand{\@secnumfont}{\bfseries}
+\makeatother
+
+\input{myCommands}
+\begin{document}
+	
+	\title{Notes from NSF-MSGI Internship}
+	\author{Hunter Lehmann}
+	\maketitle
+	
+	\section{Introduction}
+	
+	We will explore the connection between statistical mechanics models and quantum Hamiltonians, primarily via examples. 
+	
+	More stuff here later. Basic objects/definitions.
+	
+	\section{Ising Models}
+	
+	The Ising models are a family of statistical mechanics models with nearest-neighbor interaction. 
+	Given any lattice $\cL \subset \Z^d$ with $N$ total points, define a \emph{spin} at each site of the lattice via a variable $s \in \Omega_0=\{\pm 1\}$. 
+	A \emph{configuration} is a collection $\{s\}=\{s_\ell\}_{\ell\in\cL}$. 
+	For convenience, we will usually work with cubical lattices and impose periodic boundary conditions. 
+	The \emph{action} associated to this model is the function 
+	\[\mathcal{S}(\{s\},\tau)=-\beta_\tau(\tau)\sum_{i\sim j} s_is_j - \beta(\tau)h\sum_{i}s_i , \] 
+	where $\tau$ is the lattice spacing in the ``time" direction, $h$ is the strength of an external magnetic field, and the first sum is over nearest neighbor sites of the lattice. 
+	The coefficients $\beta_\tau$ and $\beta$ may depend on the time direction lattice spacing and are otherwise chosen to reflect some physical situation (e.g. they may be taken to be proportional to the ``inverse temperature" $\frac{1}{kT}$ where $k$ is Boltzmann's constant).
+	
+	We will be interested in the \emph{partition function} $Z$ defined as \[Z=\sum_{\{s\}\in\Omega_0^N}e^{-\mathcal{S}(\{s\},\tau)}. \]
+	
+	
+	\subsection{1+0 Ising}
+	
+	In the 1+0 Ising model, we take a 1-dimensional statistical mechanics system and relate it to a 0-dimensional (point) quantum Hamiltonian. 
+	The definitions above simplify to the following. The lattice is now a set of $N$ points $x_0,\ldots,x_{N-1}$ on a circle so that $s_0=s_N$. The action is given by 
+	\[\mathcal{S}(\{s\},\tau)=-\beta_\tau(\tau)\sum_{i=0}^{N-1} s_is_{i+1} - \beta(\tau)h\sum_{i=0}^{N-1}s_i. \] 
+	It will be helpful to rewrite this expression to be symmetric and expressed in terms of sums and differences of the $s_i$. 
+	Up to a constant factor of $-\beta_\tau\sum_{i=0}^{N-1}s_i$, we find
+	 \[\mathcal{S}(\{s\},\tau)=\frac{1}{2}\beta_\tau(\tau)\sum_{i=0}^{N-1} (s_i-s_{i+1})^2 - \frac{1}{2}\beta(\tau)h\sum_{i=0}^{N-1}(s_i+s_{i+1}). \]
+	
+	Note that we needed periodicity in order to rewrite the second term in this way.
+	
+	Now the partition function becomes 
+	\begin{align*}
+		Z&=\sum_{\{s\}\in\Omega_0^N} e^{\frac{1}{2}\beta_\tau(\tau)\sum_{i=0}^{N-1} (s_i-s_{i+1})^2 - \frac{1}{2}\beta(\tau)h\sum_{i=0}^{N-1}(s_i+s_{i+1})} \\
+		&=\sum_{s_0 \in \{\pm 1\}} \ldots \sum_{s_{N-1}\in \{\pm 1\}} e^{\frac{1}{2}\beta_\tau (s_0-s_1)^2}e^{-\frac{1}{2}\beta h(s_0+s_1)}\cdot\ldots\cdot e^{\frac{1}{2}\beta_\tau (s_{N-1}-s_0)^2}e^{-\frac{1}{2}\beta h(s_{N-1}+s_0)}.
+	\end{align*}
+	
+	However, each factor in the product depends only on what the values of $s_i-s_{i+1}$ and $s_i+s_{i+1}$ are. 
+	We can construct the \emph{transfer matrix}, $T$, to record this data, indexed by the possible spins at each site.
+	So we have 
+	\[T_{-1,-1}=e^{-\beta h}, \quad T_{-1,1}=T_{1,-1}=e^{-2\beta_\tau}, \quad \text{and}\ T_{1,1}=e^{\beta h}. \] 
+	Thus \[T=\begin{bmatrix}
+	e^{-\beta h} & e^{-2\beta_\tau} \\
+	e^{-2\beta_\tau} & e^{\beta h}
+	\end{bmatrix}. \]
+	
+	%Expand on this claim later.
+	Now we can write $Z=\Tr T^N$. 
+	
+	%Question: Should I insert more of the action formalism stuff here for this model before moving to the Hamiltonian?
+	Our goal is to choose functions $\beta_\tau(\tau)$ and $\beta(\tau)$ so that the transfer matrix operator $T$ has the form $T=e^{-\tau H} \approx I-\tau H$ for some quantum Hamiltonian $H$ (independent of $\tau$) acting on a $2$-dimensional vector space. 
+	This is the \emph{$\tau$-continuum Hamiltonian} for the model. 
+	Here the idea is that statistical mechanics properties of the lattice action system (e.g. magnetization per site, average magnetization, two-point correlations, correlation length) will map to properties of the operator $H$ related to its eigenvalues and eigenvectors.
+	
+	For example, we could choose $\beta_\tau(\tau)=-\frac{1}{2}\log \tau$ and $\beta(\tau)=\tau$. Then we have \[T=\begin{bmatrix}
+	e^{-\tau h} & \tau \\
+	\tau & e^{\tau h}
+	\end{bmatrix} \approx I_2-\tau\begin{bmatrix}
+	h & -1 \\
+	-1 & -h
+	\end{bmatrix}.\] 
+	From this it follows that \[H=\begin{bmatrix}
+	h & -1 \\
+	-1 & -h
+	\end{bmatrix}=-\sigma_1+h\sigma_3, \] where $\sigma_1,\sigma_2$, and $\sigma_3$ are the Pauli matrices. 
+	
+	More generally, we can ask what constraints $\beta$ and $\beta_\tau$ must satisfy to be able to do this. 
+	Analyzing each of the four matrix entries shows that for small $\tau$ we need 
+	\[e^{-\beta h} \approx 1-\tau H_{0,0}, \quad e^{-2\beta_\tau} \approx -\tau H_{1,0}=-\tau H_{0,1},\quad \text{and} \ e^{\beta h} \approx 1- \tau H_{1,1}. \]
+	
+	Since $H_{1,0}$ and $H_{0,1}$ are constant with respect to $\tau$ we need $-2\beta_\tau \approx \log (-\lambda\tau)$ for small $\tau$ and some $\lambda\in \R_{>0}$. 
+	Similarly, if $\beta$ is small when $\tau$ is small we have $e^{-\beta h} \approx 1-\beta h \approx 1-\tau H_{0,0}$ and $e^{\beta h} \approx 1+\beta h \approx 1-\tau H_{1,1}$. 
+	So to first order we have $\beta \approx \tau$ and we see $H_{0,0}=-H_{1,1}=\mu h$ for some $\mu \in \R\sm\{0\}$. 
+	
+	Putting all of this together, we see that the general $\tau$-continuum Hamiltonian for this model will have the form 
+	\[ H=\begin{bmatrix}
+	\mu h & -\lambda \\
+	-\lambda & -\mu h
+	\end{bmatrix}=-\lambda\sigma_1+\mu h\sigma_3.\]
+	
+	Now we could also attempt to find a second order approximation of $T$ so that $T\approx I - \tau H + \frac{1}{2}\tau^2 H^2$ for an operator $H$ not depending on $\tau$. 
+	However, following the approach above will show us that in fact this is not possible.  
+	To get a higher order approximation (or the actual matrix logarithm solving $T=e^{-\tau H}$ for $H$), we need to allow $H$ to depend on $\tau$. 
+	
+	%Add calclulations here
+	
+	\subsection{Infinite Lattice Ising Models}
+	
+	The Ising model can be generalized to an \emph{infinite volume model} by letting the lattice $\cL$ grow to $\Z^d$ appropriately. 
+	We'll briefly sketch the ideas here - a detailed exposition can be found in \cite{friedli_velenik_2017} in chapters 3 and 6.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%                       References                          %%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\bibliographystyle{abbrv}
+	\bibliography{biblio}
+\end{document}
