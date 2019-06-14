@@ -42,8 +42,8 @@
 	
 	The Ising models are a family of statistical mechanics models with nearest-neighbor interaction. 
 	Given any lattice $\cL \subset \Z^d$ with $N$ total points, define a \emph{spin} at each site of the lattice via a variable $s \in \Omega_0=\{\pm 1\}$. 
-	A \emph{configuration} is a collection $\{s\}=\{s_\ell\}_{\ell\in\cL}$. 
-	For convenience, we will usually work with cubic lattices of the form $\cL=\{-n,-n+1,\ldots, n-1,n\}^d$ and impose periodic boundary conditions. 
+	A \emph{configuration} is a collection $\{s\}=\{s_\ell\}_{\ell\in\cL} \in \Omega_0^N$. 
+	For convenience, we will usually work with cubic lattices of the form $\cL=\{-n,-n+1,\ldots, n-1,n\}^d$ or $\cL=\{1\ldots, n\}^d$ and impose periodic boundary conditions. 
 	The \emph{action} associated to this model is the function 
 	\[\mathcal{S}(\{s\},\tau)=-\beta_\tau(\tau)\sum_{i\sim j} s_is_j - \beta(\tau)h\sum_{i}s_i , \] 
 	where $\tau$ is the lattice spacing in the ``time" direction, $h$ is the strength of an external magnetic field, and the first sum is over nearest neighbor sites of the lattice. 
@@ -58,7 +58,7 @@
 	The definitions above simplify to the following. The lattice is now a set of $N$ points $x_0,\ldots,x_{N-1}$ on a circle so that $s_0=s_N$. The action is given by 
 	\[\mathcal{S}(\{s\},\tau)=-\beta_\tau(\tau)\sum_{i=0}^{N-1} s_is_{i+1} - \beta(\tau)h\sum_{i=0}^{N-1}s_i. \] 
 	It will be helpful to rewrite this expression to be symmetric and expressed in terms of sums and differences of the $s_i$. 
-	Up to a constant factor of $-\beta_\tau\sum_{i=0}^{N-1}s_i$, we find
+	Up to a constant factor of $-\beta_\tau N$, we find
 	 \[\mathcal{S}(\{s\},\tau)=\frac{1}{2}\beta_\tau(\tau)\sum_{i=0}^{N-1} (s_i-s_{i+1})^2 - \frac{1}{2}\beta(\tau)h\sum_{i=0}^{N-1}(s_i+s_{i+1}). \]
 	Note that we needed periodicity in order to rewrite the second term in this way. Further, we now have $\mathcal{S}=0$ when all of the spins are identical and $h=0$.
 	
@@ -132,7 +132,49 @@
 	\subsection{1+1 Ising Model}
 	
 	We may analyze the $1+1$ Ising model similarly to the $1+0$ model. 
-	We are going to relate a statistical mechanics system on a 2-dimensional lattice (with one temporal and one spatial dimension) to a quantum mechanical Hamiltonian on a 1-dimensional system of interacting spins.
+	We are going to relate a statistical mechanics system on a 2-dimensional lattice (with one temporal and one spatial dimension) to a quantum mechanical Hamiltonian on a 1-dimensional system of interacting spins.  
+	See \cite{FradkinSusskind78} and \cite{KogutGaugeSummary}.
+	
+	As in the 1+0 Ising model, we will work with a lattice with periodic boundary conditions. 
+	Suppose $\cL$ is a $N_x \times N_\tau$ lattice of points in $\Z^2$ with $\vec{\tau}$ a unit vector in the time direction and $\vec{x}$ a unit vector in the spatial direction. 
+	Then the action for the model is 
+	\[ \mathcal{S}= -\sum_{\ell} \beta_\tau s_{\ell}s_{\ell+\vec{\tau}}+\beta s_{\ell}s_{\ell+\vec{x}}, \]
+	where the sum is over all lattice points $\ell \in \cL$.
+	
+	We want to write $\mathcal{S}=\sum_{j=1}^{N_\tau} L(j,j+1)$ for some $L(j,j+1)$ that describes the interaction between the spatial rows $j$ and $j+1$.
+	To do this, we first rewrite 
+	\[\mathcal{S}=\sum_{\ell}\frac{\beta_\tau}{2}(s_{\ell}-s_{\ell+\vec{\tau}})^2 -\frac{1}{2}\beta (s_\ell s_{\ell+\vec{x}}+s_{\ell+\vec{\tau}}s_{\ell+\vec{\tau}+\vec{x}}), \]
+	
+	using the periodic boundary conditions. 
+	Note that the new $\mathcal{S}$ differs from the previous one by a normalization constant so that the first term is 0 when all of the spins are aligned, rather than being $-N\beta_\tau$.
+	We can now define 
+	\[L(j,j+1):= \sum_{\ell=1}^{N_x} \frac{\beta_\tau}{2} (s_\ell-\tilde{s}_\ell)^2-\frac{\beta}{2}(s_\ell s_{\ell+1}+\tilde{s}_\ell \tilde{s}_{\ell+1}), \]
+	where the sum is over the $N_x$ indices in the spatial row, $\{s\}$ is the configuration of row $j$ and $\{\tilde{s}\}$ is the configuration of row $j+1$.
+	
+	Then the partition function is 
+	\[ Z=\sum_{\{s\}} e^{-L(1,2)}e^{-L(2,3)}\ldots e^{-L(N_\tau,1)}. \]
+	As in the previous section, we express $Z$ as the trace of the $N_\tau^\text{th}$ power of a transfer matrix $\hat{T}$ describing the transition between rows. 
+	Since there are $2^{N_x}$ configurations for each row, $\hat{T}$ will be a $2^{N_x}\times 2^{N_x}$ matrix.
+	The elements of $\hat{T}$ can be organized by the number of spin flips between configurations, since these determine the value of the first term of $L(j,j+1)$. We want to find $\beta,\beta_\tau$ so that for $\tau$ near 0, $\hat{T} \approx 1 - \tau \hat{H}$.
+	\begin{align*}
+		\hat{T}|_{0\,\text{flips}} &= e^{\beta \sum_{\ell=1}^{N_x} s_{\ell} s_{\ell+1}},  \\		
+		\hat{T}|_{1\,\text{flip}} &= e^{-2\beta_\tau} e^{\frac{\beta}{2}\sum_{\ell=1}^{N_x}(s_\ell s_{\ell+1}+\tilde{s}_\ell \tilde{s}_{\ell+1})},\\
+		\vdots \quad & \qquad\qquad\qquad \vdots \\		
+		\hat{T}|_{k\,\text{flips}} &= e^{-2k\beta_\tau} e^{\frac{\beta}{2}\sum_{\ell=1}^{N_x}(s_\ell s_{\ell+1}+\tilde{s}_\ell \tilde{s}_{\ell+1})}		
+	\end{align*}
+	
+	The nicest solution to this is to choose $\beta =\lambda \tau$ and $\tau = e^{-2\beta_\tau}$ for some $\lambda \in \R_{>0}$.
+	Then to first order approximation in $\tau$,
+	\begin{align*}
+		\hat{T}|_{0\,\text{flips}} &\approx 1-\mu\lambda\tau, \\
+		\hat{T}|_{1\,\text{flip}} &\approx \tau (1+\kappa \lambda\tau) \approx \tau, \\
+		\vdots \quad & \qquad\qquad \vdots \\		
+		\hat{T}|_{k\,\text{flips}} &\approx \tau^k (1+\kappa \lambda\tau) \approx 0, 
+	\end{align*}
+    where $\mu=\sum_{\ell=1}^{N_x}s_{\ell}s_{\ell+1}$ and $\kappa=\frac{1}{2}\sum_{\ell=1}^{N_x} (s_{\ell}s_{\ell+1}+\tilde{s}_{\ell}\tilde{s}_{\ell+1})$ are independent of $\tau$.
+    
+    We can now express $\hat{T}$ as $I- \tau \hat{H}$ where the Hamiltonian $\hat{H}$ is given in terms of the Pauli operators at each site $\ell$, $\hat{\sigma}_1(\ell)$ and $\hat{\sigma}_3(\ell)$:
+    \[\hat{H}= -\lambda \sum_{\ell=1}^{N_x} \hat{\sigma}_3(\ell)\hat{\sigma}_3(\ell+1) - \sum_{\ell=1}^{N_x} \hat{\sigma}_1(\ell). \]
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Infinite Lattice Ising Models}
@@ -144,7 +186,7 @@
 	\section{O(N) Model}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	These models are extensively treated in \cite{HamerKogutSusskind79} and \cite{FradkinSusskind78}. 
+	These models are extensively treated in \cite{FradkinSusskind78},\cite{HamerKogutSusskind79},\cite{KogutGaugeSummary}. 
 	As in the Ising model, we have a lattice $\cL \subset \Z^d$ of $M$ points, usually cubic. 
 	The spins at each site $i$ of the lattice are now $\vec{x_i} \in \Omega_0=S^{N-1} = \{\vec{x} \in \R^{N} \mid \|\vec{x}\|=1 \}$. 
 	The action is
@@ -161,7 +203,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{O(2) model on a 1-dimensional lattice}
 	
-	First we consider the $O(2)$ model on a 1-dimensional lattice of $N$ points with periodic boundary conditions. When our configuration space is $S^1$, we can parameterize the spins $\vec{x_i}=(cos(\theta_i),\sin(\theta_i))$ for $\theta \in [0,2\pi)$. 
+	First we consider the $O(2)$ model on a 1-dimensional lattice of $N$ points with periodic boundary conditions. When our configuration space is $S^1$, we can parameterize the spins $\vec{x_i}=(\cos(\theta_i),\sin(\theta_i))$ for $\theta \in [0,2\pi)$. 
 	Under this parameterization, the action becomes
 	\[ \mathcal{S} = -J\sum_{j=1}^N \cos(\theta_j)\cos(\theta_{j+1})+\sin(\theta_j)\sin(\theta_{j+1}) 
 	=  - J\sum_{j=1}^N \cos(\theta_j-\theta_{j+1}). \]
@@ -186,8 +228,8 @@
 	\bibliographystyle{abbrv}
 	\bibliography{biblio}
 	
-	\nocite{HamerKogutSusskind79}
 	\nocite{hall_qtfm_2013}
 	\nocite{Thompson68}
 	\nocite{HenkelHoeger84}
+	\nocite{nielsen_fermions}
 \end{document}
