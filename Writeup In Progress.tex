@@ -121,7 +121,7 @@
 		e^{-2\beta_\tau} &\approx -\tau H_{0,1}+\frac{\tau^2}{2}(H_{0,0}H_{0,1}+H_{0,1}H_{1,1}),\\
 		e^{\beta h} &\approx 1 - \tau H_{1,1}+\frac{\tau^2}{2}(H_{0,1}^2+H_{0,0}^2)
 	\end{align*}
-	for small $\tau$, where we have used the fact that $H$ should be Hermitian and so $H_{0,1}=H_{1,0}$.
+	for small $\tau$, where we have used the fact that $H$ should be real and symmetric and so $H_{0,1}=H_{1,0}$.
 	From the first and third equations, we see that $H_{0,0}$ and $H_{1,1}$ must depend on $h$. 
 	But the second equation has no dependence on $h$, so the dependence of $H_{0,1}$ on $h$ must be inversely related to the $H_{0,0}$ and $H_{1,1}$ dependence.
 	On the other hand adding the first and third equations yields
@@ -146,17 +146,31 @@
 	
 	These models are extensively treated in \cite{HamerKogutSusskind79} and \cite{FradkinSusskind78}. 
 	As in the Ising model, we have a lattice $\cL \subset \Z^d$ of $M$ points, usually cubic. 
-	The spins at each site $i$ of the lattice are now $\vec{x_i} \in \Omega_0=S^N = \{\vec{x} \in \R^{N+1} \mid \|\vec{x}\|=1 \}$. 
+	The spins at each site $i$ of the lattice are now $\vec{x_i} \in \Omega_0=S^{N-1} = \{\vec{x} \in \R^{N} \mid \|\vec{x}\|=1 \}$. 
 	The action is
 	\[\mathcal{S}=\sum_{i,j} -J_{i,j}\vec{x_i}\cdot\vec{x_j}, \] where the sum is over nearest-neighbor pairs in $\cL$.
-	Frequently we will take $J_{i,j}$, the interaction constants, to depend only on which coordinate of the lattice the points differ in.
-	As in the earlier examples, it is helpful to renormalize the action so that when all the $\vec{x_i}$ are equal we get $\mathcal{S}=0$. 
+	Frequently we will take the interaction constants $J_{i,j}$ to depend only on which coordinate of the lattice the points differ in.
+	As in the earlier examples, it may be helpful to renormalize the action so that when all the $\vec{x_i}$ are equal we get $\mathcal{S}=0$. 
 	This results in a renormalized action
 	\[\mathcal{S}=\sum_{i,j}\frac{1}{2} J_{i,j}(\vec{x_i}-\vec{x_j})^2. \]
 	
 	As before, we are interested in thinking of our $d$-dimensional lattice as having $1$ time dimension and $d-1$ spatial dimensions and finding a $\tau$-continuum quantum mechanical Hamiltonian $H$ that corresponds to the action as the lattice spacing $\tau$ goes to $0$.
 	Since the spin configuration space is now continuous, the partition function will now be an integral rather than a summation:
-	\[ Z=\int_{(S^N)^M} d\vec{x_1}\ldots d\vec{x_M} e^{\sum_{i,j}\frac{1}{2} J_{i,j}(\vec{x_i}-\vec{x_j})^2}. \]
+	\[ Z=\int_{(S^N)^M} d\vec{x_1}\ldots d\vec{x_M} e^{-\beta\sum_{i,j}\frac{1}{2} J_{i,j}(\vec{x_i}-\vec{x_j})^2}. \]
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsection{O(2) model on a 1-dimensional lattice}
+	
+	First we consider the $O(2)$ model on a 1-dimensional lattice of $N$ points with periodic boundary conditions. When our configuration space is $S^1$, we can parameterize the spins $\vec{x_i}=(cos(\theta_i),\sin(\theta_i))$ for $\theta \in [0,2\pi)$. 
+	Under this parameterization, the action becomes
+	\[ \mathcal{S} = -J\sum_{j=1}^N \cos(\theta_j)\cos(\theta_{j+1})+\sin(\theta_j)\sin(\theta_{j+1}) 
+	=  - J\sum_{j=1}^N \cos(\theta_j-\theta_{j+1}). \]
+	
+	The corresponding partition function is then
+	\[ Z = \int_{[0,2\pi]^N} \left(\prod_{j=1}^N d\theta_j \right) e^{\sum_{j=1}^N\beta J \cos(\theta_j-\theta_{j+1})}, \]
+	 where again $\beta=\frac{1}{kT}$ is the inverse temperature.
+	
+	We now wish find an analogue of the transfer matrix from the analysis of the Ising model.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Spherical Model}
