@@ -45,18 +45,45 @@
 	A \emph{configuration} is a collection $\{s\}=\{s_\ell\}_{\ell\in\cL} \in \Omega_0^N$. 
 	For convenience, we will usually work with cubic lattices of the form $\cL=\{-n,-n+1,\ldots, n-1,n\}^d$ or $\cL=\{1\ldots, n\}^d$ and impose periodic boundary conditions. 
 	The \emph{action} associated to this model is the function 
-	\[\mathcal{S}(\{s\},\tau)=-\beta_\tau(\tau)\sum_{i\sim j} s_is_j - \beta(\tau)h\sum_{i}s_i , \] 
+	\[\mathcal{S}(\{s\},\tau, h)=-\beta_\tau(\tau)\sum_{i\sim j} s_is_j - \beta(\tau)h\sum_{i}s_i , \] 
 	where $\tau$ is the lattice spacing in the ``time" direction, $h$ is the strength of an external magnetic field, and the first sum is over nearest neighbor sites of the lattice. 
 	The coefficients $\beta_\tau$ and $\beta$ may depend on the time direction lattice spacing and are otherwise chosen to reflect some physical situation (e.g. they may be taken to be proportional to the ``inverse temperature" $\frac{1}{kT}$ where $k$ is Boltzmann's constant).
 	
-	We will be interested in the \emph{partition function} $Z$ defined as \[Z=\sum_{\{s\}\in\Omega_0^N}e^{-\mathcal{S}(\{s\},\tau)}. \]
+	We will be interested in the \emph{partition function} $Z$ defined as \[Z(\tau,h)=\sum_{\{s\}\in\Omega_0^N}e^{-\mathcal{S}(\{s\},\tau, h)}. \]
 	
+	It turns out that we can use statistical mechanics to show that many other interesting physical quantities can be derived from the partition function \cite[Ch. 3]{friedli_velenik_2017}.
+	The \emph{pressure in $\cL$} of the model is defined to be 
+	\[\psi_{\cL}(\tau,h):=\frac{1}{N} \log Z(\tau,h).  \]
+	The \emph{magnetization density in $\cL$} is by definition 
+	\[ m_\cL:=\frac{1}{N}\sum_{\ell \in \cL} s_\ell. \]
+	The expected magnetization density, $\langle m_\cL \rangle$, is related to the pressure and partition function:
+	\[\langle m_\cL \rangle (\tau,h) = \frac{\partial \psi_{\cL}}{\partial h}(\tau, h)=\frac{\partial}{\partial h}\left( \frac{1}{N} \log Z(\tau,h)\right) . \]
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsection{Infinite Lattice Ising Models}
+	
+	The Ising model can be generalized to an \emph{infinite volume model} by letting the lattice $\cL$ grow to $\Z^d$ appropriately. 
+	We'll briefly sketch the ideas here - a detailed exposition can be found in \cite{friedli_velenik_2017} in chapters 3 and 6.
+	In general, we say a sequence of lattices $\{\cL_n \}$ converges to $\Z^d$, denoted $\cL_n \Uparrow \Z^d$, if 
+	\begin{enumerate}
+		\item $\cL_n$ is increasing, i.e. $\cL_n \subset \cL_{n+1}$ for all $n$,
+		\item $\bigcup_{n} \cL_n = \Z^d$,
+		\item $\lim\limits_{n\to \infty} \frac{|\partial \cL_n|}{|\cL_n|}=0$, where $\partial \cL_n$ is the boundary of the lattice, i.e. 
+		\[\partial \cL_n := \{\ell \in \cL_n \mid \ell \sim m \, \text{for some $m$}\in \Z^d \sm \cL_n \}. \]
+	\end{enumerate}
+	It turns out that the pressure $\psi_{\cL}$ defined above is convex as a function of $h$ and that there is a well-defined limit \[\psi(\tau,h):= \lim\limits_{\cL \Uparrow \Z^d} \psi_{\cL}(\tau,h).\]
+	Because $\psi$ is a convex function of $h$, the \emph{average magnetization density} given by
+	\[m(\tau,h)=\lim_{\cL \Uparrow \Z^d} \langle m_{\cL} \rangle (\tau, h), \]
+	exists for all but a countable set of $h \in \R$.
+	The points at which the average magnetization density fails to exist (always because the left and right derivatives do not equal each other) are called \emph{first-order phase transitions}.
+		
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{1+0 Ising}
 	
 	In the 1+0 Ising model, we take a 1-dimensional statistical mechanics system and relate it to a 0-dimensional (point) quantum Hamiltonian. See \cite{FradkinSusskind78} and \cite{KogutGaugeSummary}.
 	The definitions above simplify to the following. The lattice is now a set of $N$ points $x_0,\ldots,x_{N-1}$ on a circle so that $s_0=s_N$. The action is given by 
-	\[\mathcal{S}(\{s\},\tau)=-\beta_\tau(\tau)\sum_{i=0}^{N-1} s_is_{i+1} - \beta(\tau)h\sum_{i=0}^{N-1}s_i. \] 
+	\[\mathcal{S}(\{s\},\tau, h)=-\beta_\tau(\tau)\sum_{i=0}^{N-1} s_is_{i+1} - \beta(\tau)h\sum_{i=0}^{N-1}s_i. \] 
 	It will be helpful to rewrite this expression to be symmetric and expressed in terms of sums and differences of the $s_i$. 
 	Up to a constant factor of $-\beta_\tau N$, we find
 	 \[\mathcal{S}(\{s\},\tau)=\frac{1}{2}\beta_\tau(\tau)\sum_{i=0}^{N-1} (s_i-s_{i+1})^2 - \frac{1}{2}\beta(\tau)h\sum_{i=0}^{N-1}(s_i+s_{i+1}). \]
@@ -174,13 +201,25 @@
     where $\mu=\sum_{\ell=1}^{N_x}s_{\ell}s_{\ell+1}$ and $\kappa=\frac{1}{2}\sum_{\ell=1}^{N_x} (s_{\ell}s_{\ell+1}+\tilde{s}_{\ell}\tilde{s}_{\ell+1})$ are independent of $\tau$.
     
     We can now express $\hat{T}$ as $I- \tau \hat{H}$ where the Hamiltonian $\hat{H}$ is given in terms of the Pauli operators at each site $\ell$, $\hat{\sigma}_1(\ell)$ and $\hat{\sigma}_3(\ell)$:
-    \[\hat{H}= -\lambda \sum_{\ell=1}^{N_x} \hat{\sigma}_3(\ell)\hat{\sigma}_3(\ell+1) - \sum_{\ell=1}^{N_x} \hat{\sigma}_1(\ell). \]
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Infinite Lattice Ising Models}
-	
-	The Ising model can be generalized to an \emph{infinite volume model} by letting the lattice $\cL$ grow to $\Z^d$ appropriately. 
-	We'll briefly sketch the ideas here - a detailed exposition can be found in \cite{friedli_velenik_2017} in chapters 3 and 6. 
+    \begin{equation}\label{eqn:1+1IsingHamiltonian}
+    \hat{H}= -\lambda \sum_{\ell=1}^{N_x} \hat{\sigma}_3(\ell)\hat{\sigma}_3(\ell+1) - \sum_{\ell=1}^{N_x} \hat{\sigma}_1(\ell). 
+    \end{equation}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Jordan-Wigner Transform and Solution in terms of Fermionic operators}
+    
+    A Hamiltonian of the form of \cref{eqn:1+1IsingHamiltonian} can be rewritten in terms of Fermion operators $\{a_j,a^\dagger_j\}_{j=1}^n$ that satisfy the \emph{canonical commutation relations} (CCRs) 
+    \[ \{a_j,a_k^\dagger \} = \delta_{k,j}I; \qquad \{a_j,a_k \} =0, \]
+    where $\{A,B\} = AB + BA$ is the anticommutator of two operators \cite{KogutGaugeSummary},\cite{nielsen_fermions},\cite{SchultzMattisLieb64}.
+    
+    We can summarize this transformation as follows:
+    \begin{enumerate}
+    	\item Use duality to swap the roles of $\hat{\sigma}_1$ and $\hat{\sigma}_3$ in \cref{eqn:1+1IsingHamiltonian}.
+    	\item Use raising and lowering operators to rewrite $H$ in terms of fermion operators. (Jordan-Wigner transform)
+    	\item Convert the resulting operators and quadratic Hamiltonian to momentum space.
+    	\item Diagonalize the momentum Fermionic Hamiltonian.
+    	\item Determine the eigenvalues of the resulting Hamiltonian.
+    \end{enumerate}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{O(N) Model}
