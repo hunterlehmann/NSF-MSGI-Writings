@@ -201,20 +201,20 @@
     where $\mu=\sum_{\ell=1}^{N_x}s_{\ell}s_{\ell+1}$ and $\kappa=\frac{1}{2}\sum_{\ell=1}^{N_x} (s_{\ell}s_{\ell+1}+\tilde{s}_{\ell}\tilde{s}_{\ell+1})$ are independent of $\tau$.
     
     We can now express $\hat{T}$ as $I- \tau \hat{H}$ where the Hamiltonian $\hat{H}$ is given in terms of the Pauli operators at each site $\ell$, $\hat{\sigma}_1(\ell)$ and $\hat{\sigma}_3(\ell)$:
-    \begin{equation}\label{eqn:1+1IsingHamiltonian}
+    \begin{equation}\label{eq:1+1IsingHamiltonian}
     \hat{H}= -\lambda \sum_{\ell=1}^{N_x} \hat{\sigma}_3(\ell)\hat{\sigma}_3(\ell+1) - \sum_{\ell=1}^{N_x} \hat{\sigma}_1(\ell). 
     \end{equation}
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Jordan-Wigner Transform and Solution in terms of Fermionic operators}
     
-    A Hamiltonian of the form of \cref{eqn:1+1IsingHamiltonian} can be rewritten in terms of Fermion operators $\{a_j,a^\dagger_j\}_{j=1}^n$ that satisfy the \emph{canonical commutation relations} (CCRs) 
+    A Hamiltonian of the form of \cref{eq:1+1IsingHamiltonian} can be rewritten in terms of Fermion operators $\{a_j,a^\dagger_j\}_{j=1}^n$ that satisfy the \emph{canonical commutation relations} (CCRs) 
     \[ \{a_j,a_k^\dagger \} = \delta_{k,j}I; \qquad \{a_j,a_k \} =0, \]
     where $\{A,B\} = AB + BA$ is the anticommutator of two operators \cite{KogutGaugeSummary},\cite{nielsen_fermions},\cite{SchultzMattisLieb64}.
     
     We can summarize this transformation as follows:
     \begin{enumerate}
-    	\item Use duality to swap the roles of $\hat{\sigma}_1$ and $\hat{\sigma}_3$ in \cref{eqn:1+1IsingHamiltonian}.
+    	\item Use duality to swap the roles of $\hat{\sigma}_1$ and $\hat{\sigma}_3$ in \cref{eq:1+1IsingHamiltonian}.
     	\item Use raising and lowering operators to rewrite $H$ in terms of fermion operators. (Jordan-Wigner transform)
     	\item Convert the resulting operators and quadratic Hamiltonian to momentum space.
     	\item Diagonalize the momentum Fermionic Hamiltonian.
@@ -242,16 +242,65 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{O(2) model on a 1-dimensional lattice}
 	
-	First we consider the $O(2)$ model on a 1-dimensional lattice of $N$ points with periodic boundary conditions. When our configuration space is $S^1$, we can parameterize the spins $\vec{x_i}=(\cos(\theta_i),\sin(\theta_i))$ for $\theta \in [0,2\pi)$. 
+	First we consider the $O(2)$ model on a 1-dimensional lattice of $N$ points with periodic boundary conditions and a magnetic field of strength $h$.
+	When our configuration space is $S^1$, we can parameterize the spins $\vec{x_i}=(\cos(\theta_i),\sin(\theta_i))$ for $\theta \in [0,2\pi)$. 
 	Under this parameterization, the action becomes
-	\[ \mathcal{S} = -J\sum_{j=1}^N \cos(\theta_j)\cos(\theta_{j+1})+\sin(\theta_j)\sin(\theta_{j+1}) 
-	=  - J\sum_{j=1}^N \cos(\theta_j-\theta_{j+1}). \]
+	\begin{align*}
+		 \mathcal{S} &= -\beta_\tau \sum_{j=1}^N \cos(\theta_j)\cos(\theta_{j+1})+\sin(\theta_j)\sin(\theta_{j+1}) - \beta h  \sum_{j=1}^N \cos(\theta_j)\\
+			&=  - \beta_\tau \sum_{j=1}^N \cos(\theta_j-\theta_{j+1}) - \frac{\beta h}{2}  \sum_{j=1}^N \left(\cos(\theta_j)+\cos(\theta_{j+1})\right). 
+	\end{align*}
 	
 	The corresponding partition function is then
-	\[ Z = \int_{[0,2\pi]^N} \left(\prod_{j=1}^N d\theta_j \right) e^{\sum_{j=1}^N\beta J \cos(\theta_j-\theta_{j+1})}, \]
-	 where again $\beta=\frac{1}{kT}$ is the inverse temperature.
-	
+	\[ Z = \int_{[0,2\pi]^N} \left(\prod_{j=1}^N d\theta_j \right) e^{\beta_\tau \sum_{j=1}^N \cos(\theta_j-\theta_{j+1})} e^{\frac{\beta h}{2}  \sum_{j=1}^N \cos(\theta_j)+\cos(\theta_{j+1})}. \]
 	We now wish find an analogue of the transfer matrix from the analysis of the Ising model.
+	To do this, we need the concept of integral operators.
+	Given any $L^2$ function $f(x,y)$ on a domain $E\times E$, we can define the operator $L_f : L^2(E) \to L^2(E)$ by 
+	\[(L_f g)(x)=\int_E f(x,y)g(y)\, dy \]
+	for any $g \in L^2(E)$.
+	
+	Define $f(\theta,\phi): [0,2\pi]\times [0,2\pi]$ by 
+	\[f(\theta,\phi)=e^{\beta_\tau \cos(\theta -\phi)}e^{\frac{\beta h}{2}(\cos(\theta)+\cos(\phi))}. \]
+	Then the integral operator $\hat{T}=L_f$ plays the same role as the transfer matrix above.
+	Since $f$ is in $L^2([0,2\pi]^2)$, $\hat{T}$ is trace-class and we have
+	\[Z= \int_{[0,2\pi]^N} \left(\prod_{j=1}^N d\theta_j \right) f(\theta_1,\theta_2)\ldots f(\theta_N,\theta_1) = \Tr \hat{T}^N. \]
+	
+	Again, our new goal is to write $\hat{T}=I-\tau\hat{H}$ when $\tau$ is small for some Hamiltonian on the one site Hilbert space $L^2([0,2\pi])$. 
+	Recall that the set $B=\{\psi_m:=\frac{1}{\sqrt{2\pi}} e^{im\theta} \mid m \in \Z \}$ forms an orthonormal basis for $L^2([0,2\pi])$.
+	We will approximate the action of $\hat{T}$ on elements $\psi_m$ of this basis in order to find our approximate Hamiltonian $\hat{H}$.
+	\begin{align}
+		(\hat{T}\psi_m)(\theta) &= \frac{1}{\sqrt{2\pi}}\int_{0}^{2\pi} e^{\beta_\tau \cos(\theta -\phi)}e^{\frac{\beta h}{2}(\cos(\theta)+\cos(\phi))} e^{im\phi}\, d\phi \nonumber \\
+		&=\frac{1}{\sqrt{2\pi}}e^{\frac{1}{2}\beta h \cos(\theta)} \int_{0}^{2\pi} e^{\beta_\tau \cos(\theta -\phi)}e^{\frac{1}{2}\beta h \cos(\phi)}e^{im\phi}\, d\phi. \label{eq:1+0_O(2)_IntOperator}
+	\end{align}
+	
+	We can use a Fourier transform to rewrite the $\cos(\theta-\phi)$ portion of the exponential in \cref{eq:1+0_O(2)_IntOperator}.
+	\begin{equation}\label{eq:FourierTransformExpCos}
+		e^{-\beta_\tau+\beta_\tau\cos(\theta-\phi)}=\sum_{\ell\in \Z}e^{i\ell(\theta-\phi)}I_\ell(\beta_\tau),
+	\end{equation}
+	where $I_\ell(\beta)$ is the Bessel function of imaginary argument.
+	In particular, we will let $\beta_\tau=\tau^{-1}$ so that $\beta_\tau$ is large when $\tau$ goes to 0. 
+	Then we can approximate $I_\ell(\beta_\tau)$ by the Gaussian $e^{-\ell^2/2\beta_\tau}$ and \cref{eq:FourierTransformExpCos} becomes
+	\begin{align}
+		e^{\beta_\tau\cos(\theta-\phi)}&\approx e^{\beta_\tau}\sum_{\ell\in \Z}e^{i\ell(\theta-\phi)}e^{-\ell^2/2\beta_\tau}\\
+			&=e^{1/\tau}\sum_{\ell\in \Z}e^{i\ell(\theta-\phi)}e^{-\tau\ell^2/2}. \label{eq:FourierTransformExpCosApprox}
+	\end{align}
+	
+	After substituting \cref{eq:FourierTransformExpCosApprox} into \cref{eq:1+0_O(2)_IntOperator}, we can use absolute convergence of the sum to rewrite the expression further.
+	\begin{align}
+		(\hat{T}\psi_m)(\theta) &\approx \frac{1}{\sqrt{2\pi}}e^{\frac{1}{2}\beta h \cos(\theta)} \int_{0}^{2\pi} e^{1/\tau} \left( \sum_{\ell\in \Z}e^{i\ell(\theta-\phi)}e^{-\tau\ell^2/2} \right) e^{\frac{1}{2}\beta h \cos(\phi)}e^{im\phi}\, d\phi \nonumber \\
+			&= \frac{1}{\sqrt{2\pi}}e^{\frac{1}{2}\beta h \cos(\theta)+1/\tau} \sum_{\ell\in \Z} e^{i\ell\theta-\tau\ell^2/2}\left(\int_{0}^{2\pi} e^{\frac{1}{2}\beta h \cos(\phi)}e^{i(m-\ell)\phi}\right) \, d\phi. \label{eq:1+0_O(2)_ApproxIntOperator}
+	\end{align}
+	
+	At this point, we want $\beta\beta_\tau$ to remain finite as $\tau$ goes to 0, so $\beta=\lambda \tau$ for some constant $\lambda$. 
+	Thus $\frac{1}{2}\beta h \cos(\phi)$ goes to 0 as $\tau$ goes to 0 and we can expand the corresponding exponential in \cref{eq:1+0_O(2)_ApproxIntOperator}.
+	We then use orthogonality to evaluate the resulting integral.
+	\begin{align}
+		(\hat{T}\psi_m)(\theta) &\approx \frac{1}{\sqrt{2\pi}}e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} e^{i\ell\theta-\tau\ell^2/2}\left(\int_{0}^{2\pi} (1-\left(\frac{\lambda \tau h}{2}\cos(\phi) \right)^2 e^{i(m-\ell)\phi}\right) \, d\phi, \nonumber \\
+		&= \frac{1}{\sqrt{2\pi}}e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} e^{i\ell\theta-\tau\ell^2/2}\left( 2\pi \delta_{\ell,m}- \frac{\lambda^2 \tau^2 h^2}{4}\int_{0}^{2\pi} \cos^2(\phi)  e^{i(m-\ell)\phi}\right) \, d\phi, \nonumber \\
+		&= \frac{1}{\sqrt{2\pi}}e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} e^{i\ell\theta-\tau\ell^2/2}\left( 2\pi \delta_{\ell,m}- \frac{\lambda^2 \tau^2 h^2}{4}\int_{0}^{2\pi} \left( \frac{e^{i\theta}+e^{-i\theta}}{2} \right)^2  e^{i(m-\ell)\phi}\right) \, d\phi, \nonumber \\
+		&= \frac{1}{\sqrt{2\pi}} e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} 2\pi e^{i\ell\theta-\tau\ell^2/2}\left(\delta_{\ell,m}- \frac{\lambda^2 \tau^2 h^2}{16}(\delta_{m+2,\ell}+2\delta_{m,\ell}+\delta_{m-2,\ell}) \right), \nonumber \\
+		&= \sqrt{2\pi} e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} ( e^{im\theta} e^{ - \tau m^2/2}- \frac{\lambda^2 \tau^2 h^2}{16} (e^{i(m+2)\theta} e^{ - \tau (m+2)^2/2}+ \nonumber\\
+		& \qquad\qquad\qquad\qquad\qquad\qquad 2e^{im\theta} e^{ - \tau m^2/2}+e^{i(m-2)\theta} e^{ - \tau (m-2)^2/2} ) ). 
+	\end{align}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Spherical Model}
