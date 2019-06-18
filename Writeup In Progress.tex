@@ -302,7 +302,7 @@
 	
 	At this point, we need to rescale the problem to drop the factor of $e^\frac{1}{\tau}$, as this term goes to infinity as $\tau$ goes to 0.
 	After we do this, we will write the action of $\hat{T}$ on $\psi_m$ in terms of the operators $J_z$ and $J_{\pm}$ defined on our basis and extended linearly by 
-	\[J_z \psi_m = m \cdot \psi_m, \quad J_{\pm} \psi_m = \psi_{m\pm1}. \]
+		\[J_z \psi_m = m \cdot \psi_m, \quad J_{\pm} \psi_m = \psi_{m\pm1}. \]
 	To do this we use the fact that $\tau$ is small to expand the remaining exponentials that do not depend on $\theta$ and drop all terms involving a power of $\tau$ greater than one.
 	\begin{align}
 		(\hat{T}\psi_m)(\theta) &\approx \sqrt{2\pi} \left( 1+\frac{1}{2}\lambda\tau h \cos(\theta)\right) \left( \left( 1- \frac{1}{2}\tau m^2\right) e^{im\theta}+ \frac{\lambda \tau h}{4} \left( e^{i(m+1)\theta}+ e^{i(m-1)\theta} \right) \right) ,\nonumber\\
@@ -311,7 +311,43 @@
 		&=\left( 2\pi \left( I-\tau \left( \frac{J_z^2}{2} + \frac{\lambda h}{2}(J_+ + J_-)\right) \right) \psi_m \right)(\theta).\label{eq:1+0_O(2)_Op_1-tH_Form}
 	\end{align}
 	
-	From \cref{eq:1+0_O(2)_Op_1-tH_Form} we see that the desired Hamiltonian is \[\hat{H}=\pi J_z^2+\pi \lambda h (J_+ + J_-). \]
+	From \cref{eq:1+0_O(2)_Op_1-tH_Form} we see that the desired Hamiltonian is 
+	\begin{equation}\label{eq:1+0_O(2)_Hamiltonian}
+		\hat{H}=2\pi \left( \frac{1}{2}J_z^2+ \frac{\lambda h}{2} (J_+ + J_-) \right).
+	\end{equation}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsection{O(2) model on a 2-dimensional lattice}
+	
+	We can perform a similar analysis on a 2-dimensional $M\times N$ lattice where there are $M$ spatial rows and $N$ temporal columns. 
+	For simplicity, we will drop the magnetic field term and consider only the interactions between neighboring spins. 
+	We will fix all interaction constants in the temporal direction (with unit vector $\vec{\tau}$ and temporal lattice spacing $\tau$) to be some $\beta_\tau(\tau)$.
+	The interaction constants in the spatial direction (with unit vector $\vec{x}$) will be $\beta(\tau)$.
+	For brevity we will omit the explicit dependence on $\tau$.
+	
+	The action then becomes
+		\[S=-\beta_\tau\sum_{\ell}\cos(\theta_\ell-\theta_{\ell+\vec{\tau}})-\beta\sum_{\ell}\cos(\theta_\ell-\theta_{\ell+\vec{x}}). \]
+	
+	It will be helpful later to adjust the action by a constant factor of $MN\beta_\tau-\frac{MN}{2}\log(2\pi\beta_\tau)$.
+	We also write $\theta_j^k$ for the angle in row $k$ and column $j$ of the lattice and rewrite the second term to be symmetric between adjacent rows.
+	The resulting action is
+		\[ S=\sum_{k=1}^M L(\vec{\theta}^k,\vec{\theta}^{k+1}) ,\]
+	where
+		\[ L(\vec{\theta},\vec{\phi})=-\frac{N}{2}\log(2\pi\beta_\tau) -\beta_\tau\sum_{j=1}^N (-1+\cos(\theta_j-\phi_j)) -\frac{\beta}{2} \sum_{j=1}^N \left(  \cos(\theta_j-\theta_{j+1}) + \cos(\phi_j-\phi_{j+1}) \right)\]
+	
+	Then 
+		\[ Z=\int d\vec{\theta}^1 \ldots d\vec{\theta}^M e^{-L(\vec{\theta}^1,\vec{\theta}^2)}\ldots e^{-L(\vec{\theta}^N,\vec{\theta}^1)}=\Tr(\hat{T}^M), \]
+	where $\hat{T}$ is the integral operator on the Hilbert space $L^2([0,2\pi]^N)\cong L^2([0,2\pi])^{\otimes N}$ defined by 
+		\[(\hat{T}f)(\vec{\theta})=\int_{[0,2\pi]^N} e^{-L(\vec{\theta},\vec{\phi})}f(\vec{\phi}) \, d\vec{\phi}.\]
+	
+	As in the previous section, we will analyze the action of $\hat{T}$ on elements of the orthornomal Hilbert basis 
+		\[ B=\{\psi_{\vec{m}}(\vec{\theta}) := \prod_{j=1}^N e^{im_j\theta_j} \mid \vec{m} \in \Z^N \} \]
+	of $L^2([0,2\pi]^N)$.
+	This will go very similarly and we will need the following approximations and definitions for small $\tau$ and $m\in \Z$.
+	We will also take $\beta_\tau=1/\tau$ and $\beta=\lambda\tau$ for some constant $\lambda$.
+	\begin{align}
+		&\int_0^{2\pi} e^{\frac{1}{\tau}(-1+\cos(\theta-\phi))}e^{im\phi} \, d\phi \approx \frac{1}{\sqrt{2\pi/\tau}}
+	\end{align} 
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Spherical Model}
