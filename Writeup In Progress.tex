@@ -1,4 +1,4 @@
-\documentclass[12pt,reqno]{amsart}
+\documentclass[11pt,reqno]{amsart}
 \usepackage{amsfonts}
 \usepackage{amscd}
 \usepackage{amsmath}
@@ -243,7 +243,7 @@
 	\subsection{O(2) model on a 1-dimensional lattice}
 	
 	First we consider the $O(2)$ model on a 1-dimensional lattice of $N$ points with periodic boundary conditions and a magnetic field of strength $h$.
-	When our configuration space is $S^1$, we can parameterize the spins $\vec{x_i}=(\cos(\theta_i),\sin(\theta_i))$ for $\theta \in [0,2\pi)$. 
+	Since our configuration space is $S^1$, we can parameterize the spins $\vec{x_i}=(\cos(\theta_i),\sin(\theta_i))$ for $\theta \in [0,2\pi)$. 
 	Under this parameterization, the action becomes
 	\begin{align*}
 		 \mathcal{S} &= -\beta_\tau \sum_{j=1}^N \cos(\theta_j)\cos(\theta_{j+1})+\sin(\theta_j)\sin(\theta_{j+1}) - \beta h  \sum_{j=1}^N \cos(\theta_j)\\
@@ -265,7 +265,7 @@
 	\[Z= \int_{[0,2\pi]^N} \left(\prod_{j=1}^N d\theta_j \right) f(\theta_1,\theta_2)\ldots f(\theta_N,\theta_1) = \Tr \hat{T}^N. \]
 	
 	Again, our new goal is to write $\hat{T}=I-\tau\hat{H}$ when $\tau$ is small for some Hamiltonian on the one site Hilbert space $L^2([0,2\pi])$. 
-	Recall that the set $B=\{\psi_m:=\frac{1}{\sqrt{2\pi}} e^{im\theta} \mid m \in \Z \}$ forms an orthonormal basis for $L^2([0,2\pi])$.
+	Recall that the set $B=\{\psi_m:=\frac{1}{\sqrt{2\pi}} e^{im\theta} \mid m \in \Z \}$ forms an orthonormal Hilbert basis for $L^2([0,2\pi])$.
 	We will approximate the action of $\hat{T}$ on elements $\psi_m$ of this basis in order to find our approximate Hamiltonian $\hat{H}$.
 	\begin{align}
 		(\hat{T}\psi_m)(\theta) &= \frac{1}{\sqrt{2\pi}}\int_{0}^{2\pi} e^{\beta_\tau \cos(\theta -\phi)}e^{\frac{\beta h}{2}(\cos(\theta)+\cos(\phi))} e^{im\phi}\, d\phi \nonumber \\
@@ -293,14 +293,25 @@
 	At this point, we want $\beta\beta_\tau$ to remain finite as $\tau$ goes to 0, so $\beta=\lambda \tau$ for some constant $\lambda$. 
 	Thus $\frac{1}{2}\beta h \cos(\phi)$ goes to 0 as $\tau$ goes to 0 and we can expand the corresponding exponential in \cref{eq:1+0_O(2)_ApproxIntOperator}.
 	We then use orthogonality to evaluate the resulting integral.
+	\begin{align*}
+		(\hat{T}\psi_m)(\theta) &\approx \frac{1}{\sqrt{2\pi}}e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} e^{i\ell\theta-\tau\ell^2/2}\left(\int_{0}^{2\pi} (1+\left(\frac{\lambda \tau h}{2}\cos(\phi) \right) e^{i(m-\ell)\phi}\right) \, d\phi,  \\
+		&= \frac{1}{\sqrt{2\pi}}e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} e^{i\ell\theta-\tau\ell^2/2}\left( 2\pi \delta_{\ell,m}+ \frac{\lambda \tau h}{2}\int_{0}^{2\pi} \left( \frac{e^{i\theta}+e^{-i\theta}}{2} \right)  e^{i(m-\ell)\phi}\right) \, d\phi,  \\
+		&= \frac{1}{\sqrt{2\pi}} e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} 2\pi e^{i\ell\theta-\tau\ell^2/2}\left(\delta_{\ell,m}+ \frac{\lambda \tau h}{4}(\delta_{m+1,\ell}+\delta_{m-1,\ell}) \right),  \\
+		&= \sqrt{2\pi} e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} ( e^{im\theta - \tau m^2/2}+ \frac{\lambda \tau h}{4} (e^{i(m+1)\theta - \tau (m+1)^2/2}+ e^{i(m-1)\theta - \tau (m-1)^2/2} ) ). 
+	\end{align*}
+	
+	At this point, we need to rescale the problem to drop the factor of $e^\frac{1}{\tau}$, as this term goes to infinity as $\tau$ goes to 0.
+	After we do this, we will write the action of $\hat{T}$ on $\psi_m$ in terms of the operators $J_z$ and $J_{\pm}$ defined on our basis and extended linearly by 
+	\[J_z \psi_m = m \cdot \psi_m, \quad J_{\pm} \psi_m = \psi_{m\pm1}. \]
+	To do this we use the fact that $\tau$ is small to expand the remaining exponentials that do not depend on $\theta$ and drop all terms involving a power of $\tau$ greater than one.
 	\begin{align}
-		(\hat{T}\psi_m)(\theta) &\approx \frac{1}{\sqrt{2\pi}}e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} e^{i\ell\theta-\tau\ell^2/2}\left(\int_{0}^{2\pi} (1-\left(\frac{\lambda \tau h}{2}\cos(\phi) \right)^2 e^{i(m-\ell)\phi}\right) \, d\phi, \nonumber \\
-		&= \frac{1}{\sqrt{2\pi}}e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} e^{i\ell\theta-\tau\ell^2/2}\left( 2\pi \delta_{\ell,m}- \frac{\lambda^2 \tau^2 h^2}{4}\int_{0}^{2\pi} \cos^2(\phi)  e^{i(m-\ell)\phi}\right) \, d\phi, \nonumber \\
-		&= \frac{1}{\sqrt{2\pi}}e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} e^{i\ell\theta-\tau\ell^2/2}\left( 2\pi \delta_{\ell,m}- \frac{\lambda^2 \tau^2 h^2}{4}\int_{0}^{2\pi} \left( \frac{e^{i\theta}+e^{-i\theta}}{2} \right)^2  e^{i(m-\ell)\phi}\right) \, d\phi, \nonumber \\
-		&= \frac{1}{\sqrt{2\pi}} e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} \sum_{\ell\in \Z} 2\pi e^{i\ell\theta-\tau\ell^2/2}\left(\delta_{\ell,m}- \frac{\lambda^2 \tau^2 h^2}{16}(\delta_{m+2,\ell}+2\delta_{m,\ell}+\delta_{m-2,\ell}) \right), \nonumber \\
-		&= \sqrt{2\pi} e^{\frac{\lambda\tau h}{2} \cos(\theta)+1/\tau} ( e^{im\theta} e^{ - \tau m^2/2}- \frac{\lambda^2 \tau^2 h^2}{16} (e^{i(m+2)\theta} e^{ - \tau (m+2)^2/2}+ \nonumber\\
-		& \qquad\qquad\qquad\qquad\qquad\qquad 2e^{im\theta} e^{ - \tau m^2/2}+e^{i(m-2)\theta} e^{ - \tau (m-2)^2/2} ) ). 
+		(\hat{T}\psi_m)(\theta) &\approx \sqrt{2\pi} \left( 1+\frac{1}{2}\lambda\tau h \cos(\theta)\right) \left( \left( 1- \frac{1}{2}\tau m^2\right) e^{im\theta}+ \frac{\lambda \tau h}{4} \left( e^{i(m+1)\theta}+ e^{i(m-1)\theta} \right) \right) ,\nonumber\\
+		&\approx\sqrt{2\pi} \left( \left( 1- \frac{1}{2}\tau m^2+\frac{1}{2}\lambda\tau h \cos(\theta)\right)  e^{im\theta}+ \frac{\lambda \tau h}{4} \left( e^{i(m+1)\theta}+ e^{i(m-1)\theta} \right) \right),\nonumber\\
+		&=\sqrt{2\pi} \left( \left( 1- \frac{1}{2}\tau m^2\right)  e^{im\theta}+ \frac{\lambda \tau h}{2} \left( e^{i(m+1)\theta}+ e^{i(m-1)\theta} \right) \right),\nonumber\\
+		&=\left( 2\pi \left( I-\tau \left( \frac{J_z^2}{2} + \frac{\lambda h}{2}(J_+ + J_-)\right) \right) \psi_m \right)(\theta).\label{eq:1+0_O(2)_Op_1-tH_Form}
 	\end{align}
+	
+	From \cref{eq:1+0_O(2)_Op_1-tH_Form} we see that the desired Hamiltonian is \[\hat{H}=\pi J_z^2+\pi \lambda h (J_+ + J_-). \]
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Spherical Model}
