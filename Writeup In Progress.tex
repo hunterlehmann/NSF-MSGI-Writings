@@ -8,7 +8,7 @@
 \usepackage{pgf,tikz}
 \usepackage{mathrsfs}
 \usepackage{multicol}
-\usepackage[margin=1.25in]{geometry}
+\usepackage[margin=1.1in]{geometry}
 \usepackage{etoolbox}
 \usepackage{hyperref}
 \usepackage{soul}
@@ -308,12 +308,12 @@
 		(\hat{T}\psi_m)(\theta) &\approx \sqrt{2\pi} \left( 1+\frac{1}{2}\lambda\tau h \cos(\theta)\right) \left( \left( 1- \frac{1}{2}\tau m^2\right) e^{im\theta}+ \frac{\lambda \tau h}{4} \left( e^{i(m+1)\theta}+ e^{i(m-1)\theta} \right) \right) ,\nonumber\\
 		&\approx\sqrt{2\pi} \left( \left( 1- \frac{1}{2}\tau m^2+\frac{1}{2}\lambda\tau h \cos(\theta)\right)  e^{im\theta}+ \frac{\lambda \tau h}{4} \left( e^{i(m+1)\theta}+ e^{i(m-1)\theta} \right) \right),\nonumber\\
 		&=\sqrt{2\pi} \left( \left( 1- \frac{1}{2}\tau m^2\right)  e^{im\theta}+ \frac{\lambda \tau h}{2} \left( e^{i(m+1)\theta}+ e^{i(m-1)\theta} \right) \right),\nonumber\\
-		&=\left( 2\pi \left( I-\tau \left( \frac{J_z^2}{2} + \frac{\lambda h}{2}(J_+ + J_-)\right) \right) \psi_m \right)(\theta).\label{eq:1+0_O(2)_Op_1-tH_Form}
+		&=\left( 2\pi \left( I-\tau \left( \frac{J_z^2}{2} - \frac{\lambda h}{2}(J_+ + J_-)\right) \right) \psi_m \right)(\theta).\label{eq:1+0_O(2)_Op_1-tH_Form}
 	\end{align}
 	
 	From \cref{eq:1+0_O(2)_Op_1-tH_Form} we see that the desired Hamiltonian is 
 	\begin{equation}\label{eq:1+0_O(2)_Hamiltonian}
-		\hat{H}=2\pi \left( \frac{1}{2}J_z^2+ \frac{\lambda h}{2} (J_+ + J_-) \right).
+		\hat{H}=2\pi \left( \frac{1}{2}J_z^2- \frac{\lambda h}{2} (J_+ + J_-) \right).
 	\end{equation}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -341,17 +341,46 @@
 		\[(\hat{T}f)(\vec{\theta})=\int_{[0,2\pi]^N} e^{-L(\vec{\theta},\vec{\phi})}f(\vec{\phi}) \, d\vec{\phi}.\]
 	
 	As in the previous section, we will analyze the action of $\hat{T}$ on elements of the orthornomal Hilbert basis 
-		\[ B=\{\psi_{\vec{m}}(\vec{\theta}) := \prod_{j=1}^N e^{im_j\theta_j} \mid \vec{m} \in \Z^N \} \]
+		\[ B=\left\{\psi_{\vec{m}}(\vec{\theta}) := \frac{1}{(2\pi)^{N/2}}\prod_{j=1}^N e^{im_j\theta_j} \mid \vec{m} \in \Z^N \right\} \]
 	of $L^2([0,2\pi]^N)$.
-	This will go very similarly and we will need the following approximations and definitions for small $\tau$ and $m\in \Z$.
+	This will go very similarly and we will need the following approximations for small $\tau$ and $m\in \Z$.
 	We will also take $\beta_\tau=1/\tau$ and $\beta=\lambda\tau$ for some constant $\lambda$.
 	\begin{align}
-		&\int_0^{2\pi} e^{\frac{1}{\tau}(-1+\cos(\theta-\phi))}e^{im\phi} \, d\phi \approx \frac{1}{\sqrt{2\pi/\tau}}
+		\int_0^{2\pi} e^{\frac{1}{\tau}(-1+\cos(\theta-\phi))}e^{im\phi} \, d\phi &\approx \frac{\sqrt{\tau}}{\sqrt{2\pi}} \int_0^{2\pi}\sum_{\ell \in \Z} e^{i\ell (\theta -\phi)-\ell^2\tau/2+im\phi}\, d\phi = \sqrt{2\pi \tau}e^{-m^2\tau/2} e^{im\theta}.\label{eq:O2_bessel_approx_int} \\
+		e^{\frac{1}{2}\lambda\tau \sum_{j=1}^N \cos(\phi_j-\phi_{j+1})}&\approx 1+\frac{\lambda\tau}{4}\sum_{j=1}^N (e^{i\phi_j}e^{-i\phi_{j+1}}+e^{-i\phi_j}e^{i\phi_{j+1}}) \label{eq:O2_exp_cos_expansion}
 	\end{align} 
+	
+	We will write our Hamiltonian in terms of the operators $J_z(j), J_+(j)$, and $J_-(j)$ defined on the basis $\{\psi_{\vec{m}} \}$ by
+	\begin{align*}
+		(J_z(j)\psi_{\vec{m}})(\vec{\theta}) &:= m_j \psi_{\vec{m}}, \\
+		(J_{\pm}(j)\psi_{\vec{m}})(\vec{\theta}) &:= e^{\pm i \theta_j}\psi_{\vec{m}}.
+	\end{align*} 
+	
+	Now 
+	\begin{align*}
+		(\hat{T}\psi_{\vec{m}})(\vec{\theta})&=\frac{1}{(2\pi)^{N/2}}\int_{[0,2\pi]^N} e^{-L(\vec{\theta},\vec{\phi})}e^{\sum_{j=1}^N im_j\phi_j} \, d\vec{\phi}. \\
+		&= F(\vec{\theta}) \int e^{\frac{1}{\tau}\sum_{j=1}^N (-1+\cos(\theta_j-\phi_j)+im_j\phi_j) +\frac{\lambda\tau}{2} \sum_{j=1}^N \cos(\phi_j-\phi_{j+1}) }\, d\vec{\phi},
+	\end{align*}
+	where $F(\vec{\theta})=\left(\frac{1}{\tau}\right)^{N/2}e^{\frac{\lambda\tau}{2}\sum_{j=1}^N\cos(\theta_j-\theta_{j+1})}$.
+	We can now use \cref{eq:O2_bessel_approx_int} and \cref{eq:O2_exp_cos_expansion}.
+	Whenever we take an expansion in powers of $\tau$ we will neglect any terms with order at least 2.
+	\begin{align*}
+		(\hat{T}\psi_{\vec{m}})(\vec{\theta})& \approx F(\vec{\theta}) \int e^{\frac{1}{\tau}\sum_{j=1}^N (-1+\cos(\theta_j-\phi_j)+im_j\phi_j)}\left( 1+\frac{\lambda\tau}{4}\sum_{j=1}^N (e^{i\phi_j}e^{-i\phi_{j+1}}+e^{-i\phi_j}e^{i\phi_{j+1}}) \right)\, d\vec{\phi},\\
+		&\approx F(\vec{\theta})\left( \prod_{j=1}^N \sqrt{2\pi \tau}e^{-m_j^2\tau/2} e^{im_j\theta_j} +\sum_{\substack{1\leq k,\ell \leq N\\k\neq \ell}}\prod_{j=1}^N \sqrt{2\pi \tau} e^{i(m_j+\delta_{k,j}-\delta_{\ell,j})\theta_j}e^{-\tau(m_j+\delta_{k,j}-\delta_{\ell,j})^2/2} \right),\\
+		&\approx F(\vec{\theta})\left( \prod_{j=1}^N \sqrt{2\pi \tau}(1-m_j^2\tau/2) e^{im_j\theta_j} +\sum_{k\neq \ell}\prod_{j=1}^N \sqrt{2\pi \tau}(1-\tau(m_j+\delta_{k,j}-\delta_{\ell,j})^2/2) e^{i(m_j+\delta_{k,j}-\delta_{\ell,j})\theta_j} \right),\\
+		&\approx F(\vec{\theta})(2\pi\sqrt{\tau})^N \left( \left(I-\frac{\tau}{2}\sum_{j=1}^N J_z^2(j) +\frac{\lambda\tau}{4} \sum_{j=1}^N (J_+(j)J_-(j+1)+J_-(j)J_+(j+1))\right) \right) \psi_{\vec{m}}(\vec{\theta}),\\
+		&\approx (2\pi)^N  \left(I-\frac{\tau}{2}\sum_{j=1}^N J_z^2(j) -\lambda (J_+(j)J_-(j+1)+J_-(j)J_+(j+1))\right) \psi_{\vec{m}}(\vec{\theta}).
+	\end{align*}
+	
+	It now follows that the desired Hamiltonian is 
+		\[ \hat{H}:=(2\pi)^N\frac{1}{2} \sum_{j=1}^N J_z^2(j) -\lambda (J_+(j)J_-(j+1)+J_-(j)J_+(j+1)). \]
+	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Spherical Model}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	Detailed analysis of the spherical model in various dimensions can be found in \cite{FradkinSusskind78},\cite{HenkelHoeger84},\cite{Thompson68}.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Lattice Gauge Theories}
