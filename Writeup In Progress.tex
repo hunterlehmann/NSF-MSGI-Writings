@@ -104,10 +104,41 @@
 	e^{-2\beta_\tau} & e^{\beta h}
 	\end{bmatrix}. \]
 	
-	Now we can write $Z=\Tr T^N$. 
+	Now we can write $Z=\Tr T^N$.
 	%TODO: expand on this claim
-		
-	%TODO: Should I insert more of the action formalism/statisical mechanics stuff here for this model before moving to the Hamiltonian?
+	From this result, we can derive the $N\to \infty$ limit of the quantities of interest above, in particular the average magnetization.
+	Since $T$ is diagonalizable, we can write $T=SDS^{-1}$ and so 
+		\[\Tr T^N=\Tr(SD^NS^{-1})=\Tr(D^N)=\lambda_0^N+\lambda_1^N,\]
+	where $\lambda_0,\lambda_1$ are the eigenvalues of $T$.
+	
+	Via a bit of algebra, we see that 
+	\begin{align*}
+		\lambda_0 &=\cosh(\beta h)+ \sqrt{e^{-4\beta_\tau} +\sinh^2(\beta h) } \\
+		\lambda_1 &=\cosh(\beta h)- \sqrt{e^{-4\beta_\tau} +\sinh^2(\beta h) }
+	\end{align*} 
+	Later, we will examine the Hamiltonian when $\beta_\tau=-\frac{1}{2}\log \tau$ and $\beta = \tau$.
+	In this case,
+	\begin{align*}
+		\lambda_0 &=\cosh(\tau h)+ \sqrt{\tau^2 +\sinh^2(\tau h)} \\
+		\lambda_1 &=\cosh(\tau h)- \sqrt{\tau^2 +\sinh^2(\tau h)}
+	\end{align*}
+	
+	Now the average magnetization is
+	\begin{align*}
+		m(\tau, h)&=\lim_{N\to \infty}\frac{\del}{\del h}\left( \frac{1}{N}\log(\lambda_0^N+\lambda_1^N) \right) \\
+			&=\frac{\del}{\del h}\lim_{N\to \infty}\left( \frac{1}{N}\left(\log(\lambda_0^N)+\log(1+\left(\frac{\lambda_1}{\lambda_0}\right)^N)\right) \right) \\
+			&= \frac{\del}{\del h} \log(\lambda_0),
+	\end{align*}
+	since $|\lambda_1/\lambda_0| <1.$
+	In our example case,
+	\begin{align*}
+		m(\tau,h)&= \frac{1}{\cosh(\tau h)+ \sqrt{\tau^2 +\sinh^2(\tau h)}}\left( \tau \sinh(\tau h)+\frac{\tau \sinh(\tau h)\cosh(\tau h)}{\sqrt{\tau^2 +\sinh^2(\tau h)}} \right)\\
+		&=\frac{\tau \sinh(\tau h)}{\sqrt{\tau^2+\sinh(\tau h)}}.
+	\end{align*}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsubsection{Deriving the quantum Hamiltonian:}
+	
 	Our goal is to choose functions $\beta_\tau(\tau)$ and $\beta(\tau)$ so that the transfer matrix operator $T$ has the form $T=e^{-\tau H} \approx I-\tau H$ for some quantum Hamiltonian $H$ (independent of $\tau$) acting on a $2$-dimensional vector space. 
 	This is the \emph{$\tau$-continuum Hamiltonian} for the model. 
 	Here the idea is that statistical mechanics properties of the lattice action system (e.g. magnetization per site, average magnetization, two-point correlations, correlation length) will map to properties of the operator $H$ related to its eigenvalues and eigenvectors.
@@ -206,7 +237,14 @@
     \end{equation}
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Jordan-Wigner Transform and Solution in terms of Fermionic operators}
+    \subsubsection{Phase transition of 1+1 Ising model}
+    
+    There are a variety of ways to see that the 1+1 Ising model has a phase transition.
+    
+    %TODO Fill in details here
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Jordan-Wigner transform and solution in terms of Fermionic operators}
     
     A Hamiltonian of the form of \cref{eq:1+1IsingHamiltonian} can be rewritten in terms of Fermion operators $\{a_j,a^\dagger_j\}_{j=1}^n$ that satisfy the \emph{canonical commutation relations} (CCRs) 
     \[ \{a_j,a_k^\dagger \} = \delta_{k,j}I; \qquad \{a_j,a_k \} =0, \]
@@ -393,7 +431,5 @@
 	\bibliography{biblio}
 	
 	\nocite{hall_qtfm_2013}
-	\nocite{Thompson68}
-	\nocite{HenkelHoeger84}
-	\nocite{nielsen_fermions}
+	\nocite{MuellerJohnstonJanke17}
 \end{document}
