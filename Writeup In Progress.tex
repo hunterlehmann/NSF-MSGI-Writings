@@ -57,7 +57,7 @@
 	The \emph{magnetization density in $\cL$} is by definition 
 	\[ m_\cL:=\frac{1}{N}\sum_{\ell \in \cL} s_\ell. \]
 	The expected magnetization density, $\langle m_\cL \rangle$, is related to the pressure and partition function:
-	\[\langle m_\cL \rangle (\tau,h) = \frac{\partial \psi_{\cL}}{\partial h}(\tau, h)=\frac{\partial}{\partial h}\left( \frac{1}{N} \log Z(\tau,h)\right) . \]
+	\[\langle m_\cL \rangle (\tau,h) = \frac{1}{\beta}\frac{\partial \psi_{\cL}}{\partial h}(\tau, h)=\frac{\partial}{\partial h}\left( \frac{1}{\beta N} \log Z(\tau,h)\right) . \]
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,9 +72,11 @@
 		\item $\lim\limits_{n\to \infty} \frac{|\partial \cL_n|}{|\cL_n|}=0$, where $\partial \cL_n$ is the boundary of the lattice, i.e. 
 		\[\partial \cL_n := \{\ell \in \cL_n \mid \ell \sim m \, \text{for some $m$}\in \Z^d \sm \cL_n \}. \]
 	\end{enumerate}
-	It turns out that the pressure $\psi_{\cL}$ defined above is convex as a function of $h$ and that there is a well-defined limit \[\psi(\tau,h):= \lim\limits_{\cL \Uparrow \Z^d} \psi_{\cL}(\tau,h).\]
+	It turns out that there is a well-defined limit 
+		\[\psi(\tau,h):= \lim\limits_{\cL \Uparrow \Z^d} \psi_{\cL}(\tau,h).\]
+	The resulting function $\psi$ is convex as a function from $\R \times \R_{>0}$ and even as a function of $h$.
 	Because $\psi$ is a convex function of $h$, the \emph{average magnetization density} given by
-	\[m(\tau,h)=\lim_{\cL \Uparrow \Z^d} \langle m_{\cL} \rangle (\tau, h), \]
+		\[m(\tau,h)=\lim_{\cL \Uparrow \Z^d} \langle m_{\cL} \rangle (\tau, h), \]
 	exists for all but a countable set of $h \in \R$.
 	The points at which the average magnetization density fails to exist (always because the left and right derivatives do not equal each other) are called \emph{first-order phase transitions}.
 		
@@ -83,16 +85,16 @@
 	
 	In the 1+0 Ising model, we take a 1-dimensional statistical mechanics system and relate it to a 0-dimensional (point) quantum Hamiltonian. See \cite{FradkinSusskind78} and \cite{KogutGaugeSummary}.
 	The definitions above simplify to the following. The lattice is now a set of $N$ points $x_0,\ldots,x_{N-1}$ on a circle so that $s_0=s_N$. The action is given by 
-	\[\mathcal{S}(\{s\},\tau, h)=-\beta_\tau(\tau)\sum_{i=0}^{N-1} s_is_{i+1} - \beta(\tau)h\sum_{i=0}^{N-1}s_i. \] 
+		\[\mathcal{S}(\{s\},\tau, h)=-\beta_\tau(\tau)\sum_{i=0}^{N-1} s_is_{i+1} - \beta(\tau)h\sum_{i=0}^{N-1}s_i. \] 
 	It will be helpful to rewrite this expression to be symmetric and expressed in terms of sums and differences of the $s_i$. 
 	Up to a constant factor of $-\beta_\tau N$, we find
-	 \[\mathcal{S}(\{s\},\tau)=\frac{1}{2}\beta_\tau(\tau)\sum_{i=0}^{N-1} (s_i-s_{i+1})^2 - \frac{1}{2}\beta(\tau)h\sum_{i=0}^{N-1}(s_i+s_{i+1}). \]
+		\[\mathcal{S}(\{s\},\tau)=\frac{1}{2}\beta_\tau(\tau)\sum_{i=0}^{N-1} (s_i-s_{i+1})^2 - \frac{1}{2}\beta(\tau)h\sum_{i=0}^{N-1}(s_i+s_{i+1}). \]
 	Note that we needed periodicity in order to rewrite the second term in this way. Further, we now have $\mathcal{S}=0$ when all of the spins are identical and $h=0$.
 	
 	Now the partition function becomes 
 	\begin{align*}
-		Z&=\sum_{\{s\}\in\Omega_0^N} e^{\frac{1}{2}\beta_\tau(\tau)\sum_{i=0}^{N-1} (s_i-s_{i+1})^2 - \frac{1}{2}\beta(\tau)h\sum_{i=0}^{N-1}(s_i+s_{i+1})} \\
-		&=\sum_{s_0 \in \{\pm 1\}} \ldots \sum_{s_{N-1}\in \{\pm 1\}} e^{\frac{1}{2}\beta_\tau (s_0-s_1)^2}e^{-\frac{1}{2}\beta h(s_0+s_1)}\cdot\ldots\cdot e^{\frac{1}{2}\beta_\tau (s_{N-1}-s_0)^2}e^{-\frac{1}{2}\beta h(s_{N-1}+s_0)}.
+		Z&=\sum_{\{s\}\in\Omega_0^N} e^{-\frac{1}{2}\beta_\tau(\tau)\sum_{i=0}^{N-1} (s_i-s_{i+1})^2 + \frac{1}{2}\beta(\tau)h\sum_{i=0}^{N-1}(s_i+s_{i+1})} \\
+		&=\sum_{s_0 \in \{\pm 1\}} \ldots \sum_{s_{N-1}\in \{\pm 1\}} e^{-\frac{1}{2}\beta_\tau (s_0-s_1)^2}e^{\frac{1}{2}\beta h(s_0+s_1)}\cdot\ldots\cdot e^{-\frac{1}{2}\beta_\tau (s_{N-1}-s_0)^2}e^{\frac{1}{2}\beta h(s_{N-1}+s_0)}.
 	\end{align*}
 	
 	However, each factor in the product depends only on what the values of $s_i-s_{i+1}$ and $s_i+s_{i+1}$ are. 
@@ -100,13 +102,13 @@
 	So we have 
 	\[T_{-1,-1}=e^{-\beta h}, \quad T_{-1,1}=T_{1,-1}=e^{-2\beta_\tau}, \quad \text{and}\ T_{1,1}=e^{\beta h}. \] 
 	Thus \[T=\begin{bmatrix}
-	e^{-\beta h} & e^{-2\beta_\tau} \\
-	e^{-2\beta_\tau} & e^{\beta h}
+	e^{\beta h} & e^{-2\beta_\tau} \\
+	e^{-2\beta_\tau} & e^{-\beta h}
 	\end{bmatrix}. \]
 	
 	Now we can write $Z=\Tr T^N$.
 	%TODO: expand on this claim
-	From this result, we can derive the $N\to \infty$ limit of the quantities of interest above, in particular the average magnetization.
+	From this result, we can derive the $N\to \infty$ and $\tau \to 0$ limits of the quantities of interest above, in particular the average magnetization.
 	Since $T$ is diagonalizable, we can write $T=SDS^{-1}$ and so 
 		\[\Tr T^N=\Tr(SD^NS^{-1})=\Tr(D^N)=\lambda_0^N+\lambda_1^N,\]
 	where $\lambda_0,\lambda_1$ are the eigenvalues of $T$.
@@ -125,17 +127,19 @@
 	
 	Now the average magnetization is
 	\begin{align*}
-		m(\tau, h)&=\lim_{N\to \infty}\frac{\del}{\del h}\left( \frac{1}{N}\log(\lambda_0^N+\lambda_1^N) \right) \\
-			&=\frac{\del}{\del h}\lim_{N\to \infty}\left( \frac{1}{N}\left(\log(\lambda_0^N)+\log(1+\left(\frac{\lambda_1}{\lambda_0}\right)^N)\right) \right) \\
-			&= \frac{\del}{\del h} \log(\lambda_0),
+		m(\tau, h)&=\lim_{N\to \infty}\frac{\del}{\del h}\left( \frac{1}{\beta N}\log(\lambda_0^N+\lambda_1^N) \right) \\
+			&=\frac{\del}{\del h}\lim_{N\to \infty}\left( \frac{1}{\beta N}\left(\log(\lambda_0^N)+\log(1+\left(\frac{\lambda_1}{\lambda_0}\right)^N)\right) \right) \\
+			&= \frac{1}{\beta}\frac{\del}{\del h} \log(\lambda_0),
 	\end{align*}
 	since $|\lambda_1/\lambda_0| <1.$
 	In our example case,
 	\begin{align*}
-		m(\tau,h)&= \frac{1}{\cosh(\tau h)+ \sqrt{\tau^2 +\sinh^2(\tau h)}}\left( \tau \sinh(\tau h)+\frac{\tau \sinh(\tau h)\cosh(\tau h)}{\sqrt{\tau^2 +\sinh^2(\tau h)}} \right)\\
-		&=\frac{\tau \sinh(\tau h)}{\sqrt{\tau^2+\sinh(\tau h)}}.
+		m(\tau,h)&= \frac{1/\tau}{\cosh(\tau h)+ \sqrt{\tau^2 +\sinh^2(\tau h)}}\left( \tau \sinh(\tau h)+\frac{\tau \sinh(\tau h)\cosh(\tau h)}{\sqrt{\tau^2 +\sinh^2(\tau h)}} \right)\\
+		&=\frac{\sinh(\tau h)}{\sqrt{\tau^2+\sinh(\tau h)}}.
 	\end{align*}
 
+	We can now compute the limit of the expected average magnetization as we take the lattice distance $\tau$ to 0.
+		\[ \lim_{\tau \to 0} m(\tau,h) = \lim_{\tau \to 0} \frac{\sinh(\tau h)}{\sqrt{\tau^2+\sinh(\tau h)}} = \frac{h}{\sqrt{1+h^2}}. \]
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsubsection{Deriving the quantum Hamiltonian:}
 	
@@ -144,30 +148,30 @@
 	Here the idea is that statistical mechanics properties of the lattice action system (e.g. magnetization per site, average magnetization, two-point correlations, correlation length) will map to properties of the operator $H$ related to its eigenvalues and eigenvectors.
 	
 	For example, we could choose $\beta_\tau(\tau)=-\frac{1}{2}\log \tau$ and $\beta(\tau)=\tau$. Then we have \[T=\begin{bmatrix}
-	e^{-\tau h} & \tau \\
-	\tau & e^{\tau h}
+	e^{\tau h} & \tau \\
+	\tau & e^{-\tau h}
 	\end{bmatrix} \approx I_2-\tau\begin{bmatrix}
-	h & -1 \\
-	-1 & -h
+	-h & -1 \\
+	-1 & h
 	\end{bmatrix}.\] 
 	From this it follows that \[H=\begin{bmatrix}
-	h & -1 \\
-	-1 & -h
-	\end{bmatrix}=-\sigma_1+h\sigma_3, \] where $\sigma_1,\sigma_2$, and $\sigma_3$ are the Pauli matrices. 
+	-h & -1 \\
+	-1 & h
+	\end{bmatrix}=-\sigma_1-h\sigma_3, \] where $\sigma_1,\sigma_2$, and $\sigma_3$ are the Pauli matrices. 
 	
 	More generally, we can ask what constraints $\beta$ and $\beta_\tau$ must satisfy to be able to do this. 
 	Analyzing each of the four matrix entries shows that for small $\tau$ we need 
-	\[e^{-\beta h} \approx 1-\tau H_{0,0}, \quad e^{-2\beta_\tau} \approx -\tau H_{1,0}=-\tau H_{0,1},\quad \text{and} \ e^{\beta h} \approx 1- \tau H_{1,1}. \]
+	\[e^{\beta h} \approx 1-\tau H_{0,0}, \quad e^{-2\beta_\tau} \approx -\tau H_{1,0}=-\tau H_{0,1},\quad \text{and} \ e^{-\beta h} \approx 1- \tau H_{1,1}. \]
 	
 	Since $H_{1,0}$ and $H_{0,1}$ are constant with respect to $\tau$ we need $-2\beta_\tau \approx \log (\lambda\tau)$ for small $\tau$ and some $\lambda\in \R_{>0}$. 
-	Similarly, if $\beta$ is small when $\tau$ is small we have $e^{-\beta h} \approx 1-\beta h \approx 1-\tau H_{0,0}$ and $e^{\beta h} \approx 1+\beta h \approx 1-\tau H_{1,1}$. 
-	So to first order we have $\beta \approx \tau$ and we see $H_{0,0}=-H_{1,1}=\mu h$ for some $\mu \in \R\sm\{0\}$. 
+	Similarly, if $\beta$ is small when $\tau$ is small we have $e^{\beta h} \approx 1-\beta h \approx 1-\tau H_{0,0}$ and $e^{-\beta h} \approx 1+\beta h \approx 1-\tau H_{1,1}$. 
+	So to first order we have $\beta \approx \tau$ and we see $H_{0,0}=-H_{1,1}=-\mu h$ for some $\mu \in \R\sm\{0\}$. 
 	
 	Putting all of this together, we see that the general $\tau$-continuum Hamiltonian for this model will have the form 
 	\[ H=\begin{bmatrix}
-	\mu h & -\lambda \\
-	-\lambda & -\mu h
-	\end{bmatrix}=-\lambda\sigma_1+\mu h\sigma_3.\]
+	-\mu h & -\lambda \\
+	-\lambda & \mu h
+	\end{bmatrix}=-\lambda\sigma_1-\mu h\sigma_3.\]
 	
 	Now we could also attempt to find a second order approximation of $T$ so that $T\approx I - \tau H + \frac{1}{2}\tau^2 H^2$ for an operator $H$ not depending on $\tau$. 
 	However, following the approach above will show us that there is no easy solution in this case.  
@@ -175,16 +179,39 @@
 	
 	In the second order case, we need 
 	\begin{align*}
-		e^{-\beta h} &\approx 1- \tau H_{0,0}+\frac{\tau^2}{2}(H_{0,0}^2+H_{0,1}^2),\\
+		e^{\beta h} &\approx 1- \tau H_{0,0}+\frac{\tau^2}{2}(H_{0,0}^2+H_{0,1}^2),\\
 		e^{-2\beta_\tau} &\approx -\tau H_{0,1}+\frac{\tau^2}{2}(H_{0,0}H_{0,1}+H_{0,1}H_{1,1}),\\
-		e^{\beta h} &\approx 1 - \tau H_{1,1}+\frac{\tau^2}{2}(H_{0,1}^2+H_{0,0}^2)
+		e^{-\beta h} &\approx 1 - \tau H_{1,1}+\frac{\tau^2}{2}(H_{0,1}^2+H_{0,0}^2)
 	\end{align*}
 	for small $\tau$, where we have used the fact that $H$ should be real and symmetric and so $H_{0,1}=H_{1,0}$.
+	
 	From the first and third equations, we see that $H_{0,0}$ and $H_{1,1}$ must depend on $h$. 
 	But the second equation has no dependence on $h$, so the dependence of $H_{0,1}$ on $h$ must be inversely related to the $H_{0,0}$ and $H_{1,1}$ dependence.
 	On the other hand adding the first and third equations yields
 	\[\cosh(\beta h) \approx 1-\frac{\tau}{2}( H_{0,0}+ H_{1,1})+\frac{\tau^2}{4}(H_{0,0}^2+2H_{0,1}^2+H_{1,1}^2), \]
 	which naturally suggests  taking $\beta=\mu\tau$, $H_{0,0}=-H_{1,1}=\mu h$, and $H_{0,1}=H{1,0}=0$. But this is a contradiction.
+	
+	Let's return to the running example where our Hamiltonian is now $H=-\sigma_1-h\sigma_3$.
+	The eigenvalues of $H$ are $\lambda_0=-\sqrt{1+h^2}$ and $\lambda_1=\sqrt{1+h^2}$.
+	The corresponding normalized eigenvectors are
+		\[v_0= \frac{1}{\sqrt{2(1+h^2+h\sqrt{1+h^2})}}\begin{pmatrix}
+		h+\sqrt{1+h^2} \\ 1
+		\end{pmatrix} \, \text{and} \, v_1= \frac{1}{\sqrt{2(1+h^2-h\sqrt{1+h^2})}}\begin{pmatrix}
+		h-\sqrt{1+h^2} \\ 1
+		\end{pmatrix}. \]
+	Now the ground state is $\ket{gs}=v_0$ and if we compute $\bra{gs} \sigma_3 \ket{gs}$, we get
+		\[\bra{gs} \sigma_3 \ket{gs} \rangle=\frac{1}{2(1+h^2+h\sqrt{1+h^2})}\begin{pmatrix}
+		h+\sqrt{1+h^2} & 1
+		\end{pmatrix}
+		\begin{pmatrix}
+		1 & 0 \\
+		0 & -1
+		\end{pmatrix}
+		\begin{pmatrix}
+		h+\sqrt{1+h^2} \\ 1
+		\end{pmatrix}=\frac{h}{\sqrt{1+h^2}} .\]
+	
+	This demonstrates the correspondence between properties of the original statistical mechanics model and observables derived from operators applied to the ground state of the Hamiltonian.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{1+1 Ising Model}
