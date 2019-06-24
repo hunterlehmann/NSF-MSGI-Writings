@@ -140,6 +140,9 @@
 
 	We can now compute the limit of the expected average magnetization as we take the lattice distance $\tau$ to 0.
 		\[ \lim_{\tau \to 0} m(\tau,h) = \lim_{\tau \to 0} \frac{\sinh(\tau h)}{\sqrt{\tau^2+\sinh(\tau h)}} = \frac{h}{\sqrt{1+h^2}}. \]
+		
+	From these computations we can see that $m(\tau,h)$ is a smooth function of $h$ and so the 1+0 Ising model does not have a phase transition.
+	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsubsection{Deriving the quantum Hamiltonian:}
 	
@@ -302,7 +305,7 @@
 	
 	As before, we are interested in thinking of our $d$-dimensional lattice as having $1$ time dimension and $d-1$ spatial dimensions and finding a $\tau$-continuum quantum mechanical Hamiltonian $H$ that corresponds to the action as the lattice spacing $\tau$ goes to $0$.
 	Since the spin configuration space is now continuous, the partition function will now be an integral rather than a summation:
-	\[ Z=\int_{(S^N)^M} d\vec{x_1}\ldots d\vec{x_M} e^{-\beta\sum_{i,j}\frac{1}{2} J_{i,j}(\vec{x_i}-\vec{x_j})^2}. \]
+	\[ Z=\int_{(S^N)^M} d\vec{x}_1\ldots d\vec{x_M} e^{-\beta\sum_{i,j}\frac{1}{2} J_{i,j}(\vec{x_i}-\vec{x_j})^2}. \]
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{O(2) model on a 1-dimensional lattice}
@@ -442,10 +445,37 @@
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\section{Spherical Model}
+	\section{(Mean) Spherical Model}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	Detailed analysis of the spherical model in various dimensions can be found in \cite{FradkinSusskind78},\cite{HenkelHoeger84},\cite{Thompson68}.
+	Detailed analysis of the spherical model in various dimensions can be found in \cite{HenkelHoeger84},\cite{Thompson68}. 
+	We will sketch the approach of \cite{HenkelHoeger84} to determining a quantum Hamiltonian for the spherical model with some minor corrections to notation and using a slightly different line of reasoning.
+	Again we take a lattice $\cL\subset \Z^d$ of $N$ sites, usually cubic.
+	Now our spins at each site are $x_i \in \Omega_0 := \R$ subject to periodic boundary conditions and the \emph{mean spherical constraint} $\sum_{i} x_i^2 = N$. 
+	(This constraint is the origin of the name: in the mean, the spins have norm 1 i.e. lie on a unit circle).
+	We can work with a \emph{grand partition function} given by 
+		\[ Q_N(S) = \int_{\R^N} dx_1\ldots d_{x_N} e^{-S\sum\limits_{i} x_i^2+\beta J \sum\limits_{i,j}D_{i,j} x_i x_j+\beta h \sum\limits_i x_i}, \]
+	where $\beta$ is the inverse temperature, $J$ is the exchange energy between nearest neighbor spins, $D_{i,j}$ are relative strength of coupling constants, and $h$ is the strength of an external magnetic field, and $S$ implements the mean spherical constraint.
+	
+	This grand partition function is related to the usual partition function and action by 
+		\[ Z = \frac{1}{2\pi i} \int_{\alpha_0-i\infty}^{\alpha_0+i\infty} e^{NS}Q_N(S)\, dS, \]
+	where $\alpha_0$ is chosen so that any singularities of the integrand occur to the left of the line $s=\alpha_0$.
+	The mean spherical constraint is equivalent to requiring 
+		\[N=-\frac{\del}{\del S} \log Q_N(S). \]
+	
+	Now we can take the hyperplane slices of the lattice along one dimension (the temporal dimension) and consider the integral operator $\hat{T}$ defined by 
+		\[ \hat{T}f(\vec{x})=\int_{\R^{d-1}} L(\vec{x},\vec{y})f(\vec{y}) \, d\vec{y},  \]
+	where $\vec{x},\vec{y} \in \R^{d-1}$ and $L(\vec{x},\vec{y})$ describes the interactions between hyperplanes.
+	We define 
+		\[ L(\vec{x},\vec{y})=e^{-\frac{1}{2}S(\vec{x}^2+\vec{y}^2)+\frac{1}{4}\beta J(\vec{x}^TM\vec{x}+\vec{y}^TM\vec{y})+\beta J\vec{x}\vec{y}+\frac{1}{2}\beta h \sum_{i=1}^{d-1} (x_i + y_i)}, \]
+	where $M$ is a symmetric matrix describing the spin-spin interactions.
+	This lets us write $Q_N(S)=\Tr T^n$, where $n=N/(d-1)$. As in our earlier examples, we now want to extract a quantum Hamiltonian from this formulation by making appropriate choices of couplings and letting the temporal lattice spacing $\tau$ tend to 0.
+	
+	We will need to make use of the identity
+		\begin{equation}\label{eq:qtfm_20.14_no_limit}
+			(e^{-t\hbar\Delta/(2m)}\psi)(\vec{x}_0)=\left( \dfrac{m}{2\pi t \hbar} \right)^{s/2} \int_{\R^s} \exp \left\{-\dfrac{m}{2t\hbar}|\vec{x}_1-\vec{x}_0|^2 \right\}\psi(\vec{x}_1) d\vec{x}_1
+		\end{equation}
+	which can be found, for example, in \cite[Section 20.3]{hall_qtfm_2013}.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Lattice Gauge Theories}
@@ -457,6 +487,8 @@
 	\bibliographystyle{abbrv}
 	\bibliography{biblio}
 	
-	\nocite{hall_qtfm_2013}
 	\nocite{MuellerJohnstonJanke17}
+	\nocite{Wiese13}
+	\nocite{Ercolessi18}
+	\nocite{Notarnicola15}
 \end{document}
