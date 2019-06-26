@@ -5,15 +5,15 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{enumitem}
-\usepackage{pgf,tikz}
+\usepackage{pgf}
 \usepackage{mathrsfs}
-\usepackage{multicol}
 \usepackage[margin=1.1in]{geometry}
 \usepackage{etoolbox}
 \usepackage{hyperref}
 \usepackage{soul}
 \usepackage{todonotes}
 \usepackage{braket}
+\usepackage{dsfont}
 \usepackage{physics}
 \usepackage[capitalise]{cleveref}
 \patchcmd{\section}{\scshape}{\bfseries}{}{}
@@ -467,16 +467,44 @@
 		\[ \hat{T}f(\vec{x})=\int_{\R^{\widetilde{N}}} L(\vec{x},\vec{y})f(\vec{y}) \, d\vec{y},  \]
 	where $\vec{x},\vec{y} \in \R^{\widetilde{N}}$ and $L(\vec{x},\vec{y})$ describes the interactions between hyperplanes.
 	We define 
-		\[ L(\vec{x},\vec{y})=e^{-\frac{1}{2}S(\vec{x}^2+\vec{y}^2)+\frac{1}{4}\beta J(\vec{x}^TM\vec{x}+\vec{y}^TM\vec{y})+\beta J\vec{x}\vec{y}+\frac{1}{2}\beta h \sum_{i=1}^{\widetilde{N}} (x_i + y_i)}, \]
-	where $M$ is a symmetric matrix describing the spin-spin interactions.
+		\begin{equation}
+			 L(\vec{x},\vec{y})=e^{-\frac{1}{2}S(\vec{x}^2+\vec{y}^2)+\frac{1}{4}K(\vec{x}^TM\vec{x}+\vec{y}^TM\vec{y})+K_\tau\vec{x}\vec{y}+\frac{1}{2}K'h \sum_{i=1}^{\widetilde{N}} (x_i + y_i)},
+		\end{equation}
+	where $M$ is a symmetric matrix describing the spin-spin interactions and $K,K_\tau,K'$ are anisotropic coupling constants that may depend on the lattice spacing $\tau$.
 	This lets us write $Q_N(S)=\Tr T^n$. As in our earlier examples, we now want to extract a quantum Hamiltonian from this formulation by making appropriate choices of couplings and letting the temporal lattice spacing $\tau$ tend to 0.
 	
-	We will need to make use of the identity
+	We will need to make use of the operator identity
 		\begin{equation}\label{eq:qtfm_20.14_no_limit}
 			(e^{-t\hbar\Delta/(2m)}\psi)(\vec{x}_0)=\left( \dfrac{m}{2\pi t \hbar} \right)^{s/2} \int_{\R^s} \exp \left\{-\dfrac{m}{2t\hbar}|\vec{x}_1-\vec{x}_0|^2 \right\}\psi(\vec{x}_1) d\vec{x}_1
 		\end{equation}
 	which can be found, for example, in \cite[Section 20.3]{hall_qtfm_2013}.
 	
+	Let $\varphi,\psi \in L^2(\R^{\widetilde{N}})$ and define
+	 \begin{align}
+		 \widetilde{\varphi}(\vec{y})&=\varphi(\vec{y})e^{-\frac{1}{2}(S(\tau)-K_\tau(\tau))\vec{y}^2+\frac{1}{4}K(\tau)\vec{y}^TM\vec{y}+\frac{1}{2}K'(\tau)h\sum_{i} y_i} \\
+		 \widetilde{\psi}(\vec{x})&=\psi(\vec{x})e^{-\frac{1}{2}(S(\tau)-K_\tau(\tau))\vec{x}^2+\frac{1}{4}K(\tau)\vec{x}^TM\vec{x}+\frac{1}{2}K'(\tau)h\sum_{i} x_i}.
+	 \end{align}
+	 
+	We can then write
+	\begin{equation}
+		\bra{\varphi} \hat{T}_\tau \ket{\psi} = \int d^{\widetilde{N}}\vec{x}\, d^{\widetilde{N}}\vec{y\,} \widetilde{\varphi}(\vec{y}) e^{-\frac{1}{2}K_\tau(\tau)(\vec{x}-\vec{y})^2}\widetilde{\psi}(\vec{x}).
+	\end{equation}
+	
+	Applying \cref{eq:qtfm_20.14_no_limit} to the $\vec{y}$ integral we have
+	\begin{align}
+		\bra{\varphi} \hat{T}_\tau \ket{\psi} &= \left(\frac{\pi}{2K_\tau} \right)^{\widetilde{N}/2} \int d^{\widetilde{N}}\vec{x}\, \widetilde{\varphi}(\vec{x}) e^{\frac{1}{4K_\tau(\tau)}\Delta}(\vec{x})\widetilde{\psi}(\vec{x}) \\
+		&= \left(\frac{\pi}{2K_\tau} \right)^{\widetilde{N}/2} \int d^{\widetilde{N}}\vec{x}\, \widetilde{\varphi}(\vec{x}) ( \mathds{1} + \frac{1}{4K_\tau(\tau)}\Delta + \ldots )\widetilde{\psi}(\vec{x})
+	\end{align}
+	
+	But this implies that $\hat{T}_\tau$ is actually multiplication by 
+	\begin{equation}
+		\hat{T}_\tau(\vec{x}) = \left(\frac{\pi}{2K_\tau} \right)^{\widetilde{N}/2} e^{-\frac{1}{2}(S-K_\tau)\vec{x}^2+\frac{1}{4}K\vec{x}^TM\vec{x}+\frac{1}{2}K'h\sum_{i} x_i}e^{\frac{1}{4K_\tau}\Delta}(\vec{x})e^{-\frac{1}{2}(S-K_\tau)\vec{x}^2+\frac{1}{4}K\vec{x}^TM\vec{x}+\frac{1}{2}K'h\sum_{i} x_i}.
+	\end{equation}
+	
+	If we expand the exponentials, writing out explicitly the terms that are the product of only the degree 1 and degree 0 terms, this becomes
+	\begin{equation}
+		\hat{T}_\tau(\vec{x}) = \left(\frac{\pi}{2K_\tau} \right)^{\widetilde{N}/2} \left( 1 -(S(\tau)-K_\tau(\tau))\vec{x}^2+\frac{1}{2}K(\tau)\vec{x}^T M \vec{x} + \frac{1}{2} K'(\tau)h\sum_{i} x_i + \frac{1}{4K_\tau(\tau)}\Delta + \ldots \right).
+	\end{equation}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Lattice Gauge Theories}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -511,12 +539,15 @@
 	
 	If we are working with a lattice which is infinite or has free boundary conditions in the temporal direction, we can apply gauge transformations to pick a representative of any configuration class that satisfies the \emph{temporal gauge}
 		\[ \sigma_3(\ell, \tau) =1 \]
-	for every link in the temporal direction.
+	for every link in the temporal direction.	
 	Note that this does not yield a unique representative, since any product of gauge transformations that includes all sites with the same spatial coordinates (and varying temporal coordinate) will preserve the temporal gauge on that temporal hyperplane.
 	In the temporal gauge, we can rewrite the Ising action as
 		\[S = -J\sum_{\Box_t} \sigma_3(\ell,\mu)\sigma_3(\ell+\tau,\mu) -J\sum_{\Box_x} \sigma_3\sigma_3\sigma_3\sigma_3,\]
-	splitting the sum over the plaquettes involving temporal links and those involving only spatial links.
+	splitting the sum over the plaquettes involving temporal links and those involving only spatial links.\\
 	
+	\textbf{Careful:} Under periodic boundary conditions in the temporal direction, the parity of the number of temporal links with $\sigma_3(\ell,\tau)=1$ is preserved by gauge transformations.
+	Thus the temporal gauge can be imposed only on the configuration classes consisting of configurations with an \emph{even} number of negative spins on temporal links.
+		
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 1-d}
 	
