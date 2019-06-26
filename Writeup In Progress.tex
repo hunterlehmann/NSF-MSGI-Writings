@@ -41,9 +41,9 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	The Ising models are a family of statistical mechanics models with nearest-neighbor interaction. 
-	Given any lattice $\cL \subset \Z^d$ with $N$ total points, define a \emph{spin} at each site of the lattice via a variable $s \in \Omega_0=\{\pm 1\}$. 
+	Given any lattice $\cL \subset (a_i\Z)^d$ with $N$ total points for some scaling factors $a_i \in \R_{>0}$, define a \emph{spin} at each site of the lattice via a variable $s \in \Omega_0=\{\pm 1\}$. 
 	A \emph{configuration} is a collection $\{s\}=\{s_\ell\}_{\ell\in\cL} \in \Omega_0^N$. 
-	For convenience, we will usually work with cubic lattices of the form $\cL=\{-n,-n+1,\ldots, n-1,n\}^d$ or $\cL=\{1\ldots, n\}^d$ and impose periodic boundary conditions. 
+	For convenience, we will usually work with cubic lattices of the form $\cL=(a_i\{-n,-n+1,\ldots, n-1,n\})^d$ or $\cL(=a_i\{1\ldots, n\})^d$ and impose periodic boundary conditions. 
 	The \emph{action} associated to this model is the function 
 	\[\mathcal{S}(\{s\},\tau, h)=-\beta_\tau(\tau)\sum_{i\sim j} s_is_j - \beta(\tau)h\sum_{i}s_i , \] 
 	where $\tau$ is the lattice spacing in the ``time" direction, $h$ is the strength of an external magnetic field, and the first sum is over nearest neighbor sites of the lattice. 
@@ -270,7 +270,7 @@
     \subsubsection{Phase transition of 1+1 Ising model}
     
     There are a variety of ways to see that the 1+1 Ising model has a phase transition.
-    
+    (e.g. duality)
     %TODO Fill in details here
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -450,7 +450,7 @@
 	
 	Detailed analysis of the spherical model in various dimensions can be found in \cite{HenkelHoeger84},\cite{Thompson68}. 
 	We will sketch the approach of \cite{HenkelHoeger84} to determining a quantum Hamiltonian for the spherical model with some minor corrections to notation and using a slightly different line of reasoning.
-	Again we take a lattice $\cL\subset \Z^d$ of $N$ sites, usually cubic.
+	Again we take a lattice $\cL$ of $N$ sites, usually cubic.
 	Now our spins at each site are $x_i \in \Omega_0 := \R$ subject to periodic boundary conditions and the \emph{mean spherical constraint} $\sum_{i} x_i^2 = N$. 
 	(This constraint is the origin of the name: in the mean, the spins have norm 1 i.e. lie on a unit circle).
 	We can work with a \emph{grand partition function} given by 
@@ -463,13 +463,13 @@
 	The mean spherical constraint is equivalent to requiring 
 		\[N=-\frac{\del}{\del S} \log Q_N(S). \]
 	
-	Now we can take the hyperplane slices of the lattice along one dimension (the temporal dimension) and consider the integral operator $\hat{T}$ defined by 
-		\[ \hat{T}f(\vec{x})=\int_{\R^{d-1}} L(\vec{x},\vec{y})f(\vec{y}) \, d\vec{y},  \]
-	where $\vec{x},\vec{y} \in \R^{d-1}$ and $L(\vec{x},\vec{y})$ describes the interactions between hyperplanes.
+	Let $n$ be the number of sites in the temporal direction and $\widetilde{N}=N/n$ be the number of sites in any hyperplane slice of $\cL$ with constant temporal coordinate. Now we can take the hyperplane slices of the lattice across one dimension (the temporal dimension) and consider the integral operator $\hat{T}$ defined by 
+		\[ \hat{T}f(\vec{x})=\int_{\R^{\widetilde{N}}} L(\vec{x},\vec{y})f(\vec{y}) \, d\vec{y},  \]
+	where $\vec{x},\vec{y} \in \R^{\widetilde{N}}$ and $L(\vec{x},\vec{y})$ describes the interactions between hyperplanes.
 	We define 
-		\[ L(\vec{x},\vec{y})=e^{-\frac{1}{2}S(\vec{x}^2+\vec{y}^2)+\frac{1}{4}\beta J(\vec{x}^TM\vec{x}+\vec{y}^TM\vec{y})+\beta J\vec{x}\vec{y}+\frac{1}{2}\beta h \sum_{i=1}^{d-1} (x_i + y_i)}, \]
+		\[ L(\vec{x},\vec{y})=e^{-\frac{1}{2}S(\vec{x}^2+\vec{y}^2)+\frac{1}{4}\beta J(\vec{x}^TM\vec{x}+\vec{y}^TM\vec{y})+\beta J\vec{x}\vec{y}+\frac{1}{2}\beta h \sum_{i=1}^{\widetilde{N}} (x_i + y_i)}, \]
 	where $M$ is a symmetric matrix describing the spin-spin interactions.
-	This lets us write $Q_N(S)=\Tr T^n$, where $n=N/(d-1)$. As in our earlier examples, we now want to extract a quantum Hamiltonian from this formulation by making appropriate choices of couplings and letting the temporal lattice spacing $\tau$ tend to 0.
+	This lets us write $Q_N(S)=\Tr T^n$. As in our earlier examples, we now want to extract a quantum Hamiltonian from this formulation by making appropriate choices of couplings and letting the temporal lattice spacing $\tau$ tend to 0.
 	
 	We will need to make use of the identity
 		\begin{equation}\label{eq:qtfm_20.14_no_limit}
@@ -481,17 +481,48 @@
 	\section{Lattice Gauge Theories}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	General concept of gauge invariance/lattice gauge theories.
-	
+	A \emph{gauge theory} is a physical model which is left invariant under the action of some set of \emph{gauge transformations} at points of the model.
+	For example, the electric field is the gradient of electric potential and so is left invariant under translation of the potential by any fixed constant.
+	Mathematically, a gauge is a choice of a section of some bundle and a gauge transformation is a map between two such sections.
+	In some cases, it can be useful to fix a particular gauge condition to simplify the description of a problem.	
+			
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Ising Lattice Gauge Theory}
 	
 	Outline/add details to some material from \cite{KogutGaugeSummary}, maybe discuss \cite{MuellerJohnstonJanke17} plaquette solution technique?
 	
+	The traditional Ising model possesses a global symmetry - if every spin in the lattice is flipped at once, then the value of the action $S$ is preserved.
+	On the other hand, if we flip only the spin associated to a single site in the lattice, the terms involving that spin all flip and so the value of $S$ may not be preserved.
+	However, we can define a very similar model that is invariant under local transformations as well as global ones.
+	
+	Let $\cL$ be a $d$-dimensional cubic lattice and label the links of the lattice by an adjacent site $\ell$ and a unit vector in the lattice $\mu$. 
+	On each link we place an spin $\sigma_3(\ell,\mu)\in \{\pm 1\}$ and define a \emph{local gauge transformation} $G(\ell)$ to be the operation of flipping the $2d$ spins connected to the site $\ell$.
+	Any action which is invariant under such transformations must be constructed from products of $\sigma_3$ on closed paths in the lattice so that any gauge transformation changes an even number of signs in each term of the action.
+	For example, the most basic such action is 
+		\[S=-J\sum_{\ell,\mu,\nu}\sigma_3(\ell,\mu)\sigma_3(\ell+\mu,\nu)\sigma_3(\ell+\mu+\nu,-\mu)\sigma_3(\ell+\nu,-\nu), \]
+	where $\ell$ ranges over all sites, and $\mu,\nu$ over all unordered pairs of distinct unit vectors in the lattice.
+	These fundamental squares are called \emph{plaquettes}.
+	Sometimes we may omit the indexing for brevity and write
+		\[S=-J\sum_{\Box} \sigma_3\sigma_3\sigma_3\sigma_3 \]
+	for the sum of the product of spins over all plaquettes in the lattice. 
+	Two different configurations $s$ and $\tilde{s}$ of spins are called \emph{gauge equivalent} if there is a sequence $G(\ell_1),G(\ell_2),\ldots$ of gauge transformations so that 
+		\[ \tilde{s}=s\cdot G(\ell_1)G(\ell_2)\ldots. \]
+	We will allow infinite products of gauge transformations when we work with an infinite lattice.
+	
+	If we are working with a lattice which is infinite or has free boundary conditions in the temporal direction, we can apply gauge transformations to pick a representative of any configuration class that satisfies the \emph{temporal gauge}
+		\[ \sigma_3(\ell, \tau) =1 \]
+	for every link in the temporal direction.
+	Note that this does not yield a unique representative, since any product of gauge transformations that includes all sites with the same spatial coordinates (and varying temporal coordinate) will preserve the temporal gauge on that temporal hyperplane.
+	In the temporal gauge, we can rewrite the Ising action as
+		\[S = -J\sum_{\Box_t} \sigma_3(\ell,\mu)\sigma_3(\ell+\tau,\mu) -J\sum_{\Box_x} \sigma_3\sigma_3\sigma_3\sigma_3,\]
+	splitting the sum over the plaquettes involving temporal links and those involving only spatial links.
+	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 1-d}
 	
 	Outline results from \cite{Ercolessi18}, \cite{Notarnicola15}, \cite{Wiese13}.
+	
+	Fix E,V,U convention to be self-consistent/match numerical results in later section of \cite{Ercolessi18}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 2-d}
