@@ -35,6 +35,7 @@
 	We will explore the connection between statistical mechanics models and quantum Hamiltonians, primarily via examples. 
 	
 	More stuff here later. Basic objects/definitions.
+	Mass gap/correlation length?
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Ising Models}
@@ -141,7 +142,7 @@
 	We can now compute the limit of the expected average magnetization as we take the lattice distance $\tau$ to 0.
 		\[ \lim_{\tau \to 0} m(\tau,h) = \lim_{\tau \to 0} \frac{\sinh(\tau h)}{\sqrt{\tau^2+\sinh(\tau h)}} = \frac{h}{\sqrt{1+h^2}}. \]
 		
-	From these computations we can see that $m(\tau,h)$ is a smooth function of $h$ and so the 1+0 Ising model does not have a phase transition.
+	From these computations we can see that $m(\tau,h)$ is a smooth function of $h$ and so the 1+0 Ising model does not have a (first-order) phase transition.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsubsection{Deriving the quantum Hamiltonian:}
@@ -504,6 +505,23 @@
 	If we expand the exponentials, writing out explicitly the terms that are the product of only the degree 1 and degree 0 terms, this becomes
 	\begin{equation}
 		\hat{T}_\tau(\vec{x}) = \left(\frac{\pi}{2K_\tau} \right)^{\widetilde{N}/2} \left( 1 -(S(\tau)-K_\tau(\tau))\vec{x}^2+\frac{1}{2}K(\tau)\vec{x}^T M \vec{x} + \frac{1}{2} K'(\tau)h\sum_{i} x_i + \frac{1}{4K_\tau(\tau)}\Delta + \ldots \right).
+	\end{equation}
+	
+	Each of the constants $K, K\tau$, and $K'$ depend implicitly on $\beta$. 
+	Separating this out, we can now make a choice of the explicit dependence on $\tau$ so that the terms above are the only terms of the transfer operator involving terms with a power of $\tau$ at most 1.
+	In particular, for some constant $\omega$, set
+	\begin{equation}
+		S(\tau)-2K_\tau(\tau)=\frac{\omega^2}{8}K_\tau(\tau), \quad K(\tau)=\beta \tau, \quad K_\tau(\tau)=\frac{\beta}{4\tau}, \quad K'(\tau)=\beta\tau.
+	\end{equation}
+	
+	Then in the limit $\tau \to 0$ we have 
+	\begin{equation}
+		\hat{T}_\tau(\vec{x})=(2\pi \tau \beta^{-1})^{\widetilde{N}/2} \left( 1-\frac{\omega^2\tau}{2\beta}\vec{x}^2+\frac{1}{2}\tau\beta \vec{x}^T M \vec{x} +\frac{1}{2}\beta\tau h \sum_i x_i +\frac{\tau}{\beta} \Delta + O(\tau^2) \right).
+	\end{equation}
+	
+	After pulling out constants and approximating a Hamiltonian with $\hat{T}=\mathds{1}-\tau\hat{H}$, we see
+	\begin{equation}
+		\hat{H} = -\Delta+ \frac{1}{2}(\omega^2\vec{x}^2-\beta^2 \vec{x}^TM\vec{x}-\beta^2 h \sum_i x_i).
 	\end{equation}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Lattice Gauge Theories}
