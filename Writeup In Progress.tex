@@ -555,6 +555,18 @@
 		\[ \tilde{s}=s\cdot G(\ell_1)G(\ell_2)\ldots. \]
 	We will allow infinite products of gauge transformations when we work with an infinite lattice.
 	
+	We may `spend' the gauge symmetry to impose some condition on the configurations we work with and sum only over configurations satisfying this condition.
+	As long as we are only interested in observables which are gauge-invariant, this will not affect the resulting value of the observable, since we can write
+	\begin{align*}
+		\langle \hat{f} \rangle &= \frac{1}{Z}\sum_{\{\sigma\}} \hat{f} (\{\sigma\}) e^{-\beta S(\{\sigma\})} \\
+			&= \frac{\sum_{\{\sigma\}} \hat{f} (\{\sigma\}) e^{-\beta S(\{\sigma\})}}{\sum_{\{\sigma\}} e^{-\beta S(\{\sigma\})}}\\
+			&= \frac{\sum_{C} \left(\sum_{\{\sigma\}\in C} \hat{f} (\{\sigma\}) e^{-\beta S(\{\sigma\})}\right)}{\sum_{C} \left(\sum_{\{\sigma\}\in C} e^{-\beta S(\{\sigma\})}\right)}\\
+			&=\frac{\sum_{C} \left( \hat{f} (\{\sigma_C\}) e^{-\beta S(\{\sigma_C\})}\sum_{\{\sigma\}\in C} 1 \right)}{\sum_{C} \left( e^{-\beta S(\{\sigma_C\})}\sum_{\{\sigma\}\in C} 1\right)} \\
+			&=\frac{\sum_{C} \hat{f} (\{\sigma_C\}) e^{-\beta S(\{\sigma_C\})}}{\sum_{C} e^{-\beta S(\{\sigma_C\})}}.
+	\end{align*}
+	Here $C$ denotes the classes of equivalent configurations subject to the desired constraints.
+	Every such class must have the same cardinality, justifying the cancellation in the final line.
+	
 	If we are working with a lattice which is infinite or has free boundary conditions in the temporal direction, we can apply gauge transformations to pick a representative of any configuration class that satisfies the \emph{temporal gauge}
 		\[ \sigma_3(\ell, \tau) =1 \]
 	for every link in the temporal direction.	
@@ -562,10 +574,14 @@
 	In the temporal gauge, we can rewrite the Ising action as
 		\[S = -J\sum_{\Box_t} \sigma_3(\ell,\mu)\sigma_3(\ell+\tau,\mu) -J\sum_{\Box_x} \sigma_3\sigma_3\sigma_3\sigma_3,\]
 	splitting the sum over the plaquettes involving temporal links and those involving only spatial links.\\
-	
-	\textbf{Careful:} Under periodic boundary conditions in the temporal direction, the parity of the number of temporal links with $\sigma_3(\ell,\tau)=1$ is preserved by gauge transformations.
-	Thus the temporal gauge can be imposed only on the configuration classes consisting of configurations with an \emph{even} number of negative spins on temporal links.
 		
+	For example, on a two-dimensional $N_x\times N_t$ lattice with free boundary conditions and unit lattice vectors ($\mu,\tau$), imposing the temporal gauge yields the Ising gauge action
+		\[ S=-J\sum_{\ell} \sigma_3(\ell,\mu)\sigma_3(\ell+\tau,\mu). \]
+	This is precisely the action of $N_x$ non-interacting copise of a 1-dimensional standard Ising model with free boundary conditions and zero external magnetic field, which was investigated in Section 2.2.
+	
+	\textbf{Careful:} Under periodic boundary conditions in the temporal direction, gauge transformations can only increase the number of temporal links with $\sigma_3(\ell,\tau)=1$ when applied to sites with $\sigma_3(\ell,\tau)=\sigma_3(\ell,-\tau)=-1$.
+	Thus the temporal gauge can be imposed only on the configuration classes consisting of configurations with an \emph{even} number of negative spins on temporal links.
+	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 1-d}
 	
