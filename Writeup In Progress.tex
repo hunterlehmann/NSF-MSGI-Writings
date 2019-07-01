@@ -84,7 +84,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{1+0 Ising}
 	
-	In the 1+0 Ising model, we take a 1-dimensional statistical mechanics system and relate it to a 0-dimensional (point) quantum Hamiltonian. See \cite{FradkinSusskind78} and \cite{KogutGaugeSummary}.
+	In the 1+0 Ising model, we take a 1-dimensional statistical mechanics system and relate it to a 0-dimensional (point) quantum Hamiltonian. See \cite{FradkinSusskind78,KogutGaugeSummary}.
 	The definitions above simplify to the following. The lattice is now a set of $N$ points $x_0,\ldots,x_{N-1}$ on a circle so that $s_0=s_N$. The action is given by 
 		\[\mathcal{S}(\{s\},\tau, h)=-\beta_\tau(\tau)\sum_{i=0}^{N-1} s_is_{i+1} - \beta(\tau)h\sum_{i=0}^{N-1}s_i. \] 
 	It will be helpful to rewrite this expression to be symmetric and expressed in terms of sums and differences of the $s_i$. 
@@ -222,7 +222,7 @@
 	
 	We may analyze the $1+1$ Ising model similarly to the $1+0$ model. 
 	We are going to relate a statistical mechanics system on a 2-dimensional lattice (with one temporal and one spatial dimension) to a quantum mechanical Hamiltonian on a 1-dimensional system of interacting spins.  
-	See \cite{FradkinSusskind78} and \cite{KogutGaugeSummary}.
+	See \cite{FradkinSusskind78,KogutGaugeSummary}.
 	
 	As in the 1+0 Ising model, we will work with a lattice with periodic boundary conditions. 
 	Suppose $\cL$ is a $N_x \times N_\tau$ lattice of points in $\Z^2$ with $\vec{\tau}$ a unit vector in the time direction and $\vec{x}$ a unit vector in the spatial direction. 
@@ -279,7 +279,7 @@
     
     A Hamiltonian of the form of \cref{eq:1+1IsingHamiltonian} can be rewritten in terms of Fermion operators $\{a_j,a^\dagger_j\}_{j=1}^n$ that satisfy the \emph{canonical commutation relations} (CCRs) 
     \[ \{a_j,a_k^\dagger \} = \delta_{k,j}I; \qquad \{a_j,a_k \} =0, \]
-    where $\{A,B\} = AB + BA$ is the anticommutator of two operators \cite{KogutGaugeSummary},\cite{nielsen_fermions},\cite{SchultzMattisLieb64}.
+    where $\{A,B\} = AB + BA$ is the anticommutator of two operators \cite{KogutGaugeSummary,nielsen_fermions,SchultzMattisLieb64}.
     
     We can summarize this transformation as follows:
     \begin{enumerate}
@@ -294,7 +294,7 @@
 	\section{O(N) Model}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	These models are extensively treated in \cite{FradkinSusskind78},\cite{HamerKogutSusskind79},\cite{KogutGaugeSummary}. 
+	These models are extensively treated in \cite{FradkinSusskind78,HamerKogutSusskind79,KogutGaugeSummary}. 
 	As in the Ising model, we have a lattice $\cL \subset \Z^d$ of $M$ points, usually cubic. 
 	The spins at each site $i$ of the lattice are now $\vec{x_i} \in \Omega_0=S^{N-1} = \{\vec{x} \in \R^{N} \mid \|\vec{x}\|=1 \}$. 
 	The action is
@@ -441,15 +441,15 @@
 		&\approx (2\pi)^N  \left(I-\frac{\tau}{2}\sum_{j=1}^N J_z^2(j) -\lambda (J_+(j)J_-(j+1)+J_-(j)J_+(j+1))\right) \psi_{\vec{m}}(\vec{\theta}).
 	\end{align*}
 	
-	It now follows that the desired Hamiltonian is 
-		\[ \hat{H}:=(2\pi)^N\frac{1}{2} \sum_{j=1}^N J_z^2(j) -\lambda (J_+(j)J_-(j+1)+J_-(j)J_+(j+1)). \]
+	It now follows that up to a multiplicative constant the desired Hamiltonian is 
+		\[ \hat{H}:=\frac{1}{2} \sum_{j=1}^N J_z^2(j) -\lambda (J_+(j)J_-(j+1)+J_-(j)J_+(j+1)). \]
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{(Mean) Spherical Model}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	Detailed analysis of the spherical model in various dimensions can be found in \cite{HenkelHoeger84},\cite{Thompson68}. 
+	Detailed analysis of the spherical model in various dimensions can be found in \cite{HenkelHoeger84,Thompson68}. 
 	We will sketch the approach of \cite{HenkelHoeger84} to determining a quantum Hamiltonian for the spherical model with some minor corrections to notation and using a slightly different line of reasoning.
 	Again we take a lattice $\cL$ of $N$ sites, usually cubic.
 	Now our spins at each site are $x_i \in \Omega_0 := \R$ subject to periodic boundary conditions and the \emph{mean spherical constraint} $\sum_{i} x_i^2 = N$. 
@@ -586,19 +586,108 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 1-d}
 	
-	Outline results from \cite{Ercolessi18}, \cite{Notarnicola15}, \cite{Wiese13}.
+	Outline results from \cite{Ercolessi18,Notarnicola15,Wiese13}.
 	
 	Fix E,V,U convention to be self-consistent/match numerical results in later section of \cite{Ercolessi18}
+	
+	After more thought, I don't think can have both consistency and agreement with results of \cite{Ercolessi18}.
+	
+	The standard Lagrangian for QED is 
+	\begin{equation}
+		\cL = \psi^\dagger\gamma^0[\gamma^\mu(i\del_\mu+gA_\mu)-m]\psi -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}.
+	\end{equation}
+	
+	This can be discretized to get a Hamiltonian on a 1-dimensional spatial lattice \cite{Ercolessi18,Notarnicola15,Wiese13}.
+	\begin{equation}\label{eq:1dQEDLatticeHamiltonian}
+		H=-\frac{1}{2a} \sum_\ell (\psi_\ell^\dagger U_{\ell,\ell+1}\psi_{\ell+1}+H.c.) + m\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell+ \frac{g^2 a}{2} \sum_{\ell} E_{\ell,\ell+1}^2,		
+	\end{equation}
+	where $\ell$ labels the sites of a 1-dimensional lattice with $N$ sites and lattice spacing $a$ and H.c. denotes the Hermitian conjugate of the previous terms. 
+	We follow the references in using a staggered mass $(-1)^\ell m$ to avoid the fermion-doubling problem.
+	Fermionic matter is represented by the one component spinor creation/annihilation operators $\psi_\ell^\dagger$ and $\psi_\ell$ defined on each site.
+	Gauge fields are defined on the links $(\ell,\ell+1)$ of the lattice via electric potential variables $E_{\ell,\ell+1}$ and vector potential variables $A_{\ell,\ell+1}$.
+	These give rise to comparators $U_{\ell,\ell+1}(\eta)=e^{-i\eta A_{\ell,\ell+1}}$ and $V_{{\ell,\ell+1}}(\xi)=e^{i\xi E_{\ell,\ell+1}}$ which commute at different links, are parameterized by $\eta,\xi \in \R$, and satisfy the canonical commutation relations
+	\begin{equation}\label{eq:1dQEDunitaryCCR}
+		V_{\ell,\ell+1}(\xi)U_{\ell,\ell+1}(\eta)=e^{i\eta\xi}U_{\ell,\ell+1}(\eta)V_{\ell,\ell+1}(\xi).
+	\end{equation}
+	This relation is the exponentiated version of the canonical commutation relation for the $E_{\ell,\ell+1}$ and $A_{\ell,\ell+1}$ variables $[E_{\ell,\ell+1},A_{\ell,\ell+1}]=i$.
+	
+	For simulation, we need to have finite quantities everywhere. 
+	For this reason, we develop an approximation of the $U(1)$ gauge group by $\Z_n$ via operators that preserve a discrete version of the CCR of \cref{eq:1dQEDunitaryCCR}.
+	We will take a finite-dimensional representation of the two parameter projective unitary Weyl group $\{e^{i(\xi E_{\ell,\ell+1}-\eta A_{\ell,\ell+1})}\}_{\xi,\eta \in \R}$ with the particular choices of parameters
+	$(\xi,\eta)=(0,\sqrt{2\pi/n}),(\sqrt{2\pi/n},0)$.
+	This leads to operators
+	\begin{equation}\label{eq:1dQED_UVEA_Relations}
+		U_{\ell,\ell+1} = e^{-i\sqrt{\frac{2\pi}{n}}A_{\ell,\ell+1}} \qquad V_{\ell,\ell+1} = e^{i\sqrt{\frac{2\pi}{n}}E_{\ell,\ell+1}}
+	\end{equation}
+	satisfying commutation relations for discrete powers
+	\begin{equation}\label{eq:1dQEDDiscreteCCR}
+		U_{\ell,\ell+1}^m V_{\ell,\ell+1}^k = e^{i\frac{2\pi}{n} k m} V_{\ell,\ell+1}^k U_{\ell,\ell+1}^m
+	\end{equation}
+	with $k,m \in \Z_n$.
+	
+	We can implement the operators $U$ and $V$ by placing an $n$-dimensional Hilbert space $\mathcal{H}\cong \C^n$ on each link with orthonormal basis $\{\ket{v_k} \}_{0\leq k\leq n-1}$.
+	Then $V$ is the diagonal operator given by 
+	\begin{equation}
+		V\ket{v_k} = e^{-2\pi i k /n} \ket{v_k}.
+	\end{equation}
+	We define $U$ to be the canonical conjugate operator to $V$, which acts cyclically on the $\ket{v_k}$ basis:
+	\begin{equation}
+		U\ket{v_k} = \ket{v_{k+1 \Mod{n}}}.
+	\end{equation}
+	We can check easily that this choice of $U$ and $V$ do satisfy \cref{eq:1dQEDDiscreteCCR}.
+	Now the definition of $V$ together with \cref{eq:1dQED_UVEA_Relations} implies that $E$ must also be diagonal in the $\ket{v_k}$ basis.
+	Further since the eigenvalues of an exponentiated operator are the exponentials of the original eigenvalues, we have
+	\begin{equation}\label{eq:1dQED_EV_eigenvalue_relation}
+		e^{-2\pi i k/n} = e^{i\sqrt{2\pi/n} e_k},
+	\end{equation}
+	where $E\ket{v_k}=e_k \ket{v_k}$ for $k=0,\ldots n-1$.
+	Now \cref{eq:1dQED_EV_eigenvalue_relation} implies that 
+	\begin{equation}
+		e_k=-k'\sqrt{2\pi/n}
+	\end{equation}
+	for some $k'\equiv k \mod n$.
+	
+	In \cite{Ercolessi18}, the authors claim that 
+		\[e_k=\sqrt{\frac{2\pi}{n}}\left(k-\frac{n-1}{2}+\phi \right)\]
+	for some $\phi \in \R$.
+	However, this leads to a contradiction unless $n=2$.
+	
+	For physical reasons, we need the states of our model to satisfy Gauss's law at each site, which here becomes
+	\begin{equation}\label{eq:1dQED_Gauss_law}
+		G_\ell := \psi_\ell^\dagger \psi_\ell + \frac{1}{2}((-1)^\ell -1)-(E_{\ell,\ell+1}-E_{\ell-1,\ell}) \approx 0.
+	\end{equation}
+	Now this gives us a condition on eigenvalues for physical states. For sites that are occupied by a fermion, $\psi_\ell^\dagger\psi_\ell$ has eigenvalue 1.
+	Let $n_\ell=1$ if the site $\ell$ is occupied and $n_\ell=0$ if it is empty.
+	Then after a rescaling of the energy to absorb the factor of $\sqrt{2\pi/n}$ into the coupling constants of the Hamiltonian, \cref{eq:1dQED_Gauss_law} yields the condition
+	\begin{equation}
+		n_\ell+\frac{1}{2}((-1)^\ell -1)-(e_R-e_L)=0,
+	\end{equation}
+	where $e_R$ and $e_L$ are the values of $E$ on the links $(\ell,\ell+1)$ and $(\ell-1,\ell)$ respectively.
+	Restricting our attention to eigenstates that our physical states are constructed from so that $e_R$ and $e_L$ have the form $k_r$ and $k_L$ for some integers $k_r,k_L \in \Z_n$, we have four cases to consider.
+	
+	If $\ell$ is an occupied even site, then
+		\[ 1+k_L\equiv k_R \Mod{n}. \]
+	If $\ell$ is an empty even site, then
+		\[k_L \equiv k_R \Mod{n}. \]
+	If $\ell$ is an occupied odd site, then
+		\[ k_L\equiv k_R \Mod{n}. \]
+	If $\ell$ is an empty odd site, then
+		\[k_L -1\equiv k_R \Mod{n}. \]
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 2-d}
 	
-	Generalize results from \cite{Ercolessi18}, \cite{Notarnicola15} using general description from \cite{Wiese13}.
+	Generalize results from \cite{Ercolessi18,Notarnicola15} using general description from \cite{Wiese13}.
+	
+	Think I have a correct interpretation of Hamiltonian/Gauss Law given in \cite{Wiese13} using constructions from \cite{Ercolessi18,Notarnicola15}. Don't know about reliability given consistency problems of \cite{Ercolessi18}.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $G$-QCD Model in 1-d}
 	
-	Long term/ambitious: set up lattice Hamiltonian for QCD with SU(2) gauge group and find a sequence of finite groups $G$ to approximate by.
+	Long term/ambitious: set up lattice Hamiltonian for QCD with SU(2) or SU(3) gauge group and find a sequence of finite groups $G$ to approximate by.
+	
+	Don't understand description in \cite{KogutSusskind75,Wiese13} of the formulation of lattice Hamiltonian for SU(2) gauge group.
+	In particular, not clear how upper indices are related to anything else or what the def of L,R ops in \cite{Wiese13} is.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%                       References                          %%
