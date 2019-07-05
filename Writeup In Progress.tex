@@ -612,9 +612,10 @@
 	This relation is the exponentiated version of the canonical commutation relation for the $E_{\ell,\ell+1}$ and $A_{\ell,\ell+1}$ variables $[E_{\ell,\ell+1},A_{\ell,\ell+1}]=i$.
 	
 	For simulation, we need to have finite quantities everywhere. 
-	For this reason, we develop an approximation of the $U(1)$ gauge group by $\Z_n$ via operators that preserve a discrete version of the CCR of \cref{eq:1dQEDunitaryCCR}.
-	We will take a finite-dimensional representation of the two parameter projective unitary Weyl group $\{e^{i(\xi E_{\ell,\ell+1}-\eta A_{\ell,\ell+1})}\}_{\xi,\eta \in \R}$ with the particular choices of parameters
+	For this reason, we develop an approximation of the $U(1)$ gauge group by $\Z_n$ via operators that preserve a discrete version of the CCR of \cref{eq:1dQEDunitaryCCR}, following \cite{Ercolessi18}.
+	Ercolessi et. al. take a finite-dimensional representation of the two parameter projective unitary Weyl group $\{e^{i(\xi E_{\ell,\ell+1}-\eta A_{\ell,\ell+1})}\}_{\xi,\eta \in \R}$ with the particular choices of parameters
 	$(\xi,\eta)=(0,\sqrt{2\pi/n}),(\sqrt{2\pi/n},0)$.
+	Making this choice of parameters will give us a discrete version of \cref{eq:1dQEDunitaryCCR} which is periodic in $n^\text{th}$ powers of the operators $U$ and $V$, leading to a representation of $\Z_n$.
 	This leads to operators
 	\begin{equation}\label{eq:1dQED_UVEA_Relations}
 		U_{\ell,\ell+1} = e^{-i\sqrt{\frac{2\pi}{n}}A_{\ell,\ell+1}} \qquad V_{\ell,\ell+1} = e^{i\sqrt{\frac{2\pi}{n}}E_{\ell,\ell+1}}
@@ -625,6 +626,12 @@
 	\end{equation}
 	with $k,m \in \Z_n$.
 	
+	Alternatively, we can choose parameters $(-2\pi /n,0)$ and $(0,-1)$, giving operators
+	\begin{equation}\label{eq:1dQED_better_UVEA_Relations}
+		U_{\ell,\ell+1} = e^{iA_{\ell,\ell+1}} \qquad V_{\ell,\ell+1} = e^{-i\frac{2\pi}{n} E_{\ell,\ell+1}}.
+	\end{equation}
+	This choice is more convenient later on and the operators obey the same commutation relation of \cref{eq:1dQEDDiscreteCCR}.
+	
 	We can implement the operators $U$ and $V$ by placing an $n$-dimensional Hilbert space $\mathcal{H}\cong \C^n$ on each link with orthonormal basis $\{\ket{v_k} \}_{0\leq k\leq n-1}$.
 	Then $V$ is the diagonal operator given by 
 	\begin{equation}
@@ -634,9 +641,12 @@
 	\begin{equation}
 		U\ket{v_k} = \ket{v_{k+1 \Mod{n}}}.
 	\end{equation}
-	We can check easily that this choice of $U$ and $V$ do satisfy \cref{eq:1dQEDDiscreteCCR}.
-	Now the definition of $V$ together with \cref{eq:1dQED_UVEA_Relations} implies that $E$ must also be diagonal in the $\ket{v_k}$ basis.
-	Further since the eigenvalues of an exponentiated operator are the exponentials of the original eigenvalues, we have
+	We can check easily that these definitions of $U$ and $V$ do satisfy \cref{eq:1dQEDDiscreteCCR}.
+	Further, the homomorphisms from $\Z_n$ taking the generator $1$ to $U$ or $V$ are each faithful representations of $\Z_n$.
+	We can also see immediately that $U$ is a unitary operator since $U^\dagger U = U U^\dagger= I$.
+	If we express $\mathcal{H}$ in the basis of eigenvectors of $U$, $V$ becomes a shift down operator and so is also unitary.
+	Using the convention of \cite{Ercolessi18}, the definition of $V$ together with \cref{eq:1dQED_UVEA_Relations} implies that $E$ must also be diagonal in the $\ket{v_k}$ basis.
+	Since the eigenvalues of an exponentiated operator are the exponentials of the original eigenvalues, we have
 	\begin{equation}\label{eq:1dQED_EV_eigenvalue_relation}
 		e^{-2\pi i k/n} = e^{i\sqrt{2\pi/n} e_k},
 	\end{equation}
@@ -652,13 +662,23 @@
 	for some $\phi \in \R$.
 	However, this leads to a contradiction unless $n=2$.
 	
+	Using the second convention and restricting to $n$ odd (for reasons we will see later), we can relabel the basis $\{\ket{v_k}\}_{k=-s}^s$ where $n=2s+1$. 
+	Then a possible definition for $E$ is
+	\begin{equation}
+		E\ket{v_k}=k \ket{v_k}.
+	\end{equation}
+	Notice that this almost implements the relation $[E,U]=U$ satisfied by the original operators in the $U(1)$ formulation:
+		\[(EU-UE)\ket{v_k}=\ket{v_{k+1}} \]
+	unless $k=s$. 
+	In that case $(EU-UE)=-2s\ket{v_{-s}} \neq \ket{v_{-s}} = U\ket{v_s}$, since our coefficients are not taken mod $n$.
+	
 	For physical reasons, we need the states of our model to satisfy Gauss's law at each site, which here becomes
 	\begin{equation}\label{eq:1dQED_Gauss_law}
 		G_\ell := \psi_\ell^\dagger \psi_\ell + \frac{1}{2}((-1)^\ell -1)-(E_{\ell,\ell+1}-E_{\ell-1,\ell}) \approx 0.
 	\end{equation}
 	Now this gives us a condition on eigenvalues for physical states. For sites that are occupied by a fermion, $\psi_\ell^\dagger\psi_\ell$ has eigenvalue 1.
 	Let $n_\ell=1$ if the site $\ell$ is occupied and $n_\ell=0$ if it is empty.
-	Then after a rescaling of the energy to absorb the factor of $\sqrt{2\pi/n}$ into the coupling constants of the Hamiltonian, \cref{eq:1dQED_Gauss_law} yields the condition
+	Then after a rescaling of the energy to absorb the factor of $\sqrt{2\pi/n}$ into the coupling constants of the Hamiltonian in the Ercolessi setup or directly in our setup, \cref{eq:1dQED_Gauss_law} yields the condition
 	\begin{equation}
 		n_\ell+\frac{1}{2}((-1)^\ell -1)-(e_R-e_L)=0,
 	\end{equation}
@@ -674,12 +694,46 @@
 	If $\ell$ is an empty odd site, then
 		\[k_L -1\equiv k_R \Mod{n}. \]
 	
+	It follows that on a chain of $N$ sites, the value of the field $E$ on the links is completely determined by the value on the first link and whether each site is empty or occupied.
+	Thus the physical Hilbert space of the chain is a $(2^N\cdot n)$-dimensional subspace of the full $(2^N\cdot 3^N)$-dimensional (maybe $3^{N+1}$ if open link on both ends) Hilbert space we defined above. 
+	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 2-d}
 	
 	Generalize results from \cite{Ercolessi18,Notarnicola15} using general description from \cite{Wiese13}.
 	
 	Think I have a correct interpretation of Hamiltonian/Gauss Law given in \cite{Wiese13} using constructions from \cite{Ercolessi18,Notarnicola15}. Don't know about reliability given consistency problems of \cite{Ercolessi18}.
+	
+	In \cite{Wiese13}, Wiese gives a description of the general form of the lattice Hamiltonian for QED on a general $d$-dimensional lattice. Specializing to two dimensions, this becomes
+	\begin{align}\label{eq:2dQEDHamiltonian}
+		H_{QED}=&-t\sum_{\vec{\ell}} \left( \psi^\dagger_{\vec{\ell}} U_{\vec{\ell},\vec{\ell}+\vec{x}} \psi_{\vec{\ell}+\vec{x}} + (-1)^{\ell_1} \psi^\dagger_{\vec{\ell}}U_{\vec{\ell},\vec{\ell}+\vec{y}} \psi_{\vec{\ell}+\vec{y}} + H.c. \right) + m\sum_{\vec{\ell}} (-1)^{\ell_1+\ell_2} \psi_{\vec{\ell}}^\dagger \psi_{\vec{\ell}} \nonumber \\
+			&+ \frac{g^2}{2} \sum_{\vec{\ell}} E^2_{\vec{\ell}+\vec{x}}+E^2_{\vec{\ell}+\vec{y}} - \frac{1}{4g^2} \sum_{\Box} (U_\Box + U_\Box^\dagger).
+	\end{align}
+	
+	Here $\psi$ and $\psi^\dagger$ are anti-commuting annihilation and creation operators on the lattice sites $\vec{\ell}$ describing staggered fermions on the lattice. 
+	The parameters $t,m$, and $g$ describe the hopping action, mass, and energy scaling of the action.
+	The operators $E,U \in U(1)$ on the links are related by the commutation relations
+	\begin{equation}\label{eq:2dQEDLatticeEUCommutator}
+		[E_{e},U_{e'}]=\delta_{e,e'}U_e, \quad [E_{e},U_{e'}^\dagger] = -\delta_{e,e'}U_{e'}^\dagger.
+	\end{equation}
+	Thus operators on different links commute with each other.
+	The plaquette product operator $U_\Box$ is defined by $U_\Box = U_{\vec{\ell},\vec{\ell}+\vec{x}}U_{\vec{\ell}+\vec{x},\vec{\ell}+\vec{x}+\vec{y}}U_{\vec{\ell}+\vec{y},\vec{\ell}+\vec{x}+\vec{y}}^\dagger U_{\vec{\ell},\vec{\ell}+\vec{y}}^\dagger$.
+	
+	As in the one dimensional case, we say that the subspace of eigenstates of $H_{QED}$ obeying Gauss's Law is the \emph{physical Hilbert state}. 
+	In this case, the requirement imposed by Gauss's Law is that $G_{\vec{\ell}}\ket{\psi} = 0$, where
+	\begin{equation}
+		G_{\vec{\ell}}=\psi_{\vec{\ell}}^\dagger\psi_{\vec{\ell}} + ( E_{\vec{\ell},\vec{\ell}+\vec{x}} - E_{\vec{\ell}-\vec{x},\vec{\ell}}) + ( E_{\vec{\ell},\vec{\ell}+\vec{y}} - E_{\vec{\ell}-\vec{y},\vec{\ell}} ).
+	\end{equation}
+	
+	We will actually take a slightly modified version of this so that the Dirac sea is a physical state:
+	\begin{equation}
+		G_{\vec{\ell}}=\psi_{\vec{\ell}}^\dagger\psi_{\vec{\ell}} + \frac{1}{2}((-1)^{\ell_1+\ell_2}-1) + ( E_{\vec{\ell},\vec{\ell}+\vec{x}} - E_{\vec{\ell}-\vec{x},\vec{\ell}}) + ( E_{\vec{\ell},\vec{\ell}+\vec{y}} - E_{\vec{\ell}-\vec{y},\vec{\ell}} ).
+	\end{equation}
+	
+	To define a finite approximation to this model, we need to replace the operators $U,E \in U(1)$ with operators in some finite dimensional space. 
+	If we replace the gauge group $U(1)$ by $\Z_N$, the commutation relations in \cref{eq:2dQEDLatticeEUCommutator} cannot hold.
+	Instead, we preserve an exponentiated version of the canonical commutation relations $[E,A]=iI$ of the $U(1)$ gauge fields.
+	Following \cite{Ercolessi18}, \cite{Notarnicola15}, we do this by placing an $n$-dimensional Hilbert space for some odd $n=2s+1\in \N$ on each link with basis $\{\ket{v_k}\}_{k=-s}^{s}$.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $G$-QCD Model in 1-d}
