@@ -52,10 +52,10 @@
 	
 	We will be interested in the \emph{partition function} $Z$ defined as \[Z(\tau,h)=\sum_{\{s\}\in\Omega_0^N}e^{-\mathcal{S}(\{s\},\tau, h)}. \]
 	
-	It turns out that we can use statistical mechanics to show that many other interesting physical quantities can be derived from the partition function \cite[Ch. 3]{friedli_velenik_2017}.
+	We can use statistical mechanics to show that many physical quantities can be derived from the partition function \cite[Ch. 3]{friedli_velenik_2017}.
 	The \emph{pressure in $\cL$} of the model is defined to be 
 	\[\psi_{\cL}(\tau,h):=\frac{1}{N} \log Z(\tau,h).  \]
-	The \emph{magnetization density in $\cL$} is by definition 
+	The \emph{magnetization density in $\cL$} is, by definition,
 	\[ m_\cL:=\frac{1}{N}\sum_{\ell \in \cL} s_\ell. \]
 	The expected magnetization density, $\langle m_\cL \rangle$, is related to the pressure and partition function:
 	\[\langle m_\cL \rangle (\tau,h) = \frac{1}{\beta}\frac{\partial \psi_{\cL}}{\partial h}(\tau, h)=\frac{\partial}{\partial h}\left( \frac{1}{\beta N} \log Z(\tau,h)\right) . \]
@@ -109,8 +109,7 @@
 	
 	Now we can write $Z=\Tr T^N$.
 	%TODO: expand on this claim
-	From this result, we can derive the $N\to \infty$ and $\tau \to 0$ limits of the quantities of interest above, in particular the average magnetization.
-	Since $T$ is diagonalizable, we can write $T=SDS^{-1}$ and so 
+	Because $T$ is diagonalizable, we can write $T=SDS^{-1}$ and so 
 		\[\Tr T^N=\Tr(SD^NS^{-1})=\Tr(D^N)=\lambda_0^N+\lambda_1^N,\]
 	where $\lambda_0,\lambda_1$ are the eigenvalues of $T$.
 	
@@ -119,7 +118,8 @@
 		\lambda_0 &=\cosh(\beta h)+ \sqrt{e^{-4\beta_\tau} +\sinh^2(\beta h) } \\
 		\lambda_1 &=\cosh(\beta h)- \sqrt{e^{-4\beta_\tau} +\sinh^2(\beta h) }
 	\end{align*} 
-	Later, we will examine the Hamiltonian when $\beta_\tau=-\frac{1}{2}\log \tau$ and $\beta = \tau$.
+	Later, it will be clear why $\beta_\tau$ and $\beta$ should be taken as functions of $\tau$, and
+	also why the dependence on $tau$ that we want is $\beta_\tau=-\frac{1}{2}\log \tau$ and $\beta = \tau$.
 	In this case,
 	\begin{align*}
 		\lambda_0 &=\cosh(\tau h)+ \sqrt{\tau^2 +\sinh^2(\tau h)} \\
