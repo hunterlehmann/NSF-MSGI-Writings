@@ -751,7 +751,7 @@
 	In the 2-dimensional case we have more degrees of freedom in the lattice and the values of the electric field on the links are no longer determined by a single value after applying Gauss's Law.
 	Instead, they are determined only partially by the values of the electric field on one link of each vertical and horizontal row of the lattice. 
 	Let $e_U,e_D,e_L,e_R$ be the values of the electric field on the four links (up,down,left, right) emanating from a site.
-	Then at each site, Gauss's Law in \cref{eq:2dQEDGaussLaw} reduces to the following four equations.
+	Then at each site, Gauss's Law in \cref{eq:2dQEDGaussLaw} reduces to the following four equations for eigenstates.
 	
 	Occupied even site:
 		\[ e_R+e_U \equiv 1+e_L+e_D \Mod n. \]
@@ -766,9 +766,13 @@
 	This shows that the values of the electric field on the boundary left and down links of the lattice are free and at each site at the lattice there are a total of $N$ allowed combinations of values of the field on the up/right links.
 	Thus the total dimension of the physical Hilbert space on the sites and links of a 2-dimensional $N_X\times N_Y$ lattice in this model is $2^{N_X N_Y} \cdot n^{N_X N_Y + N_X+ N_Y}$.
 	For comparison, the dimension of the total Hilbert space is $2^{N_X N_Y} \cdot n^{N_X(N_Y+1)+(N_X+1)N_Y}$.
-	So we have the same saving factor of $N^{\text{\# of sites in the lattice}}$ observed in the 1-dimensional case by restricting to physical states.
+	So we have the same saving factor of $N^{\text{\# of sites in the lattice}}$ observed in the 1-dimensional case by restricting to physical states.\\
 	
-	TODO: figure out lattice scaling terms?
+	TODO: figure out lattice scaling terms?\\
+	
+	TODO: draw pictures of lattice gauss law state description?\\
+	
+	TODO: find references for continuum case/U(1) lattice computations in literature for 2d?
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $G$-QCD Model in 1-d}
@@ -785,4 +789,5 @@
 	\bibliography{biblio}
 	\nocite{Byrnes02}
 	\nocite{Hamer82}
+	\nocite{ZoharBurrello15}
 \end{document}
