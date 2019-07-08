@@ -609,14 +609,14 @@
 	\begin{equation}\label{eq:1dQEDunitaryCCR}
 		V_{\ell,\ell+1}(\xi)U_{\ell,\ell+1}(\eta)=e^{i\eta\xi}U_{\ell,\ell+1}(\eta)V_{\ell,\ell+1}(\xi).
 	\end{equation}
-	This relation is the exponentiated version of the canonical commutation relation for the $E_{\ell,\ell+1}$ and $A_{\ell,\ell+1}$ variables $[E_{\ell,\ell+1},A_{\ell,\ell+1}]=i$.
+	This relation is the exponentiated version of the canonical commutation relation for the $E_{\ell,\ell+1}$ and $A_{\ell,\ell+1}$ variables $[E_{\ell,\ell+1},A_{\ell,\ell+1}]=iI$.
 	
 	For simulation, we need to have finite quantities everywhere. 
 	For this reason, we develop an approximation of the $U(1)$ gauge group by $\Z_n$ via operators that preserve a discrete version of the CCR of \cref{eq:1dQEDunitaryCCR}, following \cite{Ercolessi18}.
 	Ercolessi et. al. take a finite-dimensional representation of the two parameter projective unitary Weyl group $\{e^{i(\xi E_{\ell,\ell+1}-\eta A_{\ell,\ell+1})}\}_{\xi,\eta \in \R}$ with the particular choices of parameters
 	$(\xi,\eta)=(0,\sqrt{2\pi/n}),(\sqrt{2\pi/n},0)$.
 	Making this choice of parameters will give us a discrete version of \cref{eq:1dQEDunitaryCCR} which is periodic in $n^\text{th}$ powers of the operators $U$ and $V$, leading to a representation of $\Z_n$.
-	This leads to operators
+	This gives rise to operators
 	\begin{equation}\label{eq:1dQED_UVEA_Relations}
 		U_{\ell,\ell+1} = e^{-i\sqrt{\frac{2\pi}{n}}A_{\ell,\ell+1}} \qquad V_{\ell,\ell+1} = e^{i\sqrt{\frac{2\pi}{n}}E_{\ell,\ell+1}}
 	\end{equation}
@@ -683,7 +683,7 @@
 		n_\ell+\frac{1}{2}((-1)^\ell -1)-(e_R-e_L)=0,
 	\end{equation}
 	where $e_R$ and $e_L$ are the values of $E$ on the links $(\ell,\ell+1)$ and $(\ell-1,\ell)$ respectively.
-	Restricting our attention to eigenstates that our physical states are constructed from so that $e_R$ and $e_L$ have the form $k_r$ and $k_L$ for some integers $k_r,k_L \in \Z_n$, we have four cases to consider.
+	Restricting our attention to eigenstates that our physical states are constructed from so that $e_R$ and $e_L$ have the form $k_R$ and $k_L$ for some integers $k_r,k_L \in \Z_n$, we have four cases to consider.
 	
 	If $\ell$ is an occupied even site, then
 		\[ 1+k_L\equiv k_R \Mod{n}. \]
@@ -711,8 +711,9 @@
 	\end{align}
 	
 	Here $\psi$ and $\psi^\dagger$ are anti-commuting annihilation and creation operators on the lattice sites $\vec{\ell}$ describing staggered fermions on the lattice. 
+	We say that a site of the 2-dimensional lattice is \emph{odd} (even) if the sum of its coordinates is odd (even).
 	The parameters $t,m$, and $g$ describe the hopping action, mass, and energy scaling of the action.
-	The operators $E,U \in U(1)$ on the links are related by the commutation relations
+	The operators $E$ and $U$ on the links are related by the commutation relations
 	\begin{equation}\label{eq:2dQEDLatticeEUCommutator}
 		[E_{e},U_{e'}]=\delta_{e,e'}U_e, \quad [E_{e},U_{e'}^\dagger] = -\delta_{e,e'}U_{e'}^\dagger.
 	\end{equation}
@@ -721,19 +722,53 @@
 	
 	As in the one dimensional case, we say that the subspace of eigenstates of $H_{QED}$ obeying Gauss's Law is the \emph{physical Hilbert state}. 
 	In this case, the requirement imposed by Gauss's Law is that $G_{\vec{\ell}}\ket{\psi} = 0$, where
-	\begin{equation}
-		G_{\vec{\ell}}=\psi_{\vec{\ell}}^\dagger\psi_{\vec{\ell}} + ( E_{\vec{\ell},\vec{\ell}+\vec{x}} - E_{\vec{\ell}-\vec{x},\vec{\ell}}) + ( E_{\vec{\ell},\vec{\ell}+\vec{y}} - E_{\vec{\ell}-\vec{y},\vec{\ell}} ).
+	\begin{equation}\label{eq:2dQEDGaussLaw}
+		G_{\vec{\ell}}=\psi_{\vec{\ell}}^\dagger\psi_{\vec{\ell}} - ( E_{\vec{\ell},\vec{\ell}+\vec{x}} - E_{\vec{\ell}-\vec{x},\vec{\ell}}) - ( E_{\vec{\ell},\vec{\ell}+\vec{y}} - E_{\vec{\ell}-\vec{y},\vec{\ell}} ).
 	\end{equation}
 	
 	We will actually take a slightly modified version of this so that the Dirac sea is a physical state:
 	\begin{equation}
-		G_{\vec{\ell}}=\psi_{\vec{\ell}}^\dagger\psi_{\vec{\ell}} + \frac{1}{2}((-1)^{\ell_1+\ell_2}-1) + ( E_{\vec{\ell},\vec{\ell}+\vec{x}} - E_{\vec{\ell}-\vec{x},\vec{\ell}}) + ( E_{\vec{\ell},\vec{\ell}+\vec{y}} - E_{\vec{\ell}-\vec{y},\vec{\ell}} ).
+		G_{\vec{\ell}}=\psi_{\vec{\ell}}^\dagger\psi_{\vec{\ell}} + \frac{1}{2}((-1)^{\ell_1+\ell_2}-1) - ( E_{\vec{\ell},\vec{\ell}+\vec{x}} - E_{\vec{\ell}-\vec{x},\vec{\ell}}) - ( E_{\vec{\ell},\vec{\ell}+\vec{y}} - E_{\vec{\ell}-\vec{y},\vec{\ell}} ).
 	\end{equation}
 	
-	To define a finite approximation to this model, we need to replace the operators $U,E \in U(1)$ with operators in some finite dimensional space. 
+	To define a finite approximation to this model, we need to replace the operators $U$ and $E$ with operators in some finite dimensional space. 
 	If we replace the gauge group $U(1)$ by $\Z_N$, the commutation relations in \cref{eq:2dQEDLatticeEUCommutator} cannot hold.
 	Instead, we preserve an exponentiated version of the canonical commutation relations $[E,A]=iI$ of the $U(1)$ gauge fields.
 	Following \cite{Ercolessi18}, \cite{Notarnicola15}, we do this by placing an $n$-dimensional Hilbert space for some odd $n=2s+1\in \N$ on each link with basis $\{\ket{v_k}\}_{k=-s}^{s}$.
+	
+	We will obtain two different unitary representations of $\Z_n$ on this Hilbert space which implement the commutation relation of \cref{eq:1dQEDDiscreteCCR} as in the one dimensional case.
+	Proceeding in the same way, we define operators $U$ and $V$ by
+	\begin{equation}
+		U\ket{v_k}=\ket{v_{k+1 \Mod{n}}} \qquad V\ket{v_k}= e^{-2\pi i k/n} \ket{v_k}.
+	\end{equation}
+	Then defining $U=e^{iA}$ and $V=e^{-i2\pi/n E}$ we will let the energy operator $E$ be given by
+	\begin{equation}
+		E\ket{v_k}=k\ket{v_k}.
+	\end{equation}
+	
+	Since $n$ is odd, there is a non-degenerate unique minimum value of $E^2$ at 0 on each link in this model.
+	
+	In the 2-dimensional case we have more degrees of freedom in the lattice and the values of the electric field on the links are no longer determined by a single value after applying Gauss's Law.
+	Instead, they are determined only partially by the values of the electric field on one link of each vertical and horizontal row of the lattice. 
+	Let $e_U,e_D,e_L,e_R$ be the values of the electric field on the four links (up,down,left, right) emanating from a site.
+	Then at each site, Gauss's Law in \cref{eq:2dQEDGaussLaw} reduces to the following four equations.
+	
+	Occupied even site:
+		\[ e_R+e_U \equiv 1+e_L+e_D \Mod n. \]
+	Empty even site:
+		\[ e_R+e_U \equiv e_L+e_D \Mod n. \]
+	Occupied odd site:
+		\[ e_R+e_U \equiv e_L+e_D \Mod n. \]
+	Empty odd site:
+		\[ 1+e_R+e_U \equiv e_L+e_D \Mod n. \]
+	
+	Therefore at any site the values of the electric field on the up and right links satisfy a linear constraint for each possible value of the sum of the values of the down and left links.
+	This shows that the values of the electric field on the boundary left and down links of the lattice are free and at each site at the lattice there are a total of $N$ allowed combinations of values of the field on the up/right links.
+	Thus the total dimension of the physical Hilbert space on the sites and links of a 2-dimensional $N_X\times N_Y$ lattice in this model is $2^{N_X N_Y} \cdot n^{N_X N_Y + N_X+ N_Y}$.
+	For comparison, the dimension of the total Hilbert space is $2^{N_X N_Y} \cdot n^{N_X(N_Y+1)+(N_X+1)N_Y}$.
+	So we have the same saving factor of $N^{\text{\# of sites in the lattice}}$ observed in the 1-dimensional case by restricting to physical states.
+	
+	TODO: figure out lattice scaling terms?
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $G$-QCD Model in 1-d}
