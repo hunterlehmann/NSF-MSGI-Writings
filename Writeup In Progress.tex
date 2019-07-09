@@ -271,7 +271,7 @@
     \subsubsection{Phase transition of 1+1 Ising model}
     
     There are a variety of ways to see that the 1+1 Ising model has a phase transition.
-    (e.g. duality)
+    (e.g. duality) \cite{KogutGaugeSummary}
     %TODO Fill in details here
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -811,6 +811,8 @@
 	
 	TODO: figure out lattice scaling terms? \\
 	\qquad Update 7/9: made a guess that plaquette term coupling should be proportional to $a$ based on analogy to magnetic terms in previous setups.\\
+	Note plaquette term should have trace in general but this is irrelevant when gauge group is $U(1)$. See \cite{ZoharBurrello15}
+	
 	
 	TODO: draw pictures of lattice gauss law state description?\\
 	
@@ -824,11 +826,27 @@
 	Don't understand description in \cite{KogutSusskind75,Wiese13} of the formulation of lattice Hamiltonian for SU(2) gauge group.
 	In particular, not clear how upper indices of $L,R$ are related to generators of SU(2) or what the defn of L,R ops in \cite{Wiese13} is.
 	
+	Wiese Hamiltonian for 1-d (no plaquette term) with color indices suppressed:
+	
+	\begin{equation}
+		H_{QCD}=-t\sum_{x} (\psi_x^\dagger U_{x,x+1} \psi_{x+1} + H.c) + m \sum_{x} (-1)^x \psi_x^\dagger\psi_x + \frac{g^2}{2} \sum_{x} (L_{x,x+1}^2+R_{x,x+1}^2),
+	\end{equation}
+	
+	where 
+		\[\psi_x^\dagger U_{x,x+1} \psi_{x+1} := {\psi_x^i}^\dagger U_{x,x+1}^{ij} \psi_{x+1}^j =?= \sum_i \sum_j {\psi_x^i}^\dagger U_{x,x+1}^{ij} \psi_{x+1}^j,\]
+	and the "color electric field" is described the flux operators $L,R$ which obey the following commutation relations for operators on the same link.
+		\[ [L^a,L^b]=2if_{abc}L^c, \quad [R^a,R^b]=2if_{abc}R^c, \quad [L^a,R^b]=0, \quad [L^a,U]=-\lambda^a U, \quad [R^a,U]=U\lambda^a. \]
+	Here the $\lambda^a,\lambda^b,\lambda^c$ are the Hermitian generators of the $\mathfrak{su(n)}$ algebra with structure constants $f_{abc}$.\\
+	
+	\noindent Q: Should the $U$ operators also be color-indexed?\\
+	Q: Why are the $L,R$ operators indexed by generators of the $\mathfrak{su(n)}$ algebra?\\
+	Q: Are $L,R$ conjugate operators to $U$ like position/momentum?\\
+	Q: I think the only difference between $L,R$ is which end of the link they act on/from?
+	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%                       References                          %%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\bibliographystyle{abbrv}
 	\bibliography{biblio}
 	\nocite{Hamer82}
-	\nocite{ZoharBurrello15}
 \end{document}
