@@ -697,6 +697,40 @@
 	It follows that on a chain of $N$ sites, the value of the field $E$ on the links is completely determined by the value on the first link and whether each site is empty or occupied.
 	Thus the physical Hilbert space of the chain is a $(2^N\cdot n)$-dimensional subspace of the full $(2^N\cdot 3^N)$-dimensional (maybe $3^{N+1}$ if open link on both ends) Hilbert space we defined above. 
 	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsubsection{Parameters of the Hamiltonian}
+	
+	For a variety of reasons, we may want to rescale parts or all of the terms of our Hamiltonian.
+	It may make computations easier or it might make a particular bit of analysis easier.
+	To avoid writing out the entire rescaled Hamiltonian each time, we represent these rescalings by a 3-tuple consisting of the coefficients of the hopping term, the mass term, and the electric field term.
+	For example, in \cref{eq:1dQEDLatticeHamiltonian} the associated tuple of parameters is $(-1/2a,m,g^2a/2)$.
+	
+	In particular, it simplifies our analysis if we rescale the Hamiltonian so that the electric field parameter is 1 and the electric field has integer eigenvalues.
+	This aligns with the $U(1)$ version of the model studied in \cite{Byrnes02} for example.
+	For the Ercolessi setup, this results in the tuple $(\frac{-tn}{g^2a^22\pi},2\frac{nm}{2\pi},1)$ after the authors introduce an extra parameter $t$ affecting only the hopping term.
+	For our setup, this results in the tuple $(\frac{-1}{g^2a^2},\frac{2m}{g^2a},1)$.
+	
+	To simplify their computational setup, Ercolessi et. al. work with the further rescaled tuple $(\frac{-tn}{2\pi},2\tilde{m}\sqrt{n/2\pi},1)$.
+	They are interested in particular in the value of the critical mass $\tilde{m}$ where the system displays a phase transition and the behavior of this value when $t=1$ and $n$ goes to $\infty$.
+	They observe computationally that $\lim_{n\to \infty} \tilde{m}_c \approx 0.33$ for odd $n$.
+	
+	Now this value is very close to the one obtained in \cite{Byrnes02} for the critical mass for which a phase transition occurs in the continuum limit of the 1-QED model with the full $U(1)$ gauge group.
+	But in their analysis, Ercolessi et. al. claim to fix the values $g^2a^2=1, g^2a=2$, which fixes the lattice spacing to be $a=1/2$.
+	Thus speaking of a continuum limit does not make sense.
+	To reconcile this with the close agreement of the numerical values obtained, we will analyze more closely how the parameters of the two $\Z_n$ setups are related to those of the $U(1)$ model in \cite{Byrnes02}.
+	
+	The setup of the Hamiltonian in \cite{Byrnes02} mirrors \cref{eq:1dQEDLatticeHamiltonian} exactly except for a factor of $i$ on the hopping term which is absorbed into the exponential in our Hamiltonian.
+	In their analysis, they find that the critical value is $m/g=0.3335$.
+	If we rewrite our tuple to isolate a factor of $m/g$ we get $(-\gamma,2(m/g)\sqrt{\gamma},1)$ where $\gamma=\frac{1}{g^2a^2}$ correponds to the factor $x$ in \cite{Byrnes02}.
+	The claim of \cite{Byrnes02} is then that as we take $\gamma$ to infinity we obtain the continuum limit critical scaled mass value $m/g=0.3335$.
+	
+	Comparing our rescaled tuple to the computational one used by Ercolessi et. al. we see that in their setup 
+		\[\gamma=\frac{n}{2\pi} \qquad  \tilde{m}=(m/g) \qquad 2\sqrt{n/2\pi}=2\sqrt{\gamma}. \]
+	
+	Substituting the definition of $\gamma$, this shows that the actual lattice spacing must be given by $a=\frac{\sqrt{2\pi}}{\sqrt{n}g}$ and therefore that taking $n$ to infinity does give a continuum limit by forcing $a$ to 0.
+	It is less clear why this should work a priori. 
+	Why should the lattice spacing need to go to 0 as this particular function of $n$, which is purely a parameter describing the size of the gauge group on the links?
+	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 2-d}
 	
@@ -707,7 +741,7 @@
 	In \cite{Wiese13}, Wiese gives a description of the general form of the lattice Hamiltonian for QED on a general $d$-dimensional lattice. Specializing to two dimensions, this becomes
 	\begin{align}\label{eq:2dQEDHamiltonian}
 		H_{QED}=&-t\sum_{\vec{\ell}} \left( \psi^\dagger_{\vec{\ell}} U_{\vec{\ell},\vec{\ell}+\vec{x}} \psi_{\vec{\ell}+\vec{x}} + (-1)^{\ell_1} \psi^\dagger_{\vec{\ell}}U_{\vec{\ell},\vec{\ell}+\vec{y}} \psi_{\vec{\ell}+\vec{y}} + H.c. \right) + m\sum_{\vec{\ell}} (-1)^{\ell_1+\ell_2} \psi_{\vec{\ell}}^\dagger \psi_{\vec{\ell}} \nonumber \\
-			&+ \frac{g^2}{2} \sum_{\vec{\ell}} E^2_{\vec{\ell}+\vec{x}}+E^2_{\vec{\ell}+\vec{y}} - \frac{1}{4g^2} \sum_{\Box} (U_\Box + U_\Box^\dagger).
+			&+ \frac{g^2}{2} \sum_{\vec{\ell}} \left(E^2_{\vec{\ell}+\vec{x}}+E^2_{\vec{\ell}+\vec{y}}\right) - \frac{1}{4g^2} \sum_{\Box} (U_\Box + U_\Box^\dagger).
 	\end{align}
 	
 	Here $\psi$ and $\psi^\dagger$ are anti-commuting annihilation and creation operators on the lattice sites $\vec{\ell}$ describing staggered fermions on the lattice. 
@@ -719,6 +753,13 @@
 	\end{equation}
 	Thus operators on different links commute with each other.
 	The plaquette product operator $U_\Box$ is defined by $U_\Box = U_{\vec{\ell},\vec{\ell}+\vec{x}}U_{\vec{\ell}+\vec{x},\vec{\ell}+\vec{x}+\vec{y}}U_{\vec{\ell}+\vec{y},\vec{\ell}+\vec{x}+\vec{y}}^\dagger U_{\vec{\ell},\vec{\ell}+\vec{y}}^\dagger$.
+	
+	We introduce explicit dependence of the coupling coefficients on the lattice spacing $a$ as in the previous sections in order to obtain the correct continuuum limit.
+	The resulting Hamiltonian is
+	\begin{align}\label{eq:2dQEDHamiltonianLatticeDepend}
+	H_{QED}=&-\frac{1}{2a}\sum_{\vec{\ell}} \left( \psi^\dagger_{\vec{\ell}} U_{\vec{\ell},\vec{\ell}+\vec{x}} \psi_{\vec{\ell}+\vec{x}} + (-1)^{\ell_1} \psi^\dagger_{\vec{\ell}}U_{\vec{\ell},\vec{\ell}+\vec{y}} \psi_{\vec{\ell}+\vec{y}} + H.c. \right) + m\sum_{\vec{\ell}} (-1)^{\ell_1+\ell_2} \psi_{\vec{\ell}}^\dagger \psi_{\vec{\ell}} \nonumber \\
+	&+ \frac{g^2a}{2} \sum_{\vec{\ell}} \left(E^2_{\vec{\ell}+\vec{x}}+E^2_{\vec{\ell}+\vec{y}}\right) - \frac{a}{4g^2} \sum_{\Box} (U_\Box + U_\Box^\dagger).
+	\end{align}	
 	
 	As in the one dimensional case, we say that the subspace of eigenstates of $H_{QED}$ obeying Gauss's Law is the \emph{physical Hilbert state}. 
 	In this case, the requirement imposed by Gauss's Law is that $G_{\vec{\ell}}\ket{\psi} = 0$, where
@@ -768,7 +809,8 @@
 	For comparison, the dimension of the total Hilbert space is $2^{N_X N_Y} \cdot n^{N_X(N_Y+1)+(N_X+1)N_Y}$.
 	So we have the same saving factor of $N^{\text{\# of sites in the lattice}}$ observed in the 1-dimensional case by restricting to physical states.\\
 	
-	TODO: figure out lattice scaling terms?\\
+	TODO: figure out lattice scaling terms? \\
+	\qquad Update 7/9: made a guess that plaquette term coupling should be proportional to $a$ based on analogy to magnetic terms in previous setups.\\
 	
 	TODO: draw pictures of lattice gauss law state description?\\
 	
@@ -787,7 +829,6 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\bibliographystyle{abbrv}
 	\bibliography{biblio}
-	\nocite{Byrnes02}
 	\nocite{Hamer82}
 	\nocite{ZoharBurrello15}
 \end{document}
