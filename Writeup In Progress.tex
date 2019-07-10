@@ -1,4 +1,4 @@
-\documentclass[11pt,reqno]{amsart}
+\documentclass[10pt,reqno]{amsart}
 \usepackage{amsfonts}
 \usepackage{amscd}
 \usepackage{amsmath}
@@ -572,15 +572,17 @@
 	If we are working with a lattice which is infinite or has free boundary conditions in the temporal direction, we can apply gauge transformations to pick a representative of any configuration class that satisfies the \emph{temporal gauge}
 		\[ \sigma_3(\ell, \tau) =1 \]
 	for every link in the temporal direction.	
-	Note that this does not yield a unique representative, since any product of gauge transformations that includes all sites with the same spatial coordinates (and varying temporal coordinate) will preserve the temporal gauge on that temporal hyperplane.
+	Note that this does not yield a unique representative, since any product of gauge transformations that includes all sites with the same spatial coordinates (and varying temporal coordinate) will preserve the temporal gauge on that temporal line.
 	In the temporal gauge, we can rewrite the Ising action as
 		\[S = -J\sum_{\Box_t} \sigma_3(\ell,\mu)\sigma_3(\ell+\tau,\mu) -J\sum_{\Box_x} \sigma_3\sigma_3\sigma_3\sigma_3,\]
-	splitting the sum over the plaquettes involving temporal links and those involving only spatial links.\\
+	splitting the sum over the plaquettes involving temporal links and those involving only spatial links.
 		
 	For example, on a two-dimensional $N_x\times N_t$ lattice with free boundary conditions and unit lattice vectors ($\mu,\tau$), imposing the temporal gauge yields the Ising gauge action
 		\[ S=-J\sum_{\ell} \sigma_3(\ell,\mu)\sigma_3(\ell+\tau,\mu). \]
 	This is precisely the action of $N_x$ non-interacting copies of a 1-dimensional standard Ising model with free boundary conditions and zero external magnetic field.
-	The analysis of this model is very similar to that in Section 2.2 where the model was assumed to have periodic boundary conditions.
+	The analysis of this model is very similar to that in Section 2.2 where the model was assumed to have periodic boundary conditions.\\
+	
+	%TODO - not very happy with this assertion ...
 	
 	\textbf{Careful:} Under periodic boundary conditions in the temporal direction, gauge transformations can only increase the number of temporal links with $\sigma_3(\ell,\tau)=1$ when applied to sites with $\sigma_3(\ell,\tau)=\sigma_3(\ell,-\tau)=-1$.
 	Thus the temporal gauge can be imposed only on the configuration classes consisting of configurations with an \emph{even} number of negative spins on the links of each temporal line with fixed spatial coordinates.
@@ -646,11 +648,11 @@
 	
 	Alternatively, we can choose parameters $(-2\pi /n,0)$ and $(0,-1)$, giving operators
 	\begin{equation}\label{eq:1dQED_better_UVEA_Relations}
-		U_{\ell,\ell+1} = e^{iA_{\ell,\ell+1}} \qquad V_{\ell,\ell+1} = e^{-i\frac{2\pi}{n} E_{\ell,\ell+1}}.
+		\widetilde{U}_{\ell,\ell+1} = e^{i\widetilde{A}_{\ell,\ell+1}} \qquad \widetilde{V}_{\ell,\ell+1} = e^{-i\frac{2\pi}{n} \widetilde{E}_{\ell,\ell+1}}.
 	\end{equation}
-	This choice is more convenient later on and the operators obey the same commutation relation of \cref{eq:1dQEDDiscreteCCR}.
+	This choice is more convenient later on and the operators still obey the commutation relation of \cref{eq:1dQEDDiscreteCCR}.
 	
-	We can implement the operators $U$ and $V$ by placing an $n$-dimensional Hilbert space $\mathcal{H}\cong \C^n$ on each link with orthonormal basis $\{\ket{v_k} \}_{0\leq k\leq n-1}$.
+	We can implement the operators $U$ and $V$ (respectively $\widetilde{U}$ and $\widetilde{V}$) by placing an $n$-dimensional Hilbert space on each link with orthonormal basis $\{\ket{v_k} \}_{0\leq k\leq n-1}$.
 	Then $V$ is the diagonal operator given by 
 	\begin{equation}
 		V\ket{v_k} = e^{-2\pi i k /n} \ket{v_k}.
@@ -681,14 +683,14 @@
 	However, this leads to a contradiction unless $n=2$.
 	
 	Using the second convention and restricting to $n$ odd (for reasons we will see later), we can relabel the basis $\{\ket{v_k}\}_{k=-s}^s$ where $n=2s+1$. 
-	Then a possible definition for $E$ is
+	Then a possible definition for $\widetilde{E}$ is
 	\begin{equation}
-		E\ket{v_k}=k \ket{v_k}.
+		\widetilde{E}\ket{v_k}=k \ket{v_k}.
 	\end{equation}
 	Notice that this almost implements the relation $[E,U]=U$ satisfied by the original operators in the $U(1)$ formulation:
-		\[(EU-UE)\ket{v_k}=\ket{v_{k+1}} \]
+		\[(\widetilde{E}\widetilde{U}-\widetilde{U}\widetilde{E})\ket{v_k}=\ket{v_{k+1}} \]
 	unless $k=s$. 
-	In that case $(EU-UE)=-2s\ket{v_{-s}} \neq \ket{v_{-s}} = U\ket{v_s}$, since our coefficients are not taken mod $n$.
+	In that case $(\widetilde{E}\widetilde{U}-\widetilde{U}\widetilde{E})=-2s\ket{v_{-s}} \neq \ket{v_{-s}} = \widetilde{U}\ket{v_s}$, since our coefficients are not taken mod $n$.
 	
 	For physical reasons, we need the states of our model to satisfy Gauss's law at each site, which here becomes $G_\ell \ket{\psi}\equiv 0 \Mod{n}$ for each site $\ell$ and
 	\begin{equation}\label{eq:1dQED_Gauss_law}
@@ -748,6 +750,8 @@
 	Substituting the definition of $\gamma$, this shows that the actual lattice spacing must be given by $a=\frac{\sqrt{2\pi}}{\sqrt{n}g}$ and therefore that taking $n$ to infinity does give a continuum limit by forcing $a$ to 0.
 	It is less clear why this should work a priori. 
 	Why should the lattice spacing need to go to 0 as this particular function of $n$, which is purely a parameter describing the size of the gauge group on the links?
+	
+	%TODO - consider moving commentary on errors/confusing things in Ercolessi paper to separate section/appendix
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 2-d}
