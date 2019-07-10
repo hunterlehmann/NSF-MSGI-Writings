@@ -178,8 +178,8 @@
 	\end{bmatrix}=-\lambda\sigma_1-\mu h\sigma_3.\]
 	
 	Now we could also attempt to find a second order approximation of $T$ so that $T\approx I - \tau H + \frac{1}{2}\tau^2 H^2$ for an operator $H$ not depending on $\tau$. 
-	However, following the approach above will show us that there is no easy solution in this case.  
-	To get a higher order approximation (or the actual matrix logarithm solving $T=e^{-\tau H}$ for $H$), we may need to allow $H$ to depend on $\tau$. 
+	However, following the approach above will show us that this is not possible in general.  
+	Rather, to get a higher order approximation (or the actual matrix logarithm solving $T=e^{-\tau H}$ for $H$) we may need to allow $H$ to depend on $\tau$. 
 	
 	In the second order case, we need 
 	\begin{align*}
@@ -191,7 +191,7 @@
 	
 	From the first and third equations, we see that $H_{0,0}$ and $H_{1,1}$ must depend on $h$. 
 	But the second equation has no dependence on $h$, so the dependence of $H_{0,1}$ on $h$ must be inversely related to the $H_{0,0}$ and $H_{1,1}$ dependence.
-	On the other hand adding the first and third equations yields
+	On the other hand, adding the first and third equations yields
 	\[\cosh(\beta h) \approx 1-\frac{\tau}{2}( H_{0,0}+ H_{1,1})+\frac{\tau^2}{4}(H_{0,0}^2+2H_{0,1}^2+H_{1,1}^2), \]
 	which naturally suggests  taking $\beta=\mu\tau$, $H_{0,0}=-H_{1,1}=\mu h$, and $H_{0,1}=H{1,0}=0$. But this is a contradiction.
 	
@@ -224,7 +224,7 @@
 	We are going to relate a statistical mechanics system on a 2-dimensional lattice (with one temporal and one spatial dimension) to a quantum mechanical Hamiltonian on a 1-dimensional system of interacting spins.  
 	See \cite{FradkinSusskind78,KogutGaugeSummary}.
 	
-	As in the 1+0 Ising model, we will work with a lattice with periodic boundary conditions. 
+	As in the 1+0 Ising model, we work with a lattice with periodic boundary conditions. 
 	Suppose $\cL$ is a $N_x \times N_\tau$ lattice of points in $\Z^2$ with $\vec{\tau}$ a unit vector in the time direction and $\vec{x}$ a unit vector in the spatial direction. 
 	Then the action for the model is 
 	\[ \mathcal{S}= -\sum_{\ell} \beta_\tau s_{\ell}s_{\ell+\vec{\tau}}+\beta s_{\ell}s_{\ell+\vec{x}}, \]
@@ -252,7 +252,7 @@
 		\hat{T}|_{k\,\text{flips}} &= e^{-2k\beta_\tau} e^{\frac{\beta}{2}\sum_{\ell=1}^{N_x}(s_\ell s_{\ell+1}+\tilde{s}_\ell \tilde{s}_{\ell+1})}		
 	\end{align*}
 	
-	The nicest solution to this is to choose $\beta =\lambda \tau$ and $\tau = e^{-2\beta_\tau}$ for some $\lambda \in \R_{>0}$.
+	A simple solution is to choose $\beta =\lambda \tau$ and $\tau = e^{-2\beta_\tau}$ for some $\lambda \in \R_{>0}$.
 	Then to first order approximation in $\tau$,
 	\begin{align*}
 		\hat{T}|_{0\,\text{flips}} &\approx 1-\mu\lambda\tau, \\
@@ -333,7 +333,7 @@
 	Since $f$ is in $L^2([0,2\pi]^2)$, $\hat{T}$ is trace-class and we have
 	\[Z= \int_{[0,2\pi]^N} \left(\prod_{j=1}^N d\theta_j \right) f(\theta_1,\theta_2)\ldots f(\theta_N,\theta_1) = \Tr \hat{T}^N. \]
 	
-	Again, our new goal is to write $\hat{T}=I-\tau\hat{H}$ when $\tau$ is small for some Hamiltonian on the one site Hilbert space $L^2([0,2\pi])$. 
+	Again, our new goal is to write $\hat{T}=I-\tau\hat{H}$ when $\tau$ is small for some Hamiltonian on the one site Hilbert space $L^2([0,2\pi])$ without needing to solve the problem exactly. 
 	Recall that the set $B=\{\psi_m:=\frac{1}{\sqrt{2\pi}} e^{im\theta} \mid m \in \Z \}$ forms an orthonormal Hilbert basis for $L^2([0,2\pi])$.
 	We will approximate the action of $\hat{T}$ on elements $\psi_m$ of this basis in order to find our approximate Hamiltonian $\hat{H}$.
 	\begin{align}
@@ -454,6 +454,7 @@
 	Again we take a lattice $\cL$ of $N$ sites, usually cubic.
 	Now our spins at each site are $x_i \in \Omega_0 := \R$ subject to periodic boundary conditions and the \emph{mean spherical constraint} $\sum_{i} x_i^2 = N$. 
 	(This constraint is the origin of the name: in the mean, the spins have norm 1 i.e. lie on a unit circle).
+	Notice that our spin space is now both infinite, as in the previous section, and not compact.
 	We can work with a \emph{grand partition function} given by 
 		\[ Q_N(S) = \int_{\R^N} dx_1\ldots d_{x_N} e^{-S\sum\limits_{i} x_i^2+\beta J \sum\limits_{i,j}D_{i,j} x_i x_j+\beta h \sum\limits_i x_i}, \]
 	where $\beta$ is the inverse temperature, $J$ is the exchange energy between nearest neighbor spins, $D_{i,j}$ are relative strength of coupling constants, and $h$ is the strength of an external magnetic field, and $S$ implements the mean spherical constraint.
@@ -472,7 +473,7 @@
 			 L(\vec{x},\vec{y})=e^{-\frac{1}{2}S(\vec{x}^2+\vec{y}^2)+\frac{1}{4}K(\vec{x}^TM\vec{x}+\vec{y}^TM\vec{y})+K_\tau\vec{x}\vec{y}+\frac{1}{2}K'h \sum_{i=1}^{\widetilde{N}} (x_i + y_i)},
 		\end{equation}
 	where $M$ is a symmetric matrix describing the spin-spin interactions and $K,K_\tau,K'$ are anisotropic coupling constants that may depend on the lattice spacing $\tau$.
-	This lets us write $Q_N(S)=\Tr T^n$. As in our earlier examples, we now want to extract a quantum Hamiltonian from this formulation by making appropriate choices of couplings and letting the temporal lattice spacing $\tau$ tend to 0.
+	This lets us write $Q_N(S)=\Tr T^n$. As in our earlier examples, we now want to extract a quantum Hamiltonian from this formulation by making appropriate choices of couplings and letting the temporal lattice spacing $\tau$ tend to 0 without solving the problem exactly.
 	
 	We will need to make use of the operator identity
 		\begin{equation}\label{eq:qtfm_20.14_no_limit}
@@ -672,15 +673,15 @@
 	unless $k=s$. 
 	In that case $(EU-UE)=-2s\ket{v_{-s}} \neq \ket{v_{-s}} = U\ket{v_s}$, since our coefficients are not taken mod $n$.
 	
-	For physical reasons, we need the states of our model to satisfy Gauss's law at each site, which here becomes
+	For physical reasons, we need the states of our model to satisfy Gauss's law at each site, which here becomes $G_\ell \ket{\psi}\equiv 0 \Mod{n}$ for each site $\ell$ and
 	\begin{equation}\label{eq:1dQED_Gauss_law}
-		G_\ell := \psi_\ell^\dagger \psi_\ell + \frac{1}{2}((-1)^\ell -1)-(E_{\ell,\ell+1}-E_{\ell-1,\ell}) \approx 0.
+		G_\ell := \psi_\ell^\dagger \psi_\ell + \frac{1}{2}((-1)^\ell -1)-(E_{\ell,\ell+1}-E_{\ell-1,\ell}).
 	\end{equation}
 	Now this gives us a condition on eigenvalues for physical states. For sites that are occupied by a fermion, $\psi_\ell^\dagger\psi_\ell$ has eigenvalue 1.
 	Let $n_\ell=1$ if the site $\ell$ is occupied and $n_\ell=0$ if it is empty.
 	Then after a rescaling of the energy to absorb the factor of $\sqrt{2\pi/n}$ into the coupling constants of the Hamiltonian in the Ercolessi setup or directly in our setup, \cref{eq:1dQED_Gauss_law} yields the condition
 	\begin{equation}
-		n_\ell+\frac{1}{2}((-1)^\ell -1)-(e_R-e_L)=0,
+		n_\ell+\frac{1}{2}((-1)^\ell -1)-(e_R-e_L) \equiv 0 \Mod{n},
 	\end{equation}
 	where $e_R$ and $e_L$ are the values of $E$ on the links $(\ell,\ell+1)$ and $(\ell-1,\ell)$ respectively.
 	Restricting our attention to eigenstates that our physical states are constructed from so that $e_R$ and $e_L$ have the form $k_R$ and $k_L$ for some integers $k_r,k_L \in \Z_n$, we have four cases to consider.
@@ -762,13 +763,13 @@
 	\end{align}	
 	
 	As in the one dimensional case, we say that the subspace of eigenstates of $H_{QED}$ obeying Gauss's Law is the \emph{physical Hilbert state}. 
-	In this case, the requirement imposed by Gauss's Law is that $G_{\vec{\ell}}\ket{\psi} = 0$, where
-	\begin{equation}\label{eq:2dQEDGaussLaw}
+	In this case, the requirement imposed by Gauss's Law is that $G_{\vec{\ell}}\ket{\psi} \equiv 0 \Mod{n}$ for all sites $\ell$, where
+	\begin{equation}
 		G_{\vec{\ell}}=\psi_{\vec{\ell}}^\dagger\psi_{\vec{\ell}} - ( E_{\vec{\ell},\vec{\ell}+\vec{x}} - E_{\vec{\ell}-\vec{x},\vec{\ell}}) - ( E_{\vec{\ell},\vec{\ell}+\vec{y}} - E_{\vec{\ell}-\vec{y},\vec{\ell}} ).
 	\end{equation}
 	
-	We will actually take a slightly modified version of this so that the Dirac sea is a physical state:
-	\begin{equation}
+	We will actually take a slightly modified version of this so that the Dirac sea, the configuration with 0 electric field, every odd site occupied, and every even site empty, is a physical state:
+	\begin{equation}\label{eq:2dQEDGaussLaw}
 		G_{\vec{\ell}}=\psi_{\vec{\ell}}^\dagger\psi_{\vec{\ell}} + \frac{1}{2}((-1)^{\ell_1+\ell_2}-1) - ( E_{\vec{\ell},\vec{\ell}+\vec{x}} - E_{\vec{\ell}-\vec{x},\vec{\ell}}) - ( E_{\vec{\ell},\vec{\ell}+\vec{y}} - E_{\vec{\ell}-\vec{y},\vec{\ell}} ).
 	\end{equation}
 	
