@@ -14,6 +14,7 @@
 \usepackage{todonotes}
 \usepackage{braket}
 \usepackage{dsfont}
+\usepackage{tikz}
 \usepackage{physics}
 \usepackage[capitalise]{cleveref}
 \patchcmd{\section}{\scshape}{\bfseries}{}{}
@@ -582,7 +583,23 @@
 	The analysis of this model is very similar to that in Section 2.2 where the model was assumed to have periodic boundary conditions.
 	
 	\textbf{Careful:} Under periodic boundary conditions in the temporal direction, gauge transformations can only increase the number of temporal links with $\sigma_3(\ell,\tau)=1$ when applied to sites with $\sigma_3(\ell,\tau)=\sigma_3(\ell,-\tau)=-1$.
-	Thus the temporal gauge can be imposed only on the configuration classes consisting of configurations with an \emph{even} number of negative spins on temporal links.
+	Thus the temporal gauge can be imposed only on the configuration classes consisting of configurations with an \emph{even} number of negative spins on the links of each temporal line with fixed spatial coordinates.
+	
+	To see this, consider a 1-dimensional chain of $N$ sites with periodic boundary conditions. 
+	There are two cases to consider.
+	First, any gauge transformation applied to a site where the spins on the temporal links are the same will not change the parity of the number of links with $\sigma_3(\ell,\tau)=1$.
+	Second, any gauge transformation applied to a site where the spins on the adjacent temporal links are different will not change the number of links with $\sigma_3(\ell,\tau)=1$.
+	From this, it is clear that any configuration with an odd number of links with $\sigma_3(\ell,\tau)=-1$ on the chain cannot be transformed to one with 0 such links.
+	
+	On the other hand we can show that any configuration with a positive even number of links with $\sigma_3(\ell,\tau)=-1$ is equivalent to one with two fewer such links.
+	Suppose that $\sigma_3(\ell,\tau)=-1$ and that the next link with spin $-1$ is $\sigma_3(\ell+k,\tau)$.
+	Applying a gauge transformation to the sites $\ell+1,\ell+2,\ldots, \ell+k$ will flip the sign on the links $\sigma_3(\ell,\tau)$ and $\sigma_3(\ell+k,\tau)$ because only one endpoint of the links is acted on.
+	For the links between these, both endpoints are acted on, so they are unaffected by the transformation.
+	Hence we obtain a configuration with two fewer links with spin $-1$.
+	
+	With free boundary conditions, there are nodes with only one adjacent temporal link, allowing us to change the number of links with spin $-1$ by 1. \\
+	
+	TODO - draw diagram to illustrate this
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 1-d}
@@ -835,7 +852,7 @@
 	
 	where 
 		\[\psi_x^\dagger U_{x,x+1} \psi_{x+1} := {\psi_x^i}^\dagger U_{x,x+1}^{ij} \psi_{x+1}^j =?= \sum_i \sum_j {\psi_x^i}^\dagger U_{x,x+1}^{ij} \psi_{x+1}^j,\]
-	and the "color electric field" is described the flux operators $L,R$ which obey the following commutation relations for operators on the same link.
+	and the ``color electric field'' is described the flux operators $L,R$ which obey the following commutation relations for operators on the same link.
 		\[ [L^a,L^b]=2if_{abc}L^c, \quad [R^a,R^b]=2if_{abc}R^c, \quad [L^a,R^b]=0, \quad [L^a,U]=-\lambda^a U, \quad [R^a,U]=U\lambda^a. \]
 	Here the $\lambda^a,\lambda^b,\lambda^c$ are the Hermitian generators of the $\mathfrak{su(n)}$ algebra with structure constants $f_{abc}$.\\
 	
