@@ -840,7 +840,58 @@
 	TODO: find references for continuum case/U(1) lattice computations in literature for 2d?
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Lattice $G$-QCD Model in 1-d}
+	\subsection{Formulation of Lattice Gauge Theories}
+	
+	In \cite{ZoharBurrello15}, Zohar and Burrello describe a general theory for the formulation of Hamiltonians for lattice gauge theories with both matter and gauge fields. 
+	We will summarize their setup and show how their method specializes to the case of 1-d QED seen in the previous sections.
+	The theory is valid for any finite group or compact Lie group $G$ used to model the gauge symmetries.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsection{Lattice $D_3\cong S_3$ Gauge Group Model in 1-d}	
+	
+	As an example of the general theory of the previous section applied to a finite group, we consider a 1-d lattice with gauge group $G\cong D_3$, extending the example found in \cite{ZoharBurrello15}[Appendix 1].
+	$D_3$ has three irreducible representations.
+	Two are one-dimensional: the trivial representation and the sign representation which maps the rotations to $1$ and the reflections to $-1$.
+	The last is the defining representation of $D_3$ as $2\times 2$ rotation and reflection matrices:
+		\[D_3 \mapsto \left\{ \begin{pmatrix}
+		1 & 0\\ 0 & 1
+		\end{pmatrix},
+		\begin{pmatrix}
+		1 & 0\\ 0 & -1
+		\end{pmatrix},
+		\begin{pmatrix}
+		-1/2 & \sqrt{3}/2\\ -\sqrt{3}/2 & -1/2
+		\end{pmatrix},
+		\begin{pmatrix}
+		-1/2 & -\sqrt{3}/2\\ -\sqrt{3}/2 & 1/2
+		\end{pmatrix},
+		\begin{pmatrix}
+		-1/2 & -\sqrt{3}/2\\ \sqrt{3}/2 & -1/2
+		\end{pmatrix},
+		\begin{pmatrix}
+		-1/2 & \sqrt{3}/2\\ \sqrt{3}/2 & 1/2
+		\end{pmatrix} \right\} \]
+		
+	The Hilbert space $\mathcal{H}$ associated to the links is then the 6-dimensional space coming from the regular representation of $D_3$ with basis $\{ \ket{I},\ket{p},\ket{200},\ket{201},\ket{210},\ket{211} \}$.
+	Here $\ket{I}$ is the basis vector for the space associated to the trivial irrep, $\ket{p}$ is the basis vector for the parity/sign irrep space, and $\{\ket{200},\ket{201}\}$ and $\{\ket{210},\ket{211}\}$ are bases for the two copies of the defining irrep space.
+	
+	As in the general theory, we embed this Hilbert space as a subspace of the Fock space over $\mathcal{H}$ such that for each basis vector there are operators $a,a^\dagger$ so that for example
+		\[a^2_{00}\ket{200}=\ket{\Omega} \qquad {a^\dagger}_{00}^2\ket{\Omega}=\ket{200}, \]
+	where $\ket{\Omega}$ is the vacuum state of the Fock space.
+	
+	We choose to express the spinor and $U^j$ operators on the links in the two dimensional defining representation.
+	Each spinor $\psi_{\ell}$ is thus a vector $(\psi_0,\psi_1)_\ell$.
+	
+	The Hamiltonian is
+	\begin{equation}
+		H_{D_3}=h\sum_\ell (\psi_\ell^\dagger U_{\ell,\ell+1}^j\psi_{\ell+1}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell+ \frac{g^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(j)\Pi_j.
+	\end{equation}
+	
+	The spinors are defined as above. 
+	We will express the other operators $U^j, \mathcal{E}(j),\Pi_j$ in terms of the ladder operators $a^j_{mn}$ and ${a^\dagger}^j_{mn}$.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsection{Lattice $G$-SU(2) Model in 1-d}
 	
 	Long term/ambitious: set up lattice Hamiltonian for QCD with SU(2) or SU(3) gauge group and find a sequence of finite groups $G$ to approximate by.
 	
