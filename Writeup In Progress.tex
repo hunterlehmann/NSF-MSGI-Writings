@@ -843,13 +843,50 @@
 	\subsection{Formulation of Lattice Gauge Theories}
 	
 	In \cite{ZoharBurrello15}, Zohar and Burrello describe a general theory for the formulation of Hamiltonians for lattice gauge theories with both matter and gauge fields. 
+	Their theory relies heavily on representation theory and so references \cite{hall_lglarep,teleman_rep_theory} may be useful.
 	We will summarize their setup and show how their method specializes to the case of 1-d QED seen in the previous sections.
 	The theory is valid for any finite group or compact Lie group $G$ used to model the gauge symmetries.
+	
+	Throughout the section, $g$ denotes elements of $G$, irreducible representations (irreps) of $G$ are indexed by $j$, and the elements of a basis for the associated vector space $V^j$ to the irrep $j$ are $\{\ket{jm} \}_{m=1}^{\dim j}$.
+	Without loss of generality, we can restrict to unitary matrix representations of $G$ since it is finite or compact.
+	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$.
+	For finite or compact $G$, the regular representation is completely reducible and decomposes as
+	\begin{equation}
+		\C^{G}=\bigoplus_j \bigoplus_{\dim (j)} V^j,
+	\end{equation}
+	where the outer sum is over the finite dimensional irreps of $G$.
+	We will use the regular representation vector space as the Hilbert space on the links of our model.
+	
+	The general Hamiltonian proposed by Zohar and Burello is
+	\begin{align}
+	H_{D_3}&=\sum_{\ell,\vec{k}} \epsilon_{\ell,\ell+\vec{k}}(\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell \nonumber\\ 
+	&- \frac{1}{2t^2} \sum_{\Box} \left(\Tr(U_1^j U_2^j {U_3^j}^\dagger {U_4^j}^\dagger) + H.c.\right) + \frac{t^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(J)\Pi_J.
+	\end{align}
+	
+	We will discuss each term and the operators involved one by one.
+	The intial sum is over all lattice sites $\ell$ and all lattice vectors $\vec{k}$.
+	First, there is a spinor operator $\psi_\ell$ defined on each site of the lattice.
+	We choose a faithful representation $j$ that each spinor and each operator $U^j$ is a part of so that $\psi$ has $\dim(j)$ components $\psi_\ell=(\psi_{\ell,1},\psi_{\ell,2},\ldots,\psi_{\ell,\dim j})$.
+	For example, if $G$ is $D_3$, there is only one faithful irreducible reprsentation, so we must use that one (see the next subsection).
+	On the other hand, if $G$ is $U(1)$ or $SU(2)$ there are many faithful irreducible representations and we have some freedom to choose which to use.
+	The model of Section 5.2 corresponds to the representation $j=1$ of $U(1)$, while the usual model for $SU(2)$ gauge corresponds to the fundamental representation $j=1/2$.
+	
+	The expression $\psi_\ell^\dagger\psi_m$ is shorthand for the scalar product $\sum_{i=1}^{\dim j} \psi^\dagger_{\ell,i} \psi_{m,i}$.
+	To understand how the gauge group acts on $\psi$, let $D^j(g)$ be the matrix representing $g$ in the basis $\{\ket{jm}\}$ of $V^j$.
+	Then $g$ acts on $\psi$ and $\psi^\dagger$ as follows:
+	\begin{equation}
+		g \cdot \psi^\dagger = \psi^\dagger D^j(g) \qquad g\cdot \psi = D^j(g^{-1}) \psi.
+	\end{equation}
+	Clearly the term $\psi_\ell^\dagger\psi_\ell$ of the Hamiltonian is left fixed by any such local or global gauge transformation.
+	To see that the first term is also invariant under these transformations, we need to describe the $U^j$ operators and their transformation laws.
+	(Note that without the $U^j$ operators, the first term is invariant under global gauge transformations but not local ones.)
+	
+	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $D_3\cong S_3$ Gauge Group Model in 1-d}	
 	
-	As an example of the general theory of the previous section applied to a finite group, we consider a 1-d lattice with gauge group $G\cong D_3$, extending the example found in \cite{ZoharBurrello15}[Appendix 1].
+	As an example of the general theory of the previous section applied to a finite group, we consider a 1-d lattice with gauge group $G\cong D_3$, extending the example found in \cite[Appendix 1]{ZoharBurrello15}.
 	$D_3$ has three irreducible representations.
 	Two are one-dimensional: the trivial representation and the sign representation which maps the rotations to $1$ and the reflections to $-1$.
 	The last is the defining representation of $D_3$ as $2\times 2$ rotation and reflection matrices:
@@ -884,11 +921,11 @@
 	
 	The Hamiltonian is
 	\begin{equation}
-		H_{D_3}=h\sum_\ell (\psi_\ell^\dagger U_{\ell,\ell+1}^j\psi_{\ell+1}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell+ \frac{g^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(j)\Pi_j.
+		H_{D_3}=h\sum_\ell (\psi_\ell^\dagger U_{\ell,\ell+1}^j\psi_{\ell+1}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell+ \frac{g^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(J)\Pi_J.
 	\end{equation}
 	
 	The spinors are defined as above. 
-	We will express the other operators $U^j, \mathcal{E}(j),\Pi_j$ in terms of the ladder operators $a^j_{mn}$ and ${a^\dagger}^j_{mn}$.
+	We will express the other operators $U^j, \mathcal{E}(J),\Pi_J$ in terms of the ladder operators $a^J_{mn}$ and ${a^\dagger}^J_{mn}$.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $G$-SU(2) Model in 1-d}
@@ -929,4 +966,6 @@
 	\bibliographystyle{abbrv}
 	\bibliography{biblio}
 	\nocite{Hamer82}
+	\nocite{AKHvD11}
+	\nocite{vDBC78}
 \end{document}
