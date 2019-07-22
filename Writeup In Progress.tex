@@ -851,7 +851,7 @@
 	Without loss of generality, we can restrict to unitary matrix representations of $G$ since it is finite or compact.
 	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$.
 	For finite or compact $G$, the regular representation is completely reducible and decomposes as
-	\begin{equation}
+	\begin{equation}\label{eq:reg_rep_decomp}
 		\C^{G}=\bigoplus_j \bigoplus_{\dim (j)} V^j,
 	\end{equation}
 	where the outer sum is over the finite dimensional irreps of $G$.
@@ -881,8 +881,41 @@
 	To see that the first term is also invariant under these transformations, we need to describe the $U^j$ operators and their transformation laws.
 	(Note that without the $U^j$ operators, the first term is invariant under global gauge transformations but not local ones.)
 	
+	To do this, we introduce the Fock space over $\C^G$ with associated raising and lowering ladder operators $a^j_{mn}, a^{j\dagger}_{mn}$, where $j$ indexes an irrep of $G$, $m$ indexes the copy of the irrep appearing in \cref{eq:reg_rep_decomp}, and $n$ indexes the basis vectors of that copy.
+	The raising operator takes the local vacuum to the state $\ket{jmn}$: $a^{j\dagger}_{mn} \ket{\Omega} = \ket{jmn}$.
+	To avoid introducing extraneous states, we impose the restriction that the number of atoms in the Fock space on any link is always 1: $\sum_{jmn} a^{j\dagger}_{mn} a^j_{mn} =1$.
 	
+	We can now express the remaining operators in terms of the ladder operators.
+	\begin{proposition}[{\cite[Prop. 3]{ZoharBurrello15}}]\label{prop:Uj_ops}
+		The operator elements of $U^j$ are given by
+		\[\hat{U}^j_{mm'}= \sum_{J,K} \sqrt{\frac{\dim(J)}{\dim(K)}} \sum_{M,M',N,N'}\braket{J,M,j,m}{K,N} \braket{K, N'}{J,M,j,m'} a^{K\dagger}_{NN'} a^J_{MM'}, \]
+		where $J$ and $K$ are irreps of $G$ and $\braket{J,M,j,m}{K,N}, \braket{K, N'}{J,M,j,m'}$ are Clebsch-Gordon coefficients.
+	\end{proposition}
 	
+	Although this sum is infinite for many choice of gauge groups $G$, e.g. $G=U(1)$ or $G=SU(2)$, only finitely many of these terms are nonzero when applied to states $\ket{j'nn'}$ so that there are no convergence issues to worry about.
+	We will explicitly compute these operators for the gauge groups $G=D_3$ and $G=SU(2)$ in later sections.
+	For now, let's see that this operator agrees with the operator $U$ in the case of $G=U(1)$ seen in the previous sections.
+	
+	First, recall that the Clebsch-Gordon coefficients describe a change of basis between the tensor product basis of two irreps of $G$ and the decomposition of that tensor product into irreps.
+	So the coefficient $\braket{J,M,j,m}{K,N}$ is the coefficient of the basis vector $\ket{JM}\otimes \ket{jm}$ when we write the irrep basis vector $\ket{KN}$ in terms of the tensor product basis.
+	Additionally, we are always working with unitary representations and so we can take real Clebsch-Gordon coefficients so that $\braket{J,M,j,m}{K,N}=\braket{K,N}{J,M,j,m}$.
+	Knowing how tensoring with the $j$ representation affects other representation will allow us to simplify the expression of \cref{prop:Uj_ops} tremendously.
+	For example, tensoring with the trivial representation $j$ gives $\braket{J,M,j,m}{K,N}=\delta_{J,K}\delta_{M,N}$ since this does not change the irrep $J$.
+	
+	When $G=U(1)$ the irreps are indexed by integers $n\in\Z$ and each is 1-dimensional since $U(1)$ is abelian. 
+	The irreps are given by exponentiation to the $n^\text{th}$ power: $\pi_n: U(1) \to GL_1(\C)$ such that $e^{i\theta} \in U(1) \mapsto e^{in\theta} \in GL_1(\C)$.
+	We take $j=1$ in the definition of the $U^j$ operator above. 
+	Since each irrep is 1-dimensional, we will omit the $m,m',M,M',N,N'$ indices as they are irrelevant. 
+	Now $U^j$ will be a $1\times 1$ matrix of operators, i.e. a single operator.
+	Tensoring the representations $\pi_n \otimes \pi_1$ gives the the irrep $\pi_{n+1}$. 
+	To see this, notice that by definition $\pi_n \otimes \pi_1$ acts on the vector space $\C \otimes_\C \C \cong \C$ by  $(\pi_n\otimes\pi_1)(e^{i\theta})(x\otimes y)=e^{in\theta}x\otimes e^{i\theta}y=e^{i(n+1)\theta}(x\otimes y).$
+	It follows that the Clebsch-Gordon coefficients are $\braket{J,1}{K}=\delta_{J+1,K}$.
+	Applying this to the proposition we see
+	\begin{equation}
+		\hat{U^1}=\sum_{J,K} \braket{J,1}{K}\braket{K}{J,1} a^{K\dagger} a^J = \sum_{J} a^{(J+1)\dagger} a^J.
+	\end{equation}
+	But this operator applied to any basis vector $\ket{J'}$ is simply $\ket{J'+1}$, since $a^J\ket{J'}=\delta_{J,J'}\ket{\Omega}$.
+	This is exactly the operator defined in the previous section, so the general theory agrees with what we have seen previously.
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $D_3\cong S_3$ Gauge Group Model in 1-d}	
 	
@@ -913,7 +946,7 @@
 	Here $\ket{I}$ is the basis vector for the space associated to the trivial irrep, $\ket{p}$ is the basis vector for the parity/sign irrep space, and $\{\ket{200},\ket{201}\}$ and $\{\ket{210},\ket{211}\}$ are bases for the two copies of the defining irrep space.
 	
 	As in the general theory, we embed this Hilbert space as a subspace of the Fock space over $\mathcal{H}$ such that for each basis vector there are operators $a,a^\dagger$ so that for example
-		\[a^2_{00}\ket{200}=\ket{\Omega} \qquad {a^\dagger}_{00}^2\ket{\Omega}=\ket{200}, \]
+		\[a^2_{00}\ket{200}=\ket{\Omega} \qquad a^{2\dagger}_{00}\ket{\Omega}=\ket{200}, \]
 	where $\ket{\Omega}$ is the vacuum state of the Fock space.
 	
 	We choose to express the spinor and $U^j$ operators on the links in the two dimensional defining representation.
