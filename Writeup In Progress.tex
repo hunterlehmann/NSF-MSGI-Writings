@@ -884,6 +884,11 @@
 	To do this, we introduce the Fock space over $\C^G$ with associated raising and lowering ladder operators $a^j_{mn}, a^{j\dagger}_{mn}$, where $j$ indexes an irrep of $G$, $m$ indexes the copy of the irrep appearing in \cref{eq:reg_rep_decomp}, and $n$ indexes the basis vectors of that copy.
 	The raising operator takes the local vacuum to the state $\ket{jmn}$: $a^{j\dagger}_{mn} \ket{\Omega} = \ket{jmn}$.
 	To avoid introducing extraneous states, we impose the restriction that the number of atoms in the Fock space on any link is always 1: $\sum_{jmn} a^{j\dagger}_{mn} a^j_{mn} =1$.
+	This selects a subspace of the Fock space that behaves like a simple Hilbert space.
+	On this subspace we can easily describe the action of the ``number-conserving'' operators $a^{J\dagger}_{MN}a^{K}_{M'N'}$.
+	\begin{equation}
+		a^{J\dagger}_{MN}a^{K}_{M'N'}\ket{jmn} = \delta_{j,K}\delta_{m,M'}\delta_{n,N'}\ket{JMN}.
+	\end{equation}
 	
 	We can now express the remaining operators in terms of the ladder operators.
 	\begin{proposition}[{\cite[Prop. 3]{ZoharBurrello15}}]\label{prop:Uj_ops}
@@ -916,6 +921,25 @@
 	\end{equation}
 	But this operator applied to any basis vector $\ket{J'}$ is simply $\ket{J'+1}$, since $a^J\ket{J'}=\delta_{J,J'}\ket{\Omega}$.
 	This is exactly the operator defined in the previous section, so the general theory agrees with what we have seen previously.
+	
+	These $U^j$ operators transform on the left and right by 
+	\begin{equation}
+		g\cdot U^j = D^j(g^{-1})U^j \qquad U^j \cdot g = U^j D^j(g).
+	\end{equation}
+	Applying a gauge transformation to the vertex to the left of an edge acts with the left action and similarly for the vertex on the right of an edge.
+	Thus for example the term $\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}$ transforms to $\psi_\ell^\dagger D^j(g) D^j(g^{-1})U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}} = \psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}$ when the site $\ell$ is acted on by $g$.
+	So the hopping term of the Hamiltonian is now locally gauge invariant.
+	
+	The final term of the proposed Hamiltonian is the ``electric'' term. 
+	In it, each $\mathcal{E}(J)$ is an operator that depends only on the representation and $\Pi_J$ is the projection from the link Hilbert space/Fock subspace to the subspace corresponding to only the $J$ representation. 
+	In terms of the ladder operators, $\Pi_J=\sum_{mn} a^{J\dagger}_{mn}a^J_{mn}$ since the lowering operators here are 0 on any vector with representation $K\neq J$.
+	The coefficient $t$ found on the electric and magnetic (trace of plaquette operator) terms is the gauge field coupling constant. 
+	Usually in the literature this is denoted $g$, but we use $t$ to avoid confusion with the use of $g$ as a group element.
+	Two examples of the $\mathcal{E}$ operators are the operator $E^2(\ket{j})=j^2$ seen above for QED and the Casimir operator $\mathcal{E}(J)=J(J+1)$ found in the usual treatment of lattice gauge theory for $G=SU(2)$ (see \cite{KogutSusskind75}).\\
+	
+	\noindent TODO: add discussion of Gauss Law?\\
+	TODO: in what sense is $U^j$ a representation of the group $G$? 
+	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $D_3\cong S_3$ Gauge Group Model in 1-d}	
 	
@@ -959,6 +983,64 @@
 	
 	The spinors are defined as above. 
 	We will express the other operators $U^j, \mathcal{E}(J),\Pi_J$ in terms of the ladder operators $a^J_{mn}$ and ${a^\dagger}^J_{mn}$.
+	
+	First, we need to understand the Clebsch-Gordon coefficients and thus the tensor products of irreps of $D_3$. 
+	There are 6 such tensor products, which decompose into irreps as follows.
+	\begin{align}
+		V^I \otimes V^I &\cong V^I \qquad V^I \otimes V^p \cong V^p \qquad V^I \otimes V^2 \cong V^2 \nonumber\\
+		V^p \otimes V^p &\cong V^p \qquad V^p \otimes V^2 \cong V^2 \qquad V^2 \otimes V^2 \cong V^I \oplus V^p \oplus V^2.
+	\end{align}
+	The relevant Clebsch-Gordon coefficients are then (taken from \cite{ZoharBurrello15} referencing \cite{vDBC78}):
+	\begin{align}
+		\braket{I,2m}{2n} &= \delta_{m,n} \qquad \braket{p,2m}{2n} = \epsilon_{m,n} \qquad \braket{2n,2nm}{I}=\delta_{m,n}\frac{1}{\sqrt{2}} \nonumber\\
+		\braket{2n,2m}{p} &= \epsilon_{m,n}\frac{1}{\sqrt{2}} \qquad \braket{2n,2m}{2\ell} =\frac{1}{\sqrt{2}}(\delta_{\ell,0}\sigma^z_{nm}-\delta_{\ell,1}\sigma^x_{nm}),
+	\end{align}
+	where $\sigma^x,\sigma^z$ are the Pauli matrices.
+	The other Clebsch-Gordon coefficients appearing in \cref{prop:Uj_ops} are all 0.
+	A tedious but straightforward computation shows that the four operators $U^2_{mm'}$ for $m,m' \in \{0,1\}$ are given by the following expressions.
+	\begin{align}
+		U^2_{00} &= \frac{1}{\sqrt{2}} (a^{2\dagger}_{00}a^I+a^{I\dagger}a^2_{00}+a^{2\dagger}_{11}a^p+a^{p\dagger}a^2_{11} ) +\frac{1}{2} (a^{2\dagger}_{00}a^2_{00}-a^{2\dagger}_{01}a^2_{01}-a^{2\dagger}_{10}a^2_{10}+a^{2\dagger}_{11}a^2_{11}) \nonumber\\
+		U^2_{01} &= \frac{1}{\sqrt{2}} (a^{2\dagger}_{01}a^I+a^{I\dagger}a^2_{01}-a^{2\dagger}_{10}a^p-a^{p\dagger}a^2_{10} ) +\frac{1}{2} (-a^{2\dagger}_{01}a^2_{00}-a^{2\dagger}_{00}a^2_{01}+a^{2\dagger}_{11}a^2_{10}+a^{2\dagger}_{10}a^2_{11}) \nonumber\\
+		U^2_{10} &= \frac{1}{\sqrt{2}} (a^{2\dagger}_{10}a^I+a^{I\dagger}a^2_{10}-a^{2\dagger}_{01}a^p-a^{p\dagger}a^2_{01} ) +\frac{1}{2} (-a^{2\dagger}_{10}a^2_{00}+a^{2\dagger}_{11}a^2_{01}-a^{2\dagger}_{00}a^2_{10}+a^{2\dagger}_{01}a^2_{11}) \nonumber\\
+		U^2_{11} &= \frac{1}{\sqrt{2}} (a^{2\dagger}_{11}a^I+a^{I\dagger}a^2_{11}+a^{2\dagger}_{00}a^p+a^{p\dagger}a^2_{00} ) +\frac{1}{2} (a^{2\dagger}_{11}a^2_{00}+a^{2\dagger}_{10}a^2_{01}+a^{2\dagger}_{01}a^2_{10}+a^{2\dagger}_{00}a^2_{11}) 
+	\end{align}
+	We can also express these as matrices with respect to the ordered basis $\{ \ket{I},\ket{p},\ket{200},\ket{201},\ket{210},\ket{211} \}$ of the link subspace.
+	\begin{align}
+		U^2_{00} &= \begin{bmatrix}
+		0 & 0 & \frac{1}{\sqrt{2}} & 0 & 0 & 0 \\
+		0 & 0 & 0 &0 &0 &\frac{1}{\sqrt{2}}\\
+		\frac{1}{\sqrt{2}} & 0 & \frac{1}{2} & 0 & 0 &0 \\
+		0 & 0 & 0 & -\frac{1}{2} &0 & 0 \\
+		0 &0 &0 &0 &-\frac{1}{2} & 0\\
+		0 &\frac{1}{\sqrt{2}} &0 &0 &0 & \frac{1}{2}
+		\end{bmatrix}
+		\qquad U^2_{01}=\begin{bmatrix}
+		0 & 0 & 0 &\frac{1}{\sqrt{2}} &  0 & 0 \\
+		0 &0 &0 &0 &-\frac{1}{2} & 0\\
+		0 & 0 & 0 & -\frac{1}{2} &0 & 0 \\
+		\frac{1}{\sqrt{2}} & 0 & -\frac{1}{2} & 0 & 0 &0 \\
+		0 &-\frac{1}{\sqrt{2}} &0 &0 &0 & \frac{1}{2}\\
+		0 &0 &0 &0 &\frac{1}{2} & 0
+		\end{bmatrix}\nonumber\\
+		U^2_{10}&= \begin{bmatrix}
+		0 &0 &0 &0 &-\frac{1}{2} & 0\\
+		0 & 0 & 0 &-\frac{1}{\sqrt{2}} &  0 & 0 \\
+		0 &0 &0 &0 &-\frac{1}{2} & 0\\
+		0 &-\frac{1}{\sqrt{2}} &0 &0 &0 & \frac{1}{2}\\
+		\frac{1}{\sqrt{2}} & 0 & -\frac{1}{2} & 0 & 0 &0 \\
+		0 & 0 & 0 & \frac{1}{2} &0 & 0 
+		\end{bmatrix}
+		\qquad U^2_{11}=\begin{bmatrix}
+		0 & 0 & 0 &0 &0 &\frac{1}{\sqrt{2}}\\
+		0 & 0 & \frac{1}{\sqrt{2}} & 0 & 0 & 0\\
+		0 &\frac{1}{\sqrt{2}} &0 &0 &0 & \frac{1}{2}\\
+		0 & 0 & 0 & 0 &\frac{1}{2} & 0\\
+		0 & 0 & 0 & \frac{1}{2} &0 & 0 \\
+		\frac{1}{\sqrt{2}} & 0 & \frac{1}{2} & 0 & 0 &0 
+		\end{bmatrix}
+	\end{align}
+	
+	TODO: what is a ``good'' choice for the electric operator $\mathcal{E}(J)$?
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $G$-SU(2) Model in 1-d}
