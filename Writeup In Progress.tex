@@ -894,16 +894,16 @@
 	\begin{proposition}[{\cite[Prop. 3]{ZoharBurrello15}}]\label{prop:Uj_ops}
 		The operator elements of $U^j$ are given by
 		\[\hat{U}^j_{mm'}= \sum_{J,K} \sqrt{\frac{\dim(J)}{\dim(K)}} \sum_{M,M',N,N'}\braket{J,M,j,m}{K,N} \braket{K, N'}{J,M,j,m'} a^{K\dagger}_{NN'} a^J_{MM'}, \]
-		where $J$ and $K$ are irreps of $G$ and $\braket{J,M,j,m}{K,N}, \braket{K, N'}{J,M,j,m'}$ are Clebsch-Gordon coefficients.
+		where $J$ and $K$ are irreps of $G$ and $\braket{J,M,j,m}{K,N}, \braket{K, N'}{J,M,j,m'}$ are Clebsch-Gordan coefficients.
 	\end{proposition}
 	
 	Although this sum is infinite for many choice of gauge groups $G$, e.g. $G=U(1)$ or $G=SU(2)$, only finitely many of these terms are nonzero when applied to states $\ket{j'nn'}$ so that there are no convergence issues to worry about.
 	We will explicitly compute these operators for the gauge groups $G=D_3$ and $G=SU(2)$ in later sections.
 	For now, let's see that this operator agrees with the operator $U$ in the case of $G=U(1)$ seen in the previous sections.
 	
-	First, recall that the Clebsch-Gordon coefficients describe a change of basis between the tensor product basis of two irreps of $G$ and the decomposition of that tensor product into irreps.
+	First, recall that the Clebsch-Gordan coefficients describe a change of basis between the tensor product basis of two irreps of $G$ and the decomposition of that tensor product into irreps.
 	So the coefficient $\braket{J,M,j,m}{K,N}$ is the coefficient of the basis vector $\ket{JM}\otimes \ket{jm}$ when we write the irrep basis vector $\ket{KN}$ in terms of the tensor product basis.
-	Additionally, we are always working with unitary representations and so we can take real Clebsch-Gordon coefficients so that $\braket{J,M,j,m}{K,N}=\braket{K,N}{J,M,j,m}$.
+	Additionally, we are always working with unitary representations and so we can take real Clebsch-Gordan coefficients so that $\braket{J,M,j,m}{K,N}=\braket{K,N}{J,M,j,m}$.
 	Knowing how tensoring with the $j$ representation affects other representation will allow us to simplify the expression of \cref{prop:Uj_ops} tremendously.
 	For example, tensoring with the trivial representation $j$ gives $\braket{J,M,j,m}{K,N}=\delta_{J,K}\delta_{M,N}$ since this does not change the irrep $J$.
 	
@@ -914,7 +914,7 @@
 	Now $U^j$ will be a $1\times 1$ matrix of operators, i.e. a single operator.
 	Tensoring the representations $\pi_n \otimes \pi_1$ gives the the irrep $\pi_{n+1}$. 
 	To see this, notice that by definition $\pi_n \otimes \pi_1$ acts on the vector space $\C \otimes_\C \C \cong \C$ by  $(\pi_n\otimes\pi_1)(e^{i\theta})(x\otimes y)=e^{in\theta}x\otimes e^{i\theta}y=e^{i(n+1)\theta}(x\otimes y).$
-	It follows that the Clebsch-Gordon coefficients are $\braket{J,1}{K}=\delta_{J+1,K}$.
+	It follows that the Clebsch-Gordan coefficients are $\braket{J,1}{K}=\delta_{J+1,K}$.
 	Applying this to the proposition we see
 	\begin{equation}
 		\hat{U^1}=\sum_{J,K} \braket{J,1}{K}\braket{K}{J,1} a^{K\dagger} a^J = \sum_{J} a^{(J+1)\dagger} a^J.
@@ -940,7 +940,7 @@
 	\noindent TODO: add discussion of Gauss Law?\\
 	TODO: in what sense is $U^j$ a representation of the group $G$? 
 	Gut feeling is that it has to do with tensoring the $j$ representation with the regular representation. 
-	This would explain both the dimension of the matrix and why there are Clebsch-Gordon coefficients appearing.
+	This would explain both the dimension of the matrix and why there are Clebsch-Gordan coefficients appearing.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $D_3\cong S_3$ Gauge Group Model in 1-d}	
@@ -986,19 +986,19 @@
 	The spinors are defined as above. 
 	We will express the other operators $U^j, \mathcal{E}(J),\Pi_J$ in terms of the ladder operators $a^J_{mn}$ and ${a^\dagger}^J_{mn}$.
 	
-	First, we need to understand the Clebsch-Gordon coefficients and thus the tensor products of irreps of $D_3$. 
+	First, we need to understand the Clebsch-Gordan coefficients and thus the tensor products of irreps of $D_3$. 
 	There are 6 such tensor products, which decompose into irreps as follows.
 	\begin{align}
 		V^I \otimes V^I &\cong V^I \qquad V^I \otimes V^p \cong V^p \qquad V^I \otimes V^2 \cong V^2 \nonumber\\
 		V^p \otimes V^p &\cong V^p \qquad V^p \otimes V^2 \cong V^2 \qquad V^2 \otimes V^2 \cong V^I \oplus V^p \oplus V^2.
 	\end{align}
-	The relevant Clebsch-Gordon coefficients are then (taken from \cite{ZoharBurrello15} referencing \cite{vDBC78}):
+	The relevant Clebsch-Gordan coefficients are then (taken from \cite{ZoharBurrello15} referencing \cite{vDBC78}):
 	\begin{align}
 		\braket{I,2m}{2n} &= \delta_{m,n} \qquad \braket{p,2m}{2n} = \epsilon_{m,n} \qquad \braket{2n,2nm}{I}=\delta_{m,n}\frac{1}{\sqrt{2}} \nonumber\\
 		\braket{2n,2m}{p} &= \epsilon_{m,n}\frac{1}{\sqrt{2}} \qquad \braket{2n,2m}{2\ell} =\frac{1}{\sqrt{2}}(\delta_{\ell,0}\sigma^z_{nm}-\delta_{\ell,1}\sigma^x_{nm}),
 	\end{align}
 	where $\sigma^x,\sigma^z$ are the Pauli matrices.
-	The other Clebsch-Gordon coefficients appearing in \cref{prop:Uj_ops} are all 0.
+	The other Clebsch-Gordan coefficients appearing in \cref{prop:Uj_ops} are all 0.
 	A tedious but straightforward computation shows that the four operators $U^2_{mm'}$ for $m,m' \in \{0,1\}$ are given by the following expressions.
 	\begin{align}
 		U^2_{00} &= \frac{1}{\sqrt{2}} (a^{2\dagger}_{00}a^I+a^{I\dagger}a^2_{00}+a^{2\dagger}_{11}a^p+a^{p\dagger}a^2_{11} ) +\frac{1}{2} (a^{2\dagger}_{00}a^2_{00}-a^{2\dagger}_{01}a^2_{01}-a^{2\dagger}_{10}a^2_{10}+a^{2\dagger}_{11}a^2_{11}) \nonumber\\
