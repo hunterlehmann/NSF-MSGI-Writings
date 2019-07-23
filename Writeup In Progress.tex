@@ -855,6 +855,11 @@
 		\C^{G}=\bigoplus_j \bigoplus_{\dim (j)} V^j,
 	\end{equation}
 	where the outer sum is over the finite dimensional irreps of $G$.
+	The two bases are related by
+	\begin{equation}
+		\braket{g}{jmn}=\sqrt{\frac{\dim(j)}{|G|}}D^j_{mn}(g),
+	\end{equation}
+	where $|G|$ is the volume of $G$ with respect to the Haar measure (the counting measure when $G$ is finite).
 	We will use the regular representation vector space as the Hilbert space on the links of our model.
 	
 	The general Hamiltonian proposed by Zohar and Burello is
@@ -968,8 +973,8 @@
 		-1/2 & \sqrt{3}/2\\ \sqrt{3}/2 & 1/2
 		\end{pmatrix} \right\} \]
 		
-	The Hilbert space $\mathcal{H}$ associated to the links is then the 6-dimensional space coming from the regular representation of $D_3$ with basis $\{ \ket{I},\ket{p},\ket{200},\ket{201},\ket{210},\ket{211} \}$.
-	Here $\ket{I}$ is the basis vector for the space associated to the trivial irrep, $\ket{p}$ is the basis vector for the parity/sign irrep space, and $\{\ket{200},\ket{201}\}$ and $\{\ket{210},\ket{211}\}$ are bases for the two copies of the defining irrep space.
+	The Hilbert space $\mathcal{H}$ associated to the links is then the 6-dimensional space coming from the regular representation of $D_3$ with basis $\{ \ket{I},\ket{p},\ket{200},\ket{210},\ket{201},\ket{211} \}$.
+	Here $\ket{I}$ is the basis vector for the space associated to the trivial irrep, $\ket{p}$ is the basis vector for the parity/sign irrep space, and $\{\ket{200},\ket{210}\}$ and $\{\ket{201},\ket{211}\}$ are bases for the two copies of the defining irrep space.
 	
 	As in the general theory, we embed this Hilbert space as a subspace of the Fock space over $\mathcal{H}$ such that for each basis vector there are operators $a,a^\dagger$ so that for example
 		\[a^2_{00}\ket{200}=\ket{\Omega} \qquad a^{2\dagger}_{00}\ket{\Omega}=\ket{200}, \]
@@ -990,7 +995,7 @@
 	There are 6 such tensor products, which decompose into irreps as follows.
 	\begin{align}
 		V^I \otimes V^I &\cong V^I \qquad V^I \otimes V^p \cong V^p \qquad V^I \otimes V^2 \cong V^2 \nonumber\\
-		V^p \otimes V^p &\cong V^p \qquad V^p \otimes V^2 \cong V^2 \qquad V^2 \otimes V^2 \cong V^I \oplus V^p \oplus V^2.
+		V^p \otimes V^p &\cong V^I \qquad V^p \otimes V^2 \cong V^2 \qquad V^2 \otimes V^2 \cong V^I \oplus V^p \oplus V^2.
 	\end{align}
 	The relevant Clebsch-Gordan coefficients are then (taken from \cite{ZoharBurrello15} referencing \cite{vDBC78}):
 	\begin{align}
@@ -1006,7 +1011,7 @@
 		U^2_{10} &= \frac{1}{\sqrt{2}} (a^{2\dagger}_{10}a^I+a^{I\dagger}a^2_{10}-a^{2\dagger}_{01}a^p-a^{p\dagger}a^2_{01} ) +\frac{1}{2} (-a^{2\dagger}_{10}a^2_{00}+a^{2\dagger}_{11}a^2_{01}-a^{2\dagger}_{00}a^2_{10}+a^{2\dagger}_{01}a^2_{11}) \nonumber\\
 		U^2_{11} &= \frac{1}{\sqrt{2}} (a^{2\dagger}_{11}a^I+a^{I\dagger}a^2_{11}+a^{2\dagger}_{00}a^p+a^{p\dagger}a^2_{00} ) +\frac{1}{2} (a^{2\dagger}_{11}a^2_{00}+a^{2\dagger}_{10}a^2_{01}+a^{2\dagger}_{01}a^2_{10}+a^{2\dagger}_{00}a^2_{11}) 
 	\end{align}
-	We can also express these as matrices with respect to the ordered basis $\{ \ket{I},\ket{p},\ket{200},\ket{201},\ket{210},\ket{211} \}$ of the link subspace.
+	We can also express these as matrices with respect to the ordered basis $\{ \ket{I},\ket{p},\ket{200},\ket{210},\ket{201},\ket{211} \}$ of the link subspace.
 	\begin{align}
 		U^2_{00} &= \begin{bmatrix}
 		0 & 0 & \frac{1}{\sqrt{2}} & 0 & 0 & 0 \\
@@ -1017,20 +1022,20 @@
 		0 &\frac{1}{\sqrt{2}} &0 &0 &0 & \frac{1}{2}
 		\end{bmatrix}
 		\qquad U^2_{01}=\begin{bmatrix}
-		0 & 0 & 0 &\frac{1}{\sqrt{2}} &  0 & 0 \\
-		0 &0 &0 &0 &-\frac{1}{2} & 0\\
-		0 & 0 & 0 & -\frac{1}{2} &0 & 0 \\
-		\frac{1}{\sqrt{2}} & 0 & -\frac{1}{2} & 0 & 0 &0 \\
-		0 &-\frac{1}{\sqrt{2}} &0 &0 &0 & \frac{1}{2}\\
-		0 &0 &0 &0 &\frac{1}{2} & 0
+		0 & 0 & 0 &  0&\frac{1}{\sqrt{2}}  & 0 \\
+		0 &0 &0 &-\frac{1}{2}&0  & 0\\
+		0 & 0 & 0  &0& -\frac{1}{2} & 0 \\
+		0 & -\frac{1}{\sqrt{2}} & 0 & 0 & 0 &\frac{1}{2} \\
+		\frac{1}{\sqrt{2}} &0 & -\frac{1}{2}&0 &0 &0 \\
+		0 &0 &0 &\frac{1}{2}&0  & 0
 		\end{bmatrix}\nonumber\\
 		U^2_{10}&= \begin{bmatrix}
-		0 &0 &0 &0 &-\frac{1}{2} & 0\\
-		0 & 0 & 0 &-\frac{1}{\sqrt{2}} &  0 & 0 \\
-		0 &0 &0 &0 &-\frac{1}{2} & 0\\
-		0 &-\frac{1}{\sqrt{2}} &0 &0 &0 & \frac{1}{2}\\
-		\frac{1}{\sqrt{2}} & 0 & -\frac{1}{2} & 0 & 0 &0 \\
-		0 & 0 & 0 & \frac{1}{2} &0 & 0 
+		0 &0 &0 &-\frac{1}{\sqrt{2}} &0 & 0\\
+		0 & 0 & 0 &  0 &-\frac{1}{\sqrt{2}} & 0 \\
+		0 &0 &0 &-\frac{1}{2}&0  & 0\\
+		\frac{1}{\sqrt{2}} & 0& -\frac{1}{2} &0 &0 &0 \\
+		0 & -\frac{1}{\sqrt{2}} & 0& 0 & 0 &\frac{1}{2} \\
+		0 & 0 & 0  &0 & \frac{1}{2}& 0 
 		\end{bmatrix}
 		\qquad U^2_{11}=\begin{bmatrix}
 		0 & 0 & 0 &0 &0 &\frac{1}{\sqrt{2}}\\
