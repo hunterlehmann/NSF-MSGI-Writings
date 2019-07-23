@@ -872,7 +872,7 @@
 	The intial sum is over all lattice sites $\ell$ and all lattice vectors $\vec{k}$.
 	First, there is a spinor operator $\psi_\ell$ defined on each site of the lattice.
 	We choose a faithful representation $j$ that each spinor and each operator $U^j$ is a part of so that $\psi$ has $\dim(j)$ components $\psi_\ell=(\psi_{\ell,1},\psi_{\ell,2},\ldots,\psi_{\ell,\dim j})$.
-	For example, if $G$ is $D_3$, there is only one faithful irreducible reprsentation, so we must use that one (see the next subsection).
+	For example, if $G$ is $D_3$, there is only one faithful irreducible representation, so we must use that one (see the next subsection).
 	On the other hand, if $G$ is $U(1)$ or $SU(2)$ there are many faithful irreducible representations and we have some freedom to choose which to use.
 	The model of Section 5.2 corresponds to the representation $j=1$ of $U(1)$, while the usual model for $SU(2)$ gauge corresponds to the fundamental representation $j=1/2$.
 	
@@ -886,7 +886,7 @@
 	To see that the first term is also invariant under these transformations, we need to describe the $U^j$ operators and their transformation laws.
 	(Note that without the $U^j$ operators, the first term is invariant under global gauge transformations but not local ones.)
 	
-	To do this, we introduce the Fock space over $\C^G$ with associated raising and lowering ladder operators $a^j_{mn}, a^{j\dagger}_{mn}$, where $j$ indexes an irrep of $G$, $m$ indexes the copy of the irrep appearing in \cref{eq:reg_rep_decomp}, and $n$ indexes the basis vectors of that copy.
+	To do this, we introduce the Fock space over $\C^G$ with associated raising and lowering ladder operators $a^j_{mn}, a^{j\dagger}_{mn}$, where $j$ indexes an irrep of $G$, $n$ indexes the copy of the irrep appearing in \cref{eq:reg_rep_decomp}, and $m$ indexes the basis vectors of that copy.
 	The raising operator takes the local vacuum to the state $\ket{jmn}$: $a^{j\dagger}_{mn} \ket{\Omega} = \ket{jmn}$.
 	To avoid introducing extraneous states, we impose the restriction that the number of atoms in the Fock space on any link is always 1: $\sum_{jmn} a^{j\dagger}_{mn} a^j_{mn} =1$.
 	This selects a subspace of the Fock space that behaves like a simple Hilbert space.
@@ -1064,7 +1064,7 @@
 	\end{equation}
 	
 	where 
-		\[\psi_x^\dagger U_{x,x+1} \psi_{x+1} := {\psi_x^i}^\dagger U_{x,x+1}^{ij} \psi_{x+1}^j =?= \sum_i \sum_j {\psi_x^i}^\dagger U_{x,x+1}^{ij} \psi_{x+1}^j,\]
+		\[\psi_x^\dagger U_{x,x+1} \psi_{x+1} := \psi_x^{i\dagger} U_{x,x+1}^{ij} \psi_{x+1}^j =?= \sum_i \sum_j \psi_x^{i^\dagger} U_{x,x+1}^{ij} \psi_{x+1}^j,\]
 	and the ``color electric field'' is described by the flux operators $L,R$ which obey the following commutation relations for operators on the same link.
 		\[ [L^a,L^b]=2if_{abc}L^c, \quad [R^a,R^b]=2if_{abc}R^c, \quad [L^a,R^b]=0, \quad [L^a,U]=-\lambda^a U, \quad [R^a,U]=U\lambda^a. \]
 	Here the $\lambda^a,\lambda^b,\lambda^c$ are the Hermitian generators of the $\mathfrak{su(n)}$ algebra with structure constants $f_{abc}$.\\
