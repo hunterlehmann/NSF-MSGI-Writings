@@ -957,6 +957,8 @@
 	\end{align}
 	Here $T^j_a$ is the $j$ representation of the generator $T_a$ of the corresponding Lie algebra.
 	Then Gauss's Law is equivalent to requiring that $G_\ell \ket{phys}=0$.
+	When $G=U(1)$, we have $L=-R=E$ and $Q=n_\ell - \frac{1}{2}(1-(-1)^n)$ and this is just the Gauss law of Section 5.2.
+	
 	
 	TODO: in what sense is $U^j$ a representation of the group $G$? 
 	Gut feeling is that it has to do with tensoring the $j$ representation with the regular representation. 
@@ -1088,8 +1090,20 @@
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $G$-SU(2) Model in 1-d}
-	
 	Long term/ambitious: set up lattice Hamiltonian for QCD with SU(2) or SU(3) gauge group and find a sequence of finite groups $G$ to approximate by.
+		
+	After more research, it may not be possible to approximate $SU(2)$ with a sequence of finite groups to preserve unitarity as in the $\Z_n$ to $U(1)$ case. 
+	The following theorem of Toyama says that every compact non-Abelian Lie group cannot be approximated by finite groups in the following sense.
+	\begin{theorem}[\cite{toyama1949}]
+		Let $G$ be a compact, non-Abelian Lie group. Then there does not exist a sequence of discrete subgroups $(H_n)_{n\geq 0}$ of $G$ such that for every $U \subseteq G$ open there exists $N_U \in \N$ such that for all $n \geq N_U$ we have $U \cap H_n \neq \0$.
+	\end{theorem}
+
+	Recall that the irreps of $SU(2)$ are indexed by non-negative half-integers $j=0,1/2,1,3/2,2,\ldots$ and have dimension $2j+1$.In the $G=SU(2)$ case, we will choose the fundamental representation $j=1/2$ for the spinor and $U^j$ operators of Section 5.4.
+	For this representation we have $V^J \otimes V^{1/2} \cong V^{J-1/1}\oplus V^{J+1/2}$ for any $J>0$ and $V^0\otimes V^{1/2}\cong V^{1/2}$ since $V^0$ is the trivial representation.
+	
+	\vspace{0.4cm}
+
+	\textbf{The below material predates section 5.4}. \textit{Leaving it up for now, maybe comment out/delete later.}\\
 	
 	Don't understand description in \cite{KogutSusskind75,Wiese13} of the formulation of lattice Hamiltonian for SU(2) gauge group.
 	In particular, not clear how upper indices of $L,R$ are related to generators of SU(2) or what the defn of L,R ops in \cite{Wiese13} is.
@@ -1112,12 +1126,7 @@
 	Q: Are $L,R$ conjugate operators to $U$ like position/momentum?\\
 	Q: I think the only difference between $L,R$ is which end of the link they act on/from?\\
 	Q: Should other terms also be understood to be sums over color indices? 
-	
-	After more research, it may not be possible to approximate $SU(2)$ with a sequence of finite groups to preserve unitarity as in the $\Z_n$ to $U(1)$ case. 
-	The following theorem of Toyama says that every compact non-Abelian Lie group cannot be approximated by finite groups in the following sense.
-	\begin{theorem}[\cite{toyama1949}]
-		Let $G$ be a compact, non-Abelian Lie group. Then there does not exist a sequence of discrete subgroups $(H_n)_{n\geq 0}$ of $G$ such that for every $U \subseteq G$ open there exists $N_U \in \N$ such that for all $n \geq N_U$ we have $U \cap H_n \neq \0$.
-	\end{theorem}
+
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%                       References                          %%
