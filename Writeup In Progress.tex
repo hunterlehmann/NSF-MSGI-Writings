@@ -856,7 +856,7 @@
 	\end{equation}
 	where the outer sum is over the finite dimensional irreps of $G$.
 	The two bases are related by
-	\begin{equation}
+	\begin{equation}\label{eq:group_rep_basis_relation}
 		\braket{g}{jmn}=\sqrt{\frac{\dim(j)}{|G|}}D^j_{mn}(g),
 	\end{equation}
 	where $|G|$ is the volume of $G$ with respect to the Haar measure (the counting measure when $G$ is finite).
@@ -864,7 +864,7 @@
 	
 	The general Hamiltonian proposed by Zohar and Burello is
 	\begin{align}
-	H_{D_3}&=\sum_{\ell,\vec{k}} \epsilon_{\ell,\ell+\vec{k}}(\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell \nonumber\\ 
+	H&=\sum_{\ell,\vec{k}} \epsilon_{\ell,\ell+\vec{k}}(\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell \nonumber\\ 
 	&- \frac{1}{2t^2} \sum_{\Box} \left(\Tr(U_1^j U_2^j {U_3^j}^\dagger {U_4^j}^\dagger) + H.c.\right) + \frac{t^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(J)\Pi_J.
 	\end{align}
 	
@@ -880,7 +880,7 @@
 	To understand how the gauge group acts on $\psi$, let $D^j(g)$ be the matrix representing $g$ in the basis $\{\ket{jm}\}$ of $V^j$.
 	Then $g$ acts on $\psi$ and $\psi^\dagger$ as follows:
 	\begin{equation}
-		g \cdot \psi^\dagger = \psi^\dagger D^j(g) \qquad g\cdot \psi = D^j(g^{-1}) \psi.
+		\Theta_g^{Q,j} \psi^\dagger \Theta_g^{Q,j \dagger} := g \cdot \psi^\dagger := \psi^\dagger D^j(g) \qquad \Theta_g^{Q,j} \psi \Theta_g^{Q,j \dagger} := g\cdot \psi := D^j(g^{-1}) \psi.
 	\end{equation}
 	Clearly the term $\psi_\ell^\dagger\psi_\ell$ of the Hamiltonian is left fixed by any such local or global gauge transformation.
 	To see that the first term is also invariant under these transformations, we need to describe the $U^j$ operators and their transformation laws.
@@ -929,7 +929,7 @@
 	
 	These $U^j$ operators transform on the left and right by 
 	\begin{equation}
-		g\cdot U^j = D^j(g^{-1})U^j \qquad U^j \cdot g = U^j D^j(g).
+		\Theta_{g}^L U^j \Theta_g^{L\dagger} :=g\cdot U^j := D^j(g^{-1})U^j \qquad \Theta_{g}^R U^j \Theta_g^{R\dagger} := U^j \cdot g := U^j D^j(g).
 	\end{equation}
 	Applying a gauge transformation to the vertex to the left of an edge acts with the left action and similarly for the vertex on the right of an edge.
 	Thus for example the term $\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}$ transforms to $\psi_\ell^\dagger D^j(g) D^j(g^{-1})U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}} = \psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}$ when the site $\ell$ is acted on by $g$.
@@ -940,9 +940,24 @@
 	In terms of the ladder operators, $\Pi_J=\sum_{mn} a^{J\dagger}_{mn}a^J_{mn}$ since the lowering operators here are 0 on any vector with representation $K\neq J$.
 	The coefficient $t$ found on the electric and magnetic (trace of plaquette operator) terms is the gauge field coupling constant. 
 	Usually in the literature this is denoted $g$, but we use $t$ to avoid confusion with the use of $g$ as a group element.
-	Two examples of the $\mathcal{E}$ operators are the operator $E^2(\ket{j})=j^2$ seen above for QED and the Casimir operator $\mathcal{E}(J)=J(J+1)$ found in the usual treatment of lattice gauge theory for $G=SU(2)$ (see \cite{KogutSusskind75}).\\
+	Two examples of the $\mathcal{E}$ operators are the operator $E^2(\ket{j})=j^2$ seen above for QED and the Casimir operator $\mathcal{E}(J)=J(J+1)$ found in the usual treatment of lattice gauge theory for $G=SU(2)$ (see \cite{KogutSusskind75}).
 	
-	\noindent TODO: add discussion of Gauss Law?\\
+	As in Sections 5.2 and 5.3 above, we want to restrict to the subspace of eigenspaces of the Hamiltonian satsifying Gauss's Law.
+	In this setting, Gauss's Law says that $\Theta_{g,\ell} \ket{phys} = \ket{phys}$ for any physical state, where
+	\begin{equation}
+		\Theta_{g,\ell}=\Theta^Q_g\prod_{o} \Theta^L_{g,o} \prod_{i}\Theta^R_{g,i}.
+	\end{equation}
+	The products are over the links outgoing from and incoming to the site $\ell$ respectively.
+	For compact Lie groups, we can rephrase this in terms of infinitesimal generators to arrive at an expression similar to the version of Gauss's Law we saw in earlier sections.
+	Define $G_\ell = \sum_{i}R_{g,i}+\sum_{o} L_{g,o} + Q_n$, where
+	$\Theta_g^{Q,j}=e^{i\alpha_g \cdot Q^j}, \Theta^L_{g}=e^{i\alpha_g \cdot L}, \Theta^R_g=e^{i\alpha_g \cdot R}$ and $L,R$ obey the commutation relations 
+	\begin{align}
+		[L_a,L_b]=i\sum_{c}f_{abc}L_c, \quad [R_a,R_b]=i\sum_{c}f_{abc}R_c, \quad [L_a,R_b]=0, \\
+		[L_a,U^j_{mn}]=-\sum_{k}(T^j_a)_{mk} U^j_{kn}, \quad [R_a,U^j_{mn}]=\sum_{k}U^j_{mk}(T^j_a)_{kn} . 
+	\end{align}
+	Here $T^j_a$ is the $j$ representation of the generator $T_a$ of the corresponding Lie algebra.
+	Then Gauss's Law is equivalent to requiring that $G_\ell \ket{phys}=0$.
+	
 	TODO: in what sense is $U^j$ a representation of the group $G$? 
 	Gut feeling is that it has to do with tensoring the $j$ representation with the regular representation. 
 	This would explain both the dimension of the matrix and why there are Clebsch-Gordan coefficients appearing.
@@ -976,6 +991,28 @@
 	The Hilbert space $\mathcal{H}$ associated to the links is then the 6-dimensional space coming from the regular representation of $D_3$ with basis $\{ \ket{I},\ket{p},\ket{200},\ket{210},\ket{201},\ket{211} \}$.
 	Here $\ket{I}$ is the basis vector for the space associated to the trivial irrep, $\ket{p}$ is the basis vector for the parity/sign irrep space, and $\{\ket{200},\ket{210}\}$ and $\{\ket{201},\ket{211}\}$ are bases for the two copies of the defining irrep space.
 	
+	We start by seeing how this representation basis is related to the group element basis in terms of gives the usual presentation of $D^3$	
+		\[\{\ket{e}, \ket{r}, \ket{r^2}, \ket{s}, \ket{rs}, \ket{r^2s}\}\]
+ 	with $r^3=1, s^2=1$, and $rs=sr^2$.
+ 	Using \cref{eq:group_rep_basis_relation}, we can write the representation basis vectors as column vectors with respect to the ordered group basis above.
+ 		\[\ket{I}=\frac{1}{\sqrt{6}}\begin{pmatrix}
+ 		1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1
+ 		\end{pmatrix}\,
+ 		\ket{p}=\begin{pmatrix}
+ 		1 \\ 1 \\ 1 \\ -1 \\ -1 \\ -1
+ 		\end{pmatrix}\,
+ 		\ket{200}=\frac{1}{\sqrt{3}}\begin{pmatrix}
+ 		1 \\ -1/2 \\ -1/2 \\ 1 \\ -1/2 \\ -1/2
+ 		\end{pmatrix}\,
+ 		\ket{210}=\begin{pmatrix}
+ 		0 \\ -1/2 \\ 1/2 \\ 0 \\ -1/2 \\ 1/2
+ 		\end{pmatrix}\,
+ 		\ket{201}=\begin{pmatrix}
+ 		0 \\ 1/2 \\ -1/2 \\ 0 \\ -1/2 \\ 1/2
+ 		\end{pmatrix}\,
+ 		\ket{211}=\frac{1}{\sqrt{3}}\begin{pmatrix}
+ 		1 \\ -1/2 \\ -1/2 \\ -1 \\ 1/2 \\ 1/2
+ 		\end{pmatrix} \]
 	As in the general theory, we embed this Hilbert space as a subspace of the Fock space over $\mathcal{H}$ such that for each basis vector there are operators $a,a^\dagger$ so that for example
 		\[a^2_{00}\ket{200}=\ket{\Omega} \qquad a^{2\dagger}_{00}\ket{\Omega}=\ket{200}, \]
 	where $\ket{\Omega}$ is the vacuum state of the Fock space.
