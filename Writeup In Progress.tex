@@ -831,7 +831,8 @@
 	So we have the same saving factor of $N^{\text{\# of sites in the lattice}}$ observed in the 1-dimensional case by restricting to physical states.\\
 	
 	TODO: figure out lattice scaling terms? \\
-	\qquad Update 7/9: made a guess that plaquette term coupling should be proportional to $a$ based on analogy to magnetic terms in previous setups.\\
+	\qquad Update 7/9: made a guess that plaquette term coupling should be proportional to $a$ based on analogy to magnetic terms in previous setups.
+	Update 7/25: comparing to other literature e.g. \cite{KogutSusskind75} perhaps proportional to $\frac{1}{a}$? \\
 	Note plaquette term should have trace in general but this is irrelevant when gauge group is $U(1)$. See \cite{ZoharBurrello15}
 	
 	
@@ -852,9 +853,9 @@
 	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$.
 	For finite or compact $G$, the regular representation is completely reducible and decomposes as
 	\begin{equation}\label{eq:reg_rep_decomp}
-		\C^{G}=\bigoplus_j \bigoplus_{\dim (j)} V^j,
+		\C^{G}\cong\bigoplus_j \bigoplus_{i=1}^{\dim (j)} V^j \cong \bigoplus_j V^j \otimes (V^j)^* ,
 	\end{equation}
-	where the outer sum is over the finite dimensional irreps of $G$.
+	where the outer sum is over the finite dimensional irreps of $G$ and $(V^j)^*$ is the complex conjugate representation to $V^j$.
 	The two bases are related by
 	\begin{equation}\label{eq:group_rep_basis_relation}
 		\braket{g}{jmn}=\sqrt{\frac{\dim(j)}{|G|}}D^j_{mn}(g),
@@ -862,7 +863,7 @@
 	where $|G|$ is the volume of $G$ with respect to the Haar measure (the counting measure when $G$ is finite).
 	We will use the regular representation vector space as the Hilbert space on the links of our model.
 	
-	The general Hamiltonian proposed by Zohar and Burello is
+	The general Hamiltonian proposed by Zohar and Burrello is
 	\begin{align}
 	H&=\sum_{\ell,\vec{k}} \epsilon_{\ell,\ell+\vec{k}}(\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell \nonumber\\ 
 	&- \frac{1}{2t^2} \sum_{\Box} \left(\Tr(U_1^j U_2^j {U_3^j}^\dagger {U_4^j}^\dagger) + H.c.\right) + \frac{t^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(J)\Pi_J.
@@ -886,6 +887,19 @@
 	To see that the first term is also invariant under these transformations, we need to describe the $U^j$ operators and their transformation laws.
 	(Note that without the $U^j$ operators, the first term is invariant under global gauge transformations but not local ones.)
 	
+	We can describe the $U^j$ operators in three different ways.
+	Examples of each can be found in the following section where we examine the gauge theory for gauge group $D_3$ in detail.
+	In each case, the $U^j$ operators act on the space $\C^G \otimes V^j$ formed by taking the tensor product of the defining spaces of the regular representation and the $j$ representation.
+	First, we can define the $U^j$ in the basis $\{\ket{g}\otimes\ket{v_i} \}_{g\in G, i=1,\ldots,\dim(j)}$ using the group basis for $\C^G$ and the matrices $D^j(g)$ defining the $j$ representation \cite{TCL14}. 
+	\begin{equation}
+		U^j=\sum_{g \in G} \left[(\ket{g}\bra{g}) \otimes D^j(g) \right]
+	\end{equation}
+	
+	In this basis, $U^j$ is block diagonal with each block consisting of the matrix $D^j(g)$ if the basis vectors are grouped by the $g$ component. 
+	Second, we can follow Zohar and Burrello by grouping the basis vectors by the $v_i$ component and splitting the tensor product into the direct sum $\oplus_{i=1}^{\dim(j)}(\C^G \otimes \langle \ket{v_i}\rangle)$.
+	This splits $U^j$ into $\dim(j)^2$ operators $U^j_{mn}: \C^G \otimes \langle \ket{v_n}\rangle \to \C^G \otimes \langle \ket{v_m}\rangle$.
+	
+	Finally, we can apply a change of basis on each block $\C^G \otimes \langle \ket{v_i}\rangle$ to use the representation basis for $\C^G$.
 	To do this, we introduce the Fock space over $\C^G$ with associated raising and lowering ladder operators $a^j_{mn}, a^{j\dagger}_{mn}$, where $j$ indexes an irrep of $G$, $n$ indexes the copy of the irrep appearing in \cref{eq:reg_rep_decomp}, and $m$ indexes the basis vectors of that copy.
 	The raising operator takes the local vacuum to the state $\ket{jmn}$: $a^{j\dagger}_{mn} \ket{\Omega} = \ket{jmn}$.
 	To avoid introducing extraneous states, we impose the restriction that the number of atoms in the Fock space on any link is always 1: $\sum_{jmn} a^{j\dagger}_{mn} a^j_{mn} =1$.
@@ -895,7 +909,7 @@
 		a^{J\dagger}_{MN}a^{K}_{M'N'}\ket{jmn} = \delta_{j,K}\delta_{m,M'}\delta_{n,N'}\ket{JMN}.
 	\end{equation}
 	
-	We can now express the remaining operators in terms of the ladder operators.
+	We can now express $U^j_{mn}$ in terms of the ladder operators.
 	\begin{proposition}[{\cite[Prop. 3]{ZoharBurrello15}}]\label{prop:Uj_ops}
 		The operator elements of $U^j$ are given by
 		\[\hat{U}^j_{mm'}= \sum_{J,K} \sqrt{\frac{\dim(J)}{\dim(K)}} \sum_{M,M',N,N'}\braket{J,M,j,m}{K,N} \braket{K, N'}{J,M,j,m'} a^{K\dagger}_{NN'} a^J_{MM'}, \]
@@ -1135,5 +1149,4 @@
 	\bibliography{biblio}
 	\nocite{Hamer82}
 	\nocite{AKHvD11}
-	\nocite{vDBC78}
 \end{document}
