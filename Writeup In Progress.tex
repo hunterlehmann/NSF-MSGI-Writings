@@ -16,12 +16,13 @@
 \usepackage{dsfont}
 \usepackage{tikz}
 \usepackage{physics}
+\usepackage{xfrac}
 \usepackage[capitalise]{cleveref}
 \patchcmd{\section}{\scshape}{\bfseries}{}{}
 \makeatletter
 \renewcommand{\@secnumfont}{\bfseries}
 \makeatother
-
+\setcounter{MaxMatrixCols}{20}
 \input{myCommands}
 \begin{document}
 	
@@ -850,7 +851,8 @@
 	
 	Throughout the section, $g$ denotes elements of $G$, irreducible representations (irreps) of $G$ are indexed by $j$, and the elements of a basis for the associated vector space $V^j$ to the irrep $j$ are $\{\ket{jm} \}_{m=1}^{\dim j}$.
 	Without loss of generality, we can restrict to unitary matrix representations of $G$ since it is finite or compact.
-	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$.
+	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
+	To be completely rigorous, if $G$ is a continuous and compact group we should consider either the space $C(G)$ of continuous complex-valued functions on $G$ or the space $L^2(G)$ of equivalence classes of square-integrable functions on $G$ with respect to a Haar measure.
 	For finite or compact $G$, the regular representation is completely reducible and decomposes as
 	\begin{equation}\label{eq:reg_rep_decomp}
 		\C^{G}\cong\bigoplus_j \bigoplus_{i=1}^{\dim (j)} V^j \cong \bigoplus_j V^j \otimes (V^j)^* ,
@@ -864,7 +866,7 @@
 	We will use the regular representation vector space as the Hilbert space on the links of our model.
 	
 	The general Hamiltonian proposed by Zohar and Burrello is
-	\begin{align}
+	\begin{align}\label{eq:zohar_hamiltonian}
 	H&=\sum_{\ell,\vec{k}} \epsilon_{\ell,\ell+\vec{k}}(\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell \nonumber\\ 
 	&- \frac{1}{2t^2} \sum_{\Box} \left(\Tr(U_1^j U_2^j {U_3^j}^\dagger {U_4^j}^\dagger) + H.c.\right) + \frac{t^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(J)\Pi_J.
 	\end{align}
@@ -898,8 +900,15 @@
 	In this basis, $U^j$ is block diagonal with each block consisting of the matrix $D^j(g)$ if the basis vectors are grouped by the $g$ component. 
 	Second, we can follow Zohar and Burrello by grouping the basis vectors by the $v_i$ component and splitting the tensor product into the direct sum $\oplus_{i=1}^{\dim(j)}(\C^G \otimes \langle \ket{v_i}\rangle)$.
 	This splits $U^j$ into $\dim(j)^2$ operators $U^j_{mn}: \C^G \otimes \langle \ket{v_n}\rangle \to \C^G \otimes \langle \ket{v_m}\rangle$.
+	It is in this block form that the Hamiltonian of \cref{eq:zohar_hamiltonian} makes sense. 
+	The term $\psi^\dagger_\ell U^j_{\ell,\ell+\vec{k}} \psi_{\ell +\vec{k}}$ is shorthand for the sum
+	\begin{align}
+		\sum_{m=1}^{\dim(j)}\sum_{n=1}^{\dim(j)} \psi^\dagger_{\ell,m} (U^j_{\ell,\ell+\vec{k}})_{mn} \psi_{\ell +\vec{k},n}.
+	\end{align}
+	The individual summands act on the Hilbert space on the link $(\ell,\ell+\vec{k})$ together with the space acted on by the fermionic spinor (matter) operators.
 	
 	Finally, we can apply a change of basis on each block $\C^G \otimes \langle \ket{v_i}\rangle$ to use the representation basis for $\C^G$.
+	This basis may be more tractable for continuous groups, where it is not clear how to work with a countable version of the by definition uncountable group basis. 
 	To do this, we introduce the Fock space over $\C^G$ with associated raising and lowering ladder operators $a^j_{mn}, a^{j\dagger}_{mn}$, where $j$ indexes an irrep of $G$, $n$ indexes the copy of the irrep appearing in \cref{eq:reg_rep_decomp}, and $m$ indexes the basis vectors of that copy.
 	The raising operator takes the local vacuum to the state $\ket{jmn}$: $a^{j\dagger}_{mn} \ket{\Omega} = \ket{jmn}$.
 	To avoid introducing extraneous states, we impose the restriction that the number of atoms in the Fock space on any link is always 1: $\sum_{jmn} a^{j\dagger}_{mn} a^j_{mn} =1$.
@@ -973,10 +982,9 @@
 	Then Gauss's Law is equivalent to requiring that $G_\ell \ket{phys}=0$.
 	When $G=U(1)$, we have $L=-R=E$ and $Q=n_\ell - \frac{1}{2}(1-(-1)^n)$ and this is just the Gauss law of Section 5.2.
 	
-	
-	TODO: in what sense is $U^j$ a representation of the group $G$? 
-	Gut feeling is that it has to do with tensoring the $j$ representation with the regular representation. 
-	This would explain both the dimension of the matrix and why there are Clebsch-Gordan coefficients appearing.
+	%in what sense is $U^j$ a representation of the group $G$? 
+	%Gut feeling is that it has to do with tensoring the $j$ representation with the regular representation. 
+	%This would explain both the dimension of the matrix and why there are Clebsch-Gordan coefficients appearing.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $D_3\cong S_3$ Gauge Group Model in 1-d}	
@@ -989,45 +997,46 @@
 		1 & 0\\ 0 & 1
 		\end{pmatrix},
 		\begin{pmatrix}
-		1 & 0\\ 0 & -1
-		\end{pmatrix},
-		\begin{pmatrix}
 		-1/2 & \sqrt{3}/2\\ -\sqrt{3}/2 & -1/2
-		\end{pmatrix},
-		\begin{pmatrix}
-		-1/2 & -\sqrt{3}/2\\ -\sqrt{3}/2 & 1/2
 		\end{pmatrix},
 		\begin{pmatrix}
 		-1/2 & -\sqrt{3}/2\\ \sqrt{3}/2 & -1/2
 		\end{pmatrix},
 		\begin{pmatrix}
+		1 & 0\\ 0 & -1
+		\end{pmatrix},
+		\begin{pmatrix}
+		-1/2 & -\sqrt{3}/2\\ -\sqrt{3}/2 & 1/2
+		\end{pmatrix},
+		\begin{pmatrix}
 		-1/2 & \sqrt{3}/2\\ \sqrt{3}/2 & 1/2
-		\end{pmatrix} \right\} \]
+		\end{pmatrix} \right\}, \]
+	in the order $\{e, r, r^2, s, rs, r^2s\}$.
 		
 	The Hilbert space $\mathcal{H}$ associated to the links is then the 6-dimensional space coming from the regular representation of $D_3$ with basis $\{ \ket{I},\ket{p},\ket{200},\ket{210},\ket{201},\ket{211} \}$.
 	Here $\ket{I}$ is the basis vector for the space associated to the trivial irrep, $\ket{p}$ is the basis vector for the parity/sign irrep space, and $\{\ket{200},\ket{210}\}$ and $\{\ket{201},\ket{211}\}$ are bases for the two copies of the defining irrep space.
 	
-	We start by seeing how this representation basis is related to the group element basis in terms of gives the usual presentation of $D^3$	
+	We start by seeing how this representation basis is related to the group element basis in terms of the usual presentation of $D^3$	
 		\[\{\ket{e}, \ket{r}, \ket{r^2}, \ket{s}, \ket{rs}, \ket{r^2s}\}\]
  	with $r^3=1, s^2=1$, and $rs=sr^2$.
  	Using \cref{eq:group_rep_basis_relation}, we can write the representation basis vectors as column vectors with respect to the ordered group basis above.
  		\[\ket{I}=\frac{1}{\sqrt{6}}\begin{pmatrix}
  		1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1
  		\end{pmatrix}\,
- 		\ket{p}=\begin{pmatrix}
+ 		\ket{p}=\frac{1}{\sqrt{6}}\begin{pmatrix}
  		1 \\ 1 \\ 1 \\ -1 \\ -1 \\ -1
  		\end{pmatrix}\,
  		\ket{200}=\frac{1}{\sqrt{3}}\begin{pmatrix}
- 		1 \\ -1/2 \\ -1/2 \\ 1 \\ -1/2 \\ -1/2
+ 		1 \\ -\sfrac{1}{2} \\ -\sfrac{1}{2} \\ 1 \\ -\sfrac{1}{2} \\ -\sfrac{1}{2}
  		\end{pmatrix}\,
  		\ket{210}=\begin{pmatrix}
- 		0 \\ -1/2 \\ 1/2 \\ 0 \\ -1/2 \\ 1/2
+ 		0 \\ -\sfrac{1}{2} \\ \sfrac{1}{2} \\ 0 \\ -\sfrac{1}{2} \\ \sfrac{1}{2}
  		\end{pmatrix}\,
  		\ket{201}=\begin{pmatrix}
- 		0 \\ 1/2 \\ -1/2 \\ 0 \\ -1/2 \\ 1/2
+ 		0 \\ \sfrac{1}{2} \\ -\sfrac{1}{2} \\ 0 \\ -\sfrac{1}{2} \\ \sfrac{1}{2}
  		\end{pmatrix}\,
  		\ket{211}=\frac{1}{\sqrt{3}}\begin{pmatrix}
- 		1 \\ -1/2 \\ -1/2 \\ -1 \\ 1/2 \\ 1/2
+ 		1 \\ -\sfrac{1}{2} \\ -\sfrac{1}{2} \\ -1 \\ \sfrac{1}{2} \\ \sfrac{1}{2}
  		\end{pmatrix} \]
 	As in the general theory, we embed this Hilbert space as a subspace of the Fock space over $\mathcal{H}$ such that for each basis vector there are operators $a,a^\dagger$ so that for example
 		\[a^2_{00}\ket{200}=\ket{\Omega} \qquad a^{2\dagger}_{00}\ket{\Omega}=\ket{200}, \]
@@ -1042,7 +1051,7 @@
 	\end{equation}
 	
 	The spinors are defined as above. 
-	We will express the other operators $U^j, \mathcal{E}(J),\Pi_J$ in terms of the ladder operators $a^J_{mn}$ and ${a^\dagger}^J_{mn}$.
+	We can express the other operators $U^j, \mathcal{E}(J),\Pi_J$ in terms of the ladder operators $a^J_{mn}$ and ${a^\dagger}^J_{mn}$.
 	
 	First, we need to understand the Clebsch-Gordan coefficients and thus the tensor products of irreps of $D_3$. 
 	There are 6 such tensor products, which decompose into irreps as follows.
@@ -1065,6 +1074,8 @@
 		U^2_{11} &= \frac{1}{\sqrt{2}} (a^{2\dagger}_{11}a^I+a^{I\dagger}a^2_{11}+a^{2\dagger}_{00}a^p+a^{p\dagger}a^2_{00} ) +\frac{1}{2} (a^{2\dagger}_{11}a^2_{00}+a^{2\dagger}_{10}a^2_{01}+a^{2\dagger}_{01}a^2_{10}+a^{2\dagger}_{00}a^2_{11}) 
 	\end{align}
 	We can also express these as matrices with respect to the ordered basis $\{ \ket{I},\ket{p},\ket{200},\ket{210},\ket{201},\ket{211} \}$ of the link subspace.
+	Here $U^2_{00}$ is a map from $\C^G \otimes \langle \ket{v_0} \rangle$ with basis elements $\{\ket{I}\otimes \ket{v_0},\ldots,\ket{211}\otimes \ket{v_0} \}$ to itself.
+	Similarly $U^2_{01}$ is a map from $\C^G \otimes \langle \ket{v_1} \rangle$ to $\C^G \otimes \langle \ket{v_0} \rangle$ with bases $\{\ket{I}\otimes \ket{v_1},\ldots,\ket{211}\otimes \ket{v_1} \}$ and $\{\ket{I}\otimes \ket{v_0},\ldots,\ket{211}\otimes \ket{v_0} \}$ respectively, and so on.
 	\begin{align}
 		U^2_{00} &= \begin{bmatrix}
 		0 & 0 & \frac{1}{\sqrt{2}} & 0 & 0 & 0 \\
@@ -1099,6 +1110,52 @@
 		\frac{1}{\sqrt{2}} & 0 & \frac{1}{2} & 0 & 0 &0 
 		\end{bmatrix}
 	\end{align}
+	
+	On the other hand, we could also have chosen to express $U^2$ in the group basis of $\C^G \otimes V^2$.
+	Here there are two natural ways to order the group basis which we will call $\mathcal{B}$ and $\mathcal{B}'$.
+	\begin{align*}
+		\mathcal{B}=\{e\otimes v_0,e\otimes v_1,r\otimes v_0, r\otimes v_1,\ldots, r^2s \otimes v_0, r^2s\otimes v_1  \}\\
+		\mathcal{B'}=\{e\otimes v_0,r\otimes v_0,\ldots,r^2s\otimes v_0, e\otimes v_1, r\otimes v_1\ldots, r^2s\otimes v_1\}
+	\end{align*}
+	
+	Remember that $U^2$ is defined to be 
+		\[\sum_{g \in D_3} [(\ket{g}\bra{g} \otimes D^2(g))]. \]
+	With respect to the basis $\mathcal{B}$, the matrix form of $U^2$ is block diagonal with six $2\times 2$ blocks consisting of the matrices $D^2(g)$ ordered as above. 
+	In this form it is clear that $U^2$ is a unitary operator on $\C^G\otimes V^2$ since it is block diagonal and each block matrix is unitary.
+		\[U^2_\mathcal{B}=\begin{bmatrix}
+				1 & 0 & 0 & 0 & 0 & 0& 0 & 0& 0 & 0& 0 & 0  \\ 
+				0 & 1 & 0 & 0& 0 & 0& 0 & 0& 0 & 0& 0 & 0 & \\
+				0 & 0 & -\sfrac{1}{2} & \sfrac{\sqrt{3}}{2}& 0 & 0& 0 & 0& 0 & 0& 0 & 0\\
+				0 & 0 &  -\sfrac{\sqrt{3}}{2} & -\sfrac{1}{2}& 0  & 0& 0 & 0& 0 & 0 & 0 & 0\\
+				0 & 0 & 0 & 0 & -\sfrac{1}{2} & -\sfrac{\sqrt{3}}{2}& 0 & 0& 0 & 0& 0 & 0\\ 
+				0 & 0 & 0 & 0 & \sfrac{\sqrt{3}}{2} & -\sfrac{1}{2}& 0 & 0& 0 & 0& 0 & 0 \\
+				0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0& 0 & 0\\
+				0 & 0 & 0 & 0 & 0 & 0 & 0& -1& 0 & 0& 0 & 0 \\
+				0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &-\sfrac{1}{2} & -\sfrac{\sqrt{3}}{2} & 0 & 0\\
+				0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\sfrac{\sqrt{3}}{2} & \sfrac{1}{2}& 0 & 0 \\
+				0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\sfrac{1}{2} & \sfrac{\sqrt{3}}{2}\\ 
+				0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \sfrac{\sqrt{3}}{2} & \sfrac{1}{2}
+		\end{bmatrix} \]
+	The basis $\mathcal{B}'$ is related to $\mathcal{B}$ by a permutation, so with respect to $\mathcal{B'}$ the matrix for $U^2$ is related to the one above by permuting rows and columns.
+	In this basis, the matrix consists of four $6\times 6$ blocks corresponding to the operators $U^2_{00}, U^2_{01},U^2_{10}$, and $U^2_{11}$ above.
+	Unlike their matrix forms in the representation basis, the matrix forms of these operators in the $\mathcal{B}'$ basis are diagonal.
+		\[U^2_{\mathcal{B'}}=\begin{bmatrix}[cccccc|cccccc]
+			1 & 0 & 0 & 0 & 0 & 0 & 0 & 0& 0 & 0& 0 & 0  \\ 
+			0 & -\sfrac{1}{2} & 0 & 0& 0 & 0 & 0 & \sfrac{\sqrt{3}}{2}& 0 & 0& 0 & 0  \\
+			0 & 0 & -\sfrac{1}{2} & 0 & 0 & 0& 0 & 0& -\sfrac{\sqrt{3}}{2} & 0& 0 & 0\\
+			0 & 0 & 0 & 1& 0  & 0& 0 & 0& 0 & 0 & 0 & 0\\
+			0 & 0 & 0 & 0 & -\sfrac{1}{2} & 0 & 0 & 0& 0 & 0& -\sfrac{\sqrt{3}}{2} & 0\\ 
+			0 & 0 & 0 & 0 & 0 & -\sfrac{1}{2}& 0 & 0& 0 & 0& 0 & \sfrac{\sqrt{3}}{2} \\	
+			\hline
+			0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0& 0 & 0\\
+			0 & -\sfrac{\sqrt{3}}{2} & 0 & 0 & 0 & 0 & 0& -\sfrac{1}{2}& 0 & 0& 0 & 0 \\
+			0 & 0 & \sfrac{\sqrt{3}}{2} & 0 & 0 & 0 & 0 & 0 &-\sfrac{1}{2} & 0 & 0 & 0\\
+			0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -1& 0 & 0 \\
+			0 & 0 & 0 & 0 & -\sfrac{\sqrt{3}}{2} & 0 & 0 & 0 & 0 & 0 & \sfrac{1}{2} & 0\\ 
+			0 & 0 & 0 & 0 & 0 & \sfrac{\sqrt{3}}{2} & 0 & 0 & 0 & 0 & 0 & \sfrac{1}{2}
+		\end{bmatrix} \]
+	Notice that the suboperators $U^2_{mn}$ are \textbf{not} unitary! 
+	In fact, in this form it is clear that $U^2_{01}$ and $U^2_{10}$ are not even invertible, let alone unitary.\\
 	
 	TODO: What is a ``good'' choice for the electric operator $\mathcal{E}(J)$ for $D_3$ gauge group?
 	
@@ -1149,4 +1206,5 @@
 	\bibliography{biblio}
 	\nocite{Hamer82}
 	\nocite{AKHvD11}
+	\nocite{Zohar_2015}
 \end{document}
