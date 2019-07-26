@@ -1169,8 +1169,36 @@
 		Let $G$ be a compact, non-Abelian Lie group. Then there does not exist a sequence of discrete subgroups $(H_n)_{n\geq 0}$ of $G$ such that for every $U \subseteq G$ open there exists $N_U \in \N$ such that for all $n \geq N_U$ we have $U \cap H_n \neq \0$.
 	\end{theorem}
 
-	Recall that the irreps of $SU(2)$ are indexed by non-negative half-integers $j=0,1/2,1,3/2,2,\ldots$ and have dimension $2j+1$.In the $G=SU(2)$ case, we will choose the fundamental representation $j=1/2$ for the spinor and $U^j$ operators of Section 5.4.
+	Recall that the irreps of $SU(2)$ are indexed by non-negative half-integers $j=0,1/2,1,3/2,2,\ldots$ and have dimension $2j+1$.
+	The basis vectors of the associated vector space for the representation $j$ are indexed by $m\in \{-j,-j+1,\ldots,j-1,j \}$.
+	In the $G=SU(2)$ case, we will choose the fundamental representation $j=1/2$ for the spinor and $U^j$ operators of Section 5.4.
 	For this representation we have $V^J \otimes V^{1/2} \cong V^{J-1/1}\oplus V^{J+1/2}$ for any $J>0$ and $V^0\otimes V^{1/2}\cong V^{1/2}$ since $V^0$ is the trivial representation.
+	
+	Therefore the Clebsch-Gordan coefficients $\braket{J,M,\frac{1}{2},m}{K,N}$ are $0$ unless $K=J\pm \frac{1}{2}$. 
+	Further, the coefficients are only nonzero when $N=M+m$.
+	Thus if $K=J\pm \frac{1}{2}$ we have 
+	\begin{equation}
+		\braket{J,M,\frac{1}{2},m}{J+\frac{1}{2},N}= \sqrt{\frac{J+2mM+1}{2J+1}} \delta_{N,M+m},
+	\end{equation}
+	\begin{equation}
+		 \braket{J,M,\frac{1}{2},m}{J+\frac{1}{2},N}= -2m\sqrt{\frac{J-2mM}{2J+1}} \delta_{N,M+m}.
+	\end{equation}
+	
+	Since $m$ can only take the values $-1/2$ or $1/2$, we have four possibilities:	
+	\begin{equation}
+		\braket{J,M,\frac{1}{2},\frac{1}{2}}{J+\frac{1}{2},M+\frac{1}{2}}= \sqrt{\frac{J+M+1}{2J+1}} ,
+	\end{equation}
+	\begin{equation}
+		\braket{J,M,\frac{1}{2},-\frac{1}{2}}{J+\frac{1}{2},M-\frac{1}{2}}= \sqrt{\frac{J-M+1}{2J+1}},
+	\end{equation}
+	\begin{equation}
+		\braket{J,M,\frac{1}{2},\frac{1}{2}}{J-\frac{1}{2},M+\frac{1}{2}}= -\sqrt{\frac{J-M}{2J+1}},
+	\end{equation}
+	\begin{equation}
+		\braket{J,M,\frac{1}{2},-\frac{1}{2}}{J-\frac{1}{2},M+\frac{1}{2}}= \sqrt{\frac{J+M}{2J+1}}.
+	\end{equation}
+	
+	We can use these equations to drastically simplify the definition of the $U^{1/2}$ operator in the representation basis.
 	
 	\vspace{0.4cm}
 
