@@ -961,10 +961,12 @@
 	
 	\textbf{TODO}: There might be a choice of basis problem here. 
 	\cite{TCL14} suggests that $h\cdot U^j \cdot k := \sum_{g} \ket{h^{-1}gk}\bra{g} \otimes D^j(g)$, which is not the same as just multiplying $U^j$ as a matrix of operators by $D^j(h^{-1})$ on the left and $D^j(k)$ on the right. 
-	The latter gives the same operator after further applying a change of basis in the domain taking $\ket{g} \mapsto \ket{hgk^{-1}}$. (maybe domain $\ket{g} \mapsto \ket{hg}$ and codomain $\ket{g}\mapsto \ket{gk^{-1}}$?)
-	Since both references define the gauge transformations as the (right) action of $g$ on the states by left multiplication of the inverse, i.e. the action on the left in the group basis takes $\ket{g} \mapsto \ket{h^{-1}g}$ and in the rep basis takes $\ket{jmn}\mapsto \sum_{n}D^j_{nm}(g)\ket{jmn}$, I think the action on $U^j$ should probably be the one described in \cite{TCL14}.
-	Alternatively, the \cite{ZoharBurrello15} transformation might be specified in the representation basis.
-	Will check in $D_3$ example and update tomorrow 7/30.\\
+	The latter gives the same operator after further applying a change of basis in the domain taking $\ket{g} \mapsto \ket{hgk^{-1}}$. 
+	Since both references define the gauge transformations as the (right) action of $g$ on the states by left multiplication of the inverse, i.e. the action on the left in the group basis takes $\ket{g} \mapsto \ket{h^{-1}g}$ and in the rep basis takes $\ket{jmn}\mapsto \sum_{n}D^j_{nm}(g)\ket{jmn}$, I think the action on $U^j$ should probably be the one described in \cite{TCL14}.\\
+	%Alternatively, the \cite{ZoharBurrello15} transformation might be specified in the representation basis.
+	%Will check in $D_3$ example and update tomorrow 7/30.\\
+	
+	%Update: Rep basis description agrees even less with the Tagliacazzo paper. Leaving suggestion in terms of change of basis as proposed solution.
 	
 	The final term of the proposed Hamiltonian is the ``electric'' term. 
 	In it, each $\mathcal{E}(J)$ is an operator that depends only on the representation and $\Pi_J$ is the projection from the link Hilbert space/Fock subspace to the subspace corresponding to only the $J$ representation. 
