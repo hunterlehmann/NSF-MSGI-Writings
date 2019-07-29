@@ -1,4 +1,4 @@
-\documentclass[10pt,reqno]{amsart}
+\documentclass[11pt,reqno]{amsart}
 \usepackage{amsfonts}
 \usepackage{amscd}
 \usepackage{amsmath}
@@ -24,6 +24,7 @@
 \makeatother
 \setcounter{MaxMatrixCols}{20}
 \numberwithin{equation}{section}
+\allowdisplaybreaks
 \input{myCommands}
 \begin{document}
 	
@@ -956,7 +957,12 @@
 	\end{equation}
 	Applying a gauge transformation to the vertex to the left of an edge acts with the left action and similarly for the vertex on the right of an edge.
 	Thus for example the term $\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}$ transforms to $\psi_\ell^\dagger D^j(g) D^j(g^{-1})U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}} = \psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}$ when the site $\ell$ is acted on by $g$.
-	So the hopping term of the Hamiltonian is now locally gauge invariant.
+	So the hopping term of the Hamiltonian is now locally gauge invariant. \\
+	
+	\textbf{TODO}: There might be a choice of basis problem here. 
+	\cite{TCL14} suggests that $h\cdot U^j \cdot k := \sum_{g} \ket{h^{-1}gk}\bra{g} \otimes D^j(g)$, which is not the same as just multiplying $U^j$ as a matrix of operators by $D^j(h^{-1})$ on the left and $D^j(k)$ on the right. 
+	The latter gives the same operator after further applying a change of basis in the codomain taking $\ket{g} \to \ket{hgk^{-1}}$.
+	Since both references define the gauge transformations as the (right) action of $g$ on the states by left multiplication of the inverse, i.e. the action on the left in the group basis takes $\ket{g} \mapsto \ket{h^{-1}g}$ and in the rep basis takes $\ket{jmn}\mapsto \sum_{n}D^j_{nm}(g)\ket{jmn}$, I think the action on $U^j$ should probably be the one described in \cite{TCL14}.\\
 	
 	The final term of the proposed Hamiltonian is the ``electric'' term. 
 	In it, each $\mathcal{E}(J)$ is an operator that depends only on the representation and $\Pi_J$ is the projection from the link Hilbert space/Fock subspace to the subspace corresponding to only the $J$ representation. 
@@ -1020,7 +1026,8 @@
 		\[\{\ket{e}, \ket{r}, \ket{r^2}, \ket{s}, \ket{rs}, \ket{r^2s}\}\]
  	with $r^3=1, s^2=1$, and $rs=sr^2$.
  	Using \cref{eq:group_rep_basis_relation}, we can write the representation basis vectors as column vectors with respect to the ordered group basis above.
- 		\[\ket{I}=\frac{1}{\sqrt{6}}\begin{pmatrix}
+ 	\begin{align*}
+ 		&\ket{I}=\frac{1}{\sqrt{6}}\begin{pmatrix}
  		1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1
  		\end{pmatrix}\,
  		\ket{p}=\frac{1}{\sqrt{6}}\begin{pmatrix}
@@ -1028,8 +1035,8 @@
  		\end{pmatrix}\,
  		\ket{200}=\frac{1}{\sqrt{3}}\begin{pmatrix}
  		1 \\ -\sfrac{1}{2} \\ -\sfrac{1}{2} \\ 1 \\ -\sfrac{1}{2} \\ -\sfrac{1}{2}
- 		\end{pmatrix}\,
- 		\ket{210}=\begin{pmatrix}
+ 		\end{pmatrix}\,\\
+ 		&\ket{210}=\begin{pmatrix}
  		0 \\ -\sfrac{1}{2} \\ \sfrac{1}{2} \\ 0 \\ -\sfrac{1}{2} \\ \sfrac{1}{2}
  		\end{pmatrix}\,
  		\ket{201}=\begin{pmatrix}
@@ -1037,7 +1044,8 @@
  		\end{pmatrix}\,
  		\ket{211}=\frac{1}{\sqrt{3}}\begin{pmatrix}
  		1 \\ -\sfrac{1}{2} \\ -\sfrac{1}{2} \\ -1 \\ \sfrac{1}{2} \\ \sfrac{1}{2}
- 		\end{pmatrix} \]
+ 		\end{pmatrix}
+ 	\end{align*}
 	As in the general theory, we embed this Hilbert space as a subspace of the Fock space over $\mathcal{H}$ such that for each basis vector there are operators $a,a^\dagger$ so that for example
 		\[a^2_{00}\ket{200}=\ket{\Omega} \qquad a^{2\dagger}_{00}\ket{\Omega}=\ket{200}, \]
 	where $\ket{\Omega}$ is the vacuum state of the Fock space.
@@ -1121,7 +1129,7 @@
 	Remember that $U^2$ is defined to be 
 		\[\sum_{g \in D_3} [(\ket{g}\bra{g} \otimes D^2(g))]. \]
 	With respect to the basis $\mathcal{B}$, the matrix form of $U^2$ is block diagonal with six $2\times 2$ blocks consisting of the matrices $D^2(g)$ ordered as above. 
-	In this form it is clear that $U^2$ is a unitary operator on $\C^G\otimes V^2$ since it is block diagonal and each block matrix is unitary.
+	In this form we can see $U^2$ is a unitary operator on $\C^G\otimes V^2$ since it is block diagonal and each block matrix is unitary.
 		\[U^2_\mathcal{B}=\begin{bmatrix}
 				1 & 0 & 0 & 0 & 0 & 0& 0 & 0& 0 & 0& 0 & 0  \\ 
 				0 & 1 & 0 & 0& 0 & 0& 0 & 0& 0 & 0& 0 & 0 & \\
