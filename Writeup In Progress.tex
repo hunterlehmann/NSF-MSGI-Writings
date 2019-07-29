@@ -23,6 +23,7 @@
 \renewcommand{\@secnumfont}{\bfseries}
 \makeatother
 \setcounter{MaxMatrixCols}{20}
+\numberwithin{equation}{section}
 \input{myCommands}
 \begin{document}
 	
@@ -833,9 +834,8 @@
 	
 	TODO: figure out lattice scaling terms? \\
 	\qquad Update 7/9: made a guess that plaquette term coupling should be proportional to $a$ based on analogy to magnetic terms in previous setups.
-	Update 7/25: comparing to other literature e.g. \cite{KogutSusskind75} perhaps proportional to $\frac{1}{a}$? \\
-	Note plaquette term should have trace in general but this is irrelevant when gauge group is $U(1)$. See \cite{ZoharBurrello15}
-	
+	Update 7/25: comparing to other literature e.g. \cite{KogutSusskind75} perhaps proportional to $\frac{1}{a}$? 
+	Note plaquette term should have trace in general but this is irrelevant when gauge group is $U(1)$. See \cite{ZoharBurrello15}\\	
 	
 	TODO: draw pictures of lattice gauss law state description?\\
 	
@@ -1177,29 +1177,41 @@
 	Therefore the Clebsch-Gordan coefficients $\braket{J,M,\frac{1}{2},m}{K,N}$ are $0$ unless $K=J\pm \frac{1}{2}$. 
 	Further, the coefficients are only nonzero when $N=M+m$.
 	Thus if $K=J\pm \frac{1}{2}$ we have 
-	\begin{equation}
-		\braket{J,M,\frac{1}{2},m}{J+\frac{1}{2},N}= \sqrt{\frac{J+2mM+1}{2J+1}} \delta_{N,M+m},
-	\end{equation}
-	\begin{equation}
-		 \braket{J,M,\frac{1}{2},m}{J+\frac{1}{2},N}= -2m\sqrt{\frac{J-2mM}{2J+1}} \delta_{N,M+m}.
-	\end{equation}
+	\begin{align}
+		\braket{J,M,\frac{1}{2},m}{J+\frac{1}{2},N} &= \sqrt{\frac{J+2mM+1}{2J+1}} \delta_{N,M+m},\\
+		 \braket{J,M,\frac{1}{2},m}{J+\frac{1}{2},N} &= -2m\sqrt{\frac{J-2mM}{2J+1}} \delta_{N,M+m}.
+	\end{align}
 	
 	Since $m$ can only take the values $-1/2$ or $1/2$, we have four possibilities:	
-	\begin{equation}
-		\braket{J,M,\frac{1}{2},\frac{1}{2}}{J+\frac{1}{2},M+\frac{1}{2}}= \sqrt{\frac{J+M+1}{2J+1}} ,
-	\end{equation}
-	\begin{equation}
-		\braket{J,M,\frac{1}{2},-\frac{1}{2}}{J+\frac{1}{2},M-\frac{1}{2}}= \sqrt{\frac{J-M+1}{2J+1}},
-	\end{equation}
-	\begin{equation}
-		\braket{J,M,\frac{1}{2},\frac{1}{2}}{J-\frac{1}{2},M+\frac{1}{2}}= -\sqrt{\frac{J-M}{2J+1}},
-	\end{equation}
-	\begin{equation}
-		\braket{J,M,\frac{1}{2},-\frac{1}{2}}{J-\frac{1}{2},M+\frac{1}{2}}= \sqrt{\frac{J+M}{2J+1}}.
-	\end{equation}
+	\begin{align}
+		\braket{J,M,\frac{1}{2},\frac{1}{2}}{J+\frac{1}{2},M+\frac{1}{2}} &= \sqrt{\frac{J+M+1}{2J+1}} ,\\
+		\braket{J,M,\frac{1}{2},-\frac{1}{2}}{J+\frac{1}{2},M-\frac{1}{2}} &= \sqrt{\frac{J-M+1}{2J+1}},\\
+		\braket{J,M,\frac{1}{2},\frac{1}{2}}{J-\frac{1}{2},M+\frac{1}{2}} &= -\sqrt{\frac{J-M}{2J+1}},\\
+		\braket{J,M,\frac{1}{2},-\frac{1}{2}}{J-\frac{1}{2},M+\frac{1}{2}} &= \sqrt{\frac{J+M}{2J+1}}.
+	\end{align}
 	
 	We can use these equations to drastically simplify the definition of the $U^{1/2}$ operator in the representation basis.
+	\begin{align*}
+		U^{1/2}_{m,m'}=\sum_{J} \sum_{\substack{M,N\\M',N'}}  &\bigg( \sqrt{\frac{2J+1}{2J+2}}\braket{J,M,\frac{1}{2},m}{J+\frac{1}{2},N}\braket{J+\frac{1}{2},N'}{J,M',\frac{1}{2},m'}a^{(J+\frac{1}{2})\dagger}_{NN'}a^J_{MM'} \\
+		&\qquad+\sqrt{\frac{2J+1}{2J}}\braket{J,M,\frac{1}{2},m}{J-\frac{1}{2},N}\braket{J-\frac{1}{2},N'}{J,M',\frac{1}{2},m'}a^{(J-\frac{1}{2})\dagger}_{NN'}a^J_{MM'} \bigg) \\
+		=\sum_{J} \sum_{\substack{M,M'\\M',N'}} &\bigg( \sqrt{\frac{(J+2mM+1)(J+2m'M'+1)}{(2J+2)(2J+1)}}\delta_{N,M+m}\delta_{N',M'+m'} a^{(J+\frac{1}{2})\dagger}_{NN'}a^J_{MM'} \\
+		&\qquad+\sqrt{\frac{(J-2mM)(J-2m'M')}{(2J)(2J+1)}}4mm'\delta_{N,M+m}\delta_{N',M'+m'}a^{(J-\frac{1}{2})\dagger}_{NN'}a^J_{MM'} \bigg) \\
+		=\sum_{J} \bigg[\sum_{|M|,|M'|\leq J} &\bigg( \sqrt{\frac{(J+2mM+1)(J+2m'M'+1)}{(2J+2)(2J+1)}} a^{(J+\frac{1}{2})\dagger}_{M+m,M'+m'}a^J_{MM'}\bigg) \\
+		+&\sum_{\substack{|M+m|\leq J-\frac{1}{2}\\|M'+m'|\leq J-\frac{1}{2}}} \bigg(4mm'\sqrt{\frac{(J-2mM)(J-2m'M')}{(2J)(2J+1)}}a^{(J-\frac{1}{2})\dagger}_{M+m,M'+m'}a^J_{MM'} \bigg)\bigg] \\
+	\end{align*}
 	
+	This still appears complicated, but as an operator applied to representation states $\ket{j'nn'}$ each of these terms acts non-trivially on at most one representation state.
+	The first term is nonzero only if $J=j',M=n,M'=n'$, resulting in the state
+		\[ \sqrt{\frac{(j'+2mn+1)(j'+2m'n'+1)}{(2j'+1)(2j'+2)}} \ket{j'+\frac{1}{2},n+m,n'+m'}.\]
+	The second term is a bit more complicated, since lowering the representation index also lowers the possible range of values of basis states in that representation.
+	So we see that the second term is nonzero only if $J=j',M=n,M'=n'$ and both $|n+m|,|n'+m'|\leq j'+1/2$, resulting in the state
+		\[ 4mm' \sqrt{\frac{(j'-2mn)(j'-2m'n')}{2j'(2j'+1)}} \ket{j'-\frac{1}{2},n+m,n'+m'}. \]
+	
+	Below are two examples illustrating this.
+	We have 
+		\[U^{1/2}_{\frac{1}{2},\frac{1}{2}} \ket{\frac{3}{2},\frac{1}{2},-\frac{1}{2}} = \sqrt{\frac{3}{10}}\ket{2,1,0}+\sqrt{\frac{1}{6}}\ket{1,1,0}, \]
+	but because $|\frac{3}{2}+\frac{1}{2}| > \frac{3}{2}-\frac{1}{2}$,
+		\[ U^{1/2}_{\frac{1}{2},\frac{1}{2}} \ket{\frac{3}{2},\frac{3}{2},-\frac{1}{2}} = \sqrt{\frac{2}{5}}\ket{2,2,0}. \]
 	\vspace{0.4cm}
 
 	\textbf{The below material predates section 5.4}. \textit{Leaving it up for now, maybe comment out/delete later.}\\
