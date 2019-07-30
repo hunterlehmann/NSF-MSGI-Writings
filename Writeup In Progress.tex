@@ -111,8 +111,18 @@
 	e^{-2\beta_\tau} & e^{-\beta h}
 	\end{bmatrix}. \]
 	
-	Now we can write $Z=\Tr T^N$.
-	%TODO: expand on this claim
+	We are letting $\begin{pmatrix}
+	1 \\ 0 
+	\end{pmatrix}$ represent the state $s_i=1$ and $\begin{pmatrix}
+	0 \\ 1
+	\end{pmatrix}$ represent the state $s_i=-1$. 
+	Then $\bra{s}T\ket{s'}= e^{-\frac{1}{2}\beta_\tau(s-s')^2+\frac{1}{2}\beta h (s+s')}$.
+	Thus we can write 
+		\[Z=\sum_{s_0 \in \{\pm 1\}} \ldots \sum_{s_{N-1}\in \{\pm 1\}} \bra{s_0}T\ket{s_1}\bra{s_1}T\ket{s_2}\ldots\bra{s_{N_1}}T\ket{s_0}. \]
+	Since we chose the values of the states $s_i$ to be an orthonormal basis, we have $\sum_{s_i=\pm 1} \ket{s_i}\bra{s_i}=I$ for each $i$.
+	This lets us rewrite the inner sums to arrive at 
+		 \[ Z=\sum_{s_0 \in \{\pm 1\}} \bra{s_0}T^N \ket{s_0}, \]
+	and again using the fact that the states form an orthonormal basis we can write $Z=\Tr T^N$.
 	Because $T$ is diagonalizable, we can write $T=SDS^{-1}$ and so 
 		\[\Tr T^N=\Tr(SD^NS^{-1})=\Tr(D^N)=\lambda_0^N+\lambda_1^N,\]
 	where $\lambda_0,\lambda_1$ are the eigenvalues of $T$.
