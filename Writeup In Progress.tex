@@ -79,7 +79,7 @@
 	\end{enumerate}
 	It turns out that there is a well-defined limit 
 		\[\psi(\tau,h):= \lim\limits_{\cL \Uparrow \Z^d} \psi_{\cL}(\tau,h).\]
-	The resulting function $\psi$ is convex as a function from $\R \times \R_{>0}$ and even as a function of $h$.
+	The resulting function $\psi$ is convex as a function from $\R \times \R_{>0}$ and is even as a function of $h$.
 	Because $\psi$ is a convex function of $h$, the \emph{average magnetization density} given by
 		\[m(\tau,h)=\lim_{\cL \Uparrow \Z^d} \langle m_{\cL} \rangle (\tau, h), \]
 	exists for all but a countable set of $h \in \R$.
@@ -122,7 +122,7 @@
 	Since we chose the values of the states $s_i$ to be an orthonormal basis, we have $\sum_{s_i=\pm 1} \ket{s_i}\bra{s_i}=I$ for each $i$.
 	This lets us rewrite the inner sums to arrive at 
 		 \[ Z=\sum_{s_0 \in \{\pm 1\}} \bra{s_0}T^N \ket{s_0}, \]
-	and again using the fact that the states form an orthonormal basis we can write $Z=\Tr T^N$.
+	and again using the fact that the states form an orthonormal basis we can write $Z=\Tr (T^N)$.
 	Because $T$ is diagonalizable, we can write $T=SDS^{-1}$ and so 
 		\[\Tr T^N=\Tr(SD^NS^{-1})=\Tr(D^N)=\lambda_0^N+\lambda_1^N,\]
 	where $\lambda_0,\lambda_1$ are the eigenvalues of $T$.
@@ -133,7 +133,7 @@
 		\lambda_1 &=\cosh(\beta h)- \sqrt{e^{-4\beta_\tau} +\sinh^2(\beta h) }
 	\end{align*} 
 	Later, it will be clear why $\beta_\tau$ and $\beta$ should be taken as functions of $\tau$, and
-	also why the dependence on $tau$ that we want is $\beta_\tau=-\frac{1}{2}\log \tau$ and $\beta = \tau$.
+	also why the dependence on $\tau$ that we want is $\beta_\tau=-\frac{1}{2}\log \tau$ and $\beta = \tau$.
 	In this case,
 	\begin{align*}
 		\lambda_0 &=\cosh(\tau h)+ \sqrt{\tau^2 +\sinh^2(\tau h)} \\
@@ -612,7 +612,7 @@
 	For the links between these, both endpoints are acted on, so they are unaffected by the transformation.
 	Hence we obtain a configuration with two fewer links with spin $-1$.
 	
-	With free boundary conditions, there are nodes with only one adjacent temporal link, allowing us to change the number of links with spin $-1$ by 1. \\
+	With free boundary conditions, there are nodes with only one adjacent temporal link, allowing us to change the number of links with spin $-1$ by one. \\
 	
 	TODO - draw diagram to illustrate this
 	
@@ -623,7 +623,7 @@
 	
 	Fix E,V,U convention to be self-consistent/match numerical results in later section of \cite{Ercolessi18}
 	
-	After more thought, I don't think can have both consistency and agreement with results of \cite{Ercolessi18}.
+	After more thought, I don't think can have both consistency and agreement with both the results and analysis of \cite{Ercolessi18}.
 	
 	The standard Lagrangian for QED is 
 	\begin{equation}
@@ -838,10 +838,10 @@
 		\[ 1+e_R+e_U \equiv e_L+e_D \Mod n. \]
 	
 	Therefore at any site the values of the electric field on the up and right links satisfy a linear constraint for each possible value of the sum of the values of the down and left links.
-	This shows that the values of the electric field on the boundary left and down links of the lattice are free and at each site at the lattice there are a total of $N$ allowed combinations of values of the field on the up/right links.
+	This shows that the values of the electric field on the boundary left and down links of the lattice are free and at each site at the lattice there are a total of $n$ allowed combinations of values of the field on the up/right links.
 	Thus the total dimension of the physical Hilbert space on the sites and links of a 2-dimensional $N_X\times N_Y$ lattice in this model is $2^{N_X N_Y} \cdot n^{N_X N_Y + N_X+ N_Y}$.
 	For comparison, the dimension of the total Hilbert space is $2^{N_X N_Y} \cdot n^{N_X(N_Y+1)+(N_X+1)N_Y}$.
-	So we have the same saving factor of $N^{\text{\# of sites in the lattice}}$ observed in the 1-dimensional case by restricting to physical states.\\
+	So we have the same saving factor of $n^{|\cL|}=n^{N_X N_Y}$ observed in the 1-dimensional case by restricting to physical states.\\
 	
 	TODO: figure out lattice scaling terms? \\
 	\qquad Update 7/9: made a guess that plaquette term coupling should be proportional to $a$ based on analogy to magnetic terms in previous setups.
@@ -858,22 +858,22 @@
 	In \cite{ZoharBurrello15}, Zohar and Burrello describe a general theory for the formulation of Hamiltonians for lattice gauge theories with both matter and gauge fields. 
 	Their theory relies heavily on representation theory and so references \cite{hall_lglarep,teleman_rep_theory} may be useful.
 	We will summarize their setup and show how their method specializes to the case of 1-d QED seen in the previous sections.
-	The theory is valid for any finite group or compact Lie group $G$ used to model the gauge symmetries.
+	The theory can be applied with any finite group or compact Lie group $G$ used to model the gauge symmetries.
 	
 	Throughout the section, $g$ denotes elements of $G$, irreducible representations (irreps) of $G$ are indexed by $j$, and the elements of a basis for the associated vector space $V^j$ to the irrep $j$ are $\{\ket{jm} \}_{m=1}^{\dim j}$.
-	Without loss of generality, we can restrict to unitary matrix representations of $G$ since it is finite or compact.
+	Without loss of generality, we can assuame any finite-dimensional irrep of $G$ is a unitary matrix representation since $G$ is finite or compact.
 	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
 	To be completely rigorous, if $G$ is a continuous and compact group we should consider either the space $C(G)$ of continuous complex-valued functions on $G$ or the space $L^2(G)$ of equivalence classes of square-integrable functions on $G$ with respect to a Haar measure.
 	For finite or compact $G$, the regular representation is completely reducible and decomposes as
 	\begin{equation}\label{eq:reg_rep_decomp}
 		\C^{G}\cong\bigoplus_j \bigoplus_{i=1}^{\dim (j)} V^j \cong \bigoplus_j V^j \otimes (V^j)^* ,
 	\end{equation}
-	where the outer sum is over the finite dimensional irreps of $G$ and $(V^j)^*$ is the complex conjugate representation to $V^j$.
+	where the outer sum is over the finite dimensional irreps of $G$ and $(V^j)^*$ is the complex conjugate representation to $j$ defined by taking the complex conjugate of the operators of $j$.
 	The two bases are related by
 	\begin{equation}\label{eq:group_rep_basis_relation}
 		\braket{g}{jmn}=\sqrt{\frac{\dim(j)}{|G|}}D^j_{mn}(g),
 	\end{equation}
-	where $|G|$ is the volume of $G$ with respect to the Haar measure (the counting measure when $G$ is finite).
+	where $|G|$ is the volume of $G$ with respect to the Haar measure (the counting measure when $G$ is finite) and $D^j(g)$ is the matrix representing $g$ in the basis $\{\ket{jm}\}$ of $V^j$..
 	We will use the regular representation vector space as the Hilbert space on the links of our model.
 	
 	The general Hamiltonian proposed by Zohar and Burrello is
@@ -891,7 +891,7 @@
 	The model of Section 5.2 corresponds to the representation $j=1$ of $U(1)$, while the usual model for $SU(2)$ gauge corresponds to the fundamental representation $j=1/2$.
 	
 	The expression $\psi_\ell^\dagger\psi_m$ is shorthand for the scalar product $\sum_{i=1}^{\dim j} \psi^\dagger_{\ell,i} \psi_{m,i}$.
-	To understand how the gauge group acts on $\psi$, let $D^j(g)$ be the matrix representing $g$ in the basis $\{\ket{jm}\}$ of $V^j$.
+	To understand how the gauge group acts on $\psi$, recall that $D^j(g)$ is the matrix representing $g$ in the basis $\{\ket{jm}\}$ of $V^j$.
 	Then $g$ acts on $\psi$ and $\psi^\dagger$ as follows:
 	\begin{equation}
 		\Theta_g^{Q,j} \psi^\dagger \Theta_g^{Q,j \dagger} := g \cdot \psi^\dagger := \psi^\dagger D^j(g) \qquad \Theta_g^{Q,j} \psi \Theta_g^{Q,j \dagger} := g\cdot \psi := D^j(g^{-1}) \psi.
@@ -959,7 +959,7 @@
 		\hat{U^1}=\sum_{J,K} \braket{J,1}{K}\braket{K}{J,1} a^{K\dagger} a^J = \sum_{J} a^{(J+1)\dagger} a^J.
 	\end{equation}
 	But this operator applied to any basis vector $\ket{J'}$ is simply $\ket{J'+1}$, since $a^J\ket{J'}=\delta_{J,J'}\ket{\Omega}$.
-	This is exactly the operator defined in the previous section, so the general theory agrees with what we have seen previously.
+	This is exactly the operator defined in the previous section and \cite{Hamer82}, so the general theory agrees with what we have seen previously.
 	
 	These $U^j$ operators transform on the left and right by 
 	\begin{equation}
@@ -1235,6 +1235,8 @@
 	but because $|\frac{3}{2}+\frac{1}{2}| > \frac{3}{2}-\frac{1}{2}$,
 		\[ U^{1/2}_{\frac{1}{2},\frac{1}{2}} \ket{\frac{3}{2},\frac{3}{2},-\frac{1}{2}} = \sqrt{\frac{2}{5}}\ket{2,2,0}. \]
 	\vspace{0.4cm}
+	
+	As mentioned above, the Casimir operator $\mathcal{E}(J)=J(J+1)$ is an appropriate choice for the electric operator for $SU(2)$.
 
 	\textbf{The below material predates section 5.4}. \textit{Leaving it up for now, maybe comment out/delete later.}\\
 	
