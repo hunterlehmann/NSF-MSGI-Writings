@@ -878,7 +878,8 @@
 	
 	Throughout the section, $g$ denotes elements of $G$, irreducible representations (irreps) of $G$ are indexed by $j$, and the elements of a basis for the associated vector space $V^j$ to the irrep $j$ are $\{\ket{jm} \}_{m=1}^{\dim j}$.
 	Without loss of generality, we can assume any finite-dimensional irrep of $G$ is a unitary matrix representation since $G$ is finite or compact.
-	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
+	Recall that the \emph{regular representation} \todo[inline]{need brief definition} 
+	of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
 	To be completely rigorous, if $G$ is a continuous and compact group we should consider either the space $C(G)$ of continuous complex-valued functions on $G$ or the space $L^2(G)$ of equivalence classes of square-integrable functions on $G$ with respect to a Haar measure.
 	For finite or compact $G$, the regular representation is completely reducible and decomposes as
 	\begin{equation}\label{eq:reg_rep_decomp}
@@ -894,8 +895,8 @@
 	
 	The general Hamiltonian proposed by Zohar and Burrello is
 	\begin{align}\label{eq:zohar_hamiltonian}
-	H&=\sum_{\ell,\vec{k}} \epsilon_{\ell,\ell+\vec{k}}(\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell \nonumber\\ 
-	&- \frac{1}{2t^2} \sum_{\Box} \left(\Tr(U_1^j U_2^j {U_3^j}^\dagger {U_4^j}^\dagger) + H.c.\right) + \frac{t^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(J)\Pi_J.
+	H^j&=-\frac{1}{a}\sum_{\ell,\vec{k}} \epsilon_{\ell,\ell+\vec{k}}(\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell \nonumber\\ 
+	&- \frac{1}{2\lambda^2} \sum_{\Box} \left(\Tr(U_1^j U_2^j {U_3^j}^\dagger {U_4^j}^\dagger) + H.c.\right) + \frac{\lambda^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(J)\Pi_J.
 	\end{align}
 	
 	We will discuss each term and the operators involved one by one.
@@ -997,8 +998,8 @@
 	The final term of the proposed Hamiltonian is the ``electric'' term. 
 	In it, each $\mathcal{E}(J)$ is an operator that depends only on the representation and $\Pi_J$ is the projection from the link Hilbert space/Fock subspace to the subspace corresponding to only the $J$ representation. 
 	In terms of the ladder operators, $\Pi_J=\sum_{mn} a^{J\dagger}_{mn}a^J_{mn}$ since the lowering operators here are 0 on any vector with representation $K\neq J$.
-	The coefficient $t$ found on the electric and magnetic (trace of plaquette operator) terms is the gauge field coupling constant. 
-	Usually in the literature this is denoted $g$, but we use $t$ to avoid confusion with the use of $g$ as a group element.
+	The coefficient $\lambda$ found on the electric and magnetic (trace of plaquette operator) terms is the gauge field coupling constant. 
+	Usually in the literature this is denoted $g$, but we use $\lambda$ to avoid confusion with the use of $g$ as a group element.
 	Two examples of the $\mathcal{E}$ operators are the operator $E^2(\ket{j})=j^2$ seen above for QED and the Casimir operator $\mathcal{E}(J)=J(J+1)$ found in the usual treatment of lattice gauge theory for $G=SU(2)$ (see \cite{KogutSusskind75}).
 	
 	As in Sections 5.2 and 5.3 above, we want to restrict to the subspace of eigenspaces of the Hamiltonian satsifying Gauss's Law.
@@ -1198,7 +1199,7 @@
 	In fact, in this form it is clear that $U^2_{01}$ and $U^2_{10}$ are not even invertible, let alone unitary.\\
 	
 	\todo[inline]{What is a ``good'' choice for the electric operator $\mathcal{E}(J)$ for $D_3$ gauge group? Or any other finite group}
-	
+		
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $G$-SU(2) Model in 1-d}
 	Long term/ambitious: set up lattice Hamiltonian for QCD with SU(2) or SU(3) gauge group and find a sequence of finite groups $G$ to approximate by.
@@ -1256,29 +1257,15 @@
 	
 	As mentioned above, the Casimir operator $\mathcal{E}(J)=J(J+1)$ is an appropriate choice for the electric operator for $SU(2)$.
 
-	\textbf{The below material predates section 5.4}. \textit{Leaving it up for now, maybe comment out/delete later.}\\
-	
-	Don't understand description in \cite{KogutSusskind75,Wiese13} of the formulation of lattice Hamiltonian for SU(2) gauge group.
-	In particular, not clear how upper indices of $L,R$ are related to generators of SU(2) or what the defn of L,R ops in \cite{Wiese13} is.
-	
-	Wiese Hamiltonian for 1-d (no plaquette term) with color indices suppressed:
-	
-	\begin{equation}
-		H_{QCD}=-t\sum_{x} (\psi_x^\dagger U_{x,x+1} \psi_{x+1} + H.c) + m \sum_{x} (-1)^x \psi_x^\dagger\psi_x + \frac{g^2}{2} \sum_{x} (L_{x,x+1}^2+R_{x,x+1}^2),
-	\end{equation}
-	
-	where 
-		\[\psi_x^\dagger U_{x,x+1} \psi_{x+1} := \psi_x^{i\dagger} U_{x,x+1}^{ij} \psi_{x+1}^j =?= \sum_i \sum_j \psi_x^{i^\dagger} U_{x,x+1}^{ij} \psi_{x+1}^j,\]
-	and the ``color electric field'' is described by the flux operators $L,R$ which obey the following commutation relations for operators on the same link.
-		\[ [L^a,L^b]=2if_{abc}L^c, \quad [R^a,R^b]=2if_{abc}R^c, \quad [L^a,R^b]=0, \quad [L^a,U]=-\lambda^a U, \quad [R^a,U]=U\lambda^a. \]
-	Here the $\lambda^a,\lambda^b,\lambda^c$ are the Hermitian generators of the $\mathfrak{su(n)}$ algebra with structure constants $f_{abc}$.\\
-	
+	\todo[inline]{Gauss law for SU(2)}
+
+	Exercise for the reader, who should be now able to answer all questions below.
 	\noindent Q: What are color indices?\\
 	Q: Should the $U$ operators also be color-indexed?\\
 	Q: Why are the $L,R$ operators indexed by generators of the $\mathfrak{su(n)}$ algebra?\\
 	Q: Are $L,R$ conjugate operators to $U$ like position/momentum?\\
 	Q: I think the only difference between $L,R$ is which end of the link they act on/from?\\
-	Q: Should other terms also be understood to be sums over color indices? 
+	Q: Should other terms also be understood to be sums over color indices?
 
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
