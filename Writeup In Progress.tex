@@ -623,18 +623,119 @@
 	To see this, consider a 1-dimensional chain of $N$ sites with periodic boundary conditions. 
 	There are two cases to consider.
 	First, any gauge transformation applied to a site where the spins on the temporal links are the same will not change the parity of the number of links with $\sigma_3(\ell,\tau)=1$.
-	Second, any gauge transformation applied to a site where the spins on the adjacent temporal links are different will not change the number of links with $\sigma_3(\ell,\tau)=1$.
+	Second, any gauge transformation applied to a site where the spins on the adjacent temporal links are different will not change the number of links with $\sigma_3(\ell,\tau)=1$ (see \cref{fig:periodicSpinOddCountTransform}).
 	From this, it is clear that any configuration with an odd number of links with $\sigma_3(\ell,\tau)=-1$ on the chain cannot be transformed to one with 0 such links.
 	
+	\begin{figure}[h!]
+		\begin{tikzpicture}
+		%draw circular links
+		\draw (0,0) circle (1cm);
+		\filldraw (1,0) circle (2pt);
+		\node at (1.2,0) {$\ell$};
+		\filldraw (0,1) circle (2pt);
+		\filldraw (0,-1) circle (2pt);
+		\node at (0.9,0.8) {$-1$};
+		\node at (0.9,-0.8) {$1$};
+		
+		\node at (2.5,0.3) {Transform at $\ell$};
+		\draw[->, line width=0.5mm] (1.5,0) -- (3.75,0);
+		
+		%draw circular links after gauge transform
+		\draw (5,0) circle (1cm);
+		\filldraw (6,0) circle (2pt);
+		\node at (6.2,0) {$\ell$};
+		\filldraw (5,1) circle (2pt);
+		\filldraw (5,-1) circle (2pt);
+		\node at (5.9,0.8) {$1$};
+		\node at (5.9,-0.8) {$-1$};
+		\end{tikzpicture}
+		\caption{Transformation at site in periodic lattice with opposite spins}
+		\label{fig:periodicSpinOddCountTransform}
+	\end{figure}
+
 	On the other hand we can show that any configuration with a positive even number of links with $\sigma_3(\ell,\tau)=-1$ is equivalent to one with two fewer such links.
 	Suppose that $\sigma_3(\ell,\tau)=-1$ and that the next link with spin $-1$ is $\sigma_3(\ell+k,\tau)$.
 	Applying a gauge transformation to the sites $\ell+1,\ell+2,\ldots, \ell+k$ will flip the sign on the links $\sigma_3(\ell,\tau)$ and $\sigma_3(\ell+k,\tau)$ because only one endpoint of the links is acted on.
 	For the links between these, both endpoints are acted on, so they are unaffected by the transformation.
-	Hence we obtain a configuration with two fewer links with spin $-1$.
+	Hence we obtain a configuration with two fewer links with spin $-1$. This is illustrated in \cref{fig:EvenNegativeSpinReduction}.
 	
+	
+	\begin{figure}[h!]
+		\begin{tikzpicture}
+		%draw circular links
+		\draw (0,0) circle (1cm);
+		\filldraw (0,1) circle (2pt);
+		\filldraw (0.707,0.707) circle (2pt);
+		\filldraw (1,0) circle (2pt);
+		\filldraw (0.707,-0.707) circle (2pt);
+		\filldraw (0,-1) circle (2pt);
+		
+		\node at (0,-1.3) {\small $\ell$};
+		\node at (1.1,-0.9) {\small$\ell+1$};
+		\node at (1.5,0) {\small$\ell+2$};
+		\node at (1.1,0.9) {\small$\ell+3$};
+		\node at (0,1.2) {\small$\ell+4$};
+		
+		\node at (0.3,0.75) {\tiny $-1$};
+		\node at (0.3,-0.8) {\tiny$-1$};
+		\node at (0.8,0.3) {\tiny $1$};
+		\node at (0.8,-0.3) {\tiny$1$};
+		
+		\node at (3.2,0.3) {Transform at};
+		\draw[->, line width=0.5mm] (2,0) -- (4.5,0);
+		\node at (3.2,-0.35) {\small $\ell+1,\ell+2,\ell+3$};
+		
+		%draw circular links
+		\draw (5.7,0) circle (1cm);
+		\filldraw (5.7,1) circle (2pt);
+		\filldraw (6.407,0.707) circle (2pt);
+		\filldraw (6.7,0) circle (2pt);
+		\filldraw (6.407,-0.707) circle (2pt);
+		\filldraw (5.7,-1) circle (2pt);
+		
+		\node at (5.7,-1.3) {\small $\ell$};
+		\node at (6.8,-0.9) {\small$\ell+1$};
+		\node at (7.2,0) {\small$\ell+2$};
+		\node at (6.8,0.9) {\small$\ell+3$};
+		\node at (5.7,1.2) {\small$\ell+4$};
+		
+		\node at (6.0,0.75) {\tiny $1$};
+		\node at (6.0,-0.8) {\tiny$1$};
+		\node at (6.5,0.3) {\tiny $1$};
+		\node at (6.5,-0.3) {\tiny$1$};
+		\end{tikzpicture}
+		\caption{Transformation to reduce number of sites with same spin in periodic lattice}
+		\label{fig:EvenNegativeSpinReduction}
+	\end{figure}
+
 	With free boundary conditions, there are nodes with only one adjacent temporal link, allowing us to change the number of links with spin $-1$ by one. \\
-	
-	\todo[inline]{draw diagram to illustrate this}
+
+	\begin{figure}[h!]
+	\begin{tikzpicture}
+		%draw non periodic links
+		\draw (0,-1) --(0,1);
+		\filldraw (0,0) circle (2pt);
+		\node at (0.2,1) {$\ell$};
+		\filldraw (0,1) circle (2pt);
+		\filldraw (0,-1) circle (2pt);
+		\node at (-0.3,0.5) {$-1$};
+		\node at (-0.2,-0.5) {$1$};
+		
+		\node at (1.5,0.3) {Transform at $\ell$};
+		\draw[->, line width=0.5mm] (0.25,0) -- (2.75,0);
+		
+		%draw non periodic links after gauge transform
+		\draw (3,-1) -- (3,1);
+		\filldraw (3,0) circle (2pt);
+		\node at (3.2,1) {$\ell$};
+		\filldraw (3,1) circle (2pt);
+		\filldraw (3,-1) circle (2pt);
+		\node at (3.2,0.5) {$1$};
+		\node at (3.2,-0.5) {$1$};
+	\end{tikzpicture}
+	\caption{Transformation to reduce odd number of negative spins in free lattice}
+	\label{fig:ReduceOddNegSpinFree}
+	\end{figure}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 1-d}
