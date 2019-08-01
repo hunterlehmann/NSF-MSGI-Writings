@@ -983,9 +983,8 @@
 	
 	Throughout the section, $g$ denotes elements of $G$, irreducible representations (irreps) of $G$ are indexed by $j$, and the elements of a basis for the associated vector space $V^j$ to the irrep $j$ are $\{\ket{jm} \}_{m=1}^{\dim j}$.
 	Without loss of generality, we can assume any finite-dimensional irrep of $G$ is a unitary matrix representation since $G$ is finite or compact.
-	Recall that the \emph{regular representation} \todo{regular representation needs brief definition} 
-	of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
-	To be completely rigorous, if $G$ is a continuous and compact group we should consider either the space $C(G)$ of continuous complex-valued functions on $G$ or the space $L^2(G)$ of equivalence classes of square-integrable functions on $G$ with respect to a Haar measure.
+	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
+	To be completely rigorous, if $G$ is a continuous and compact group we should consider either the space $C(G)$ of continuous complex-valued functions on $G$ or the space $L^2(G)$ of equivalence classes of square-integrable functions on $G$ with respect to a Haar measure rather than $\C^G$.
 	For finite or compact $G$, the regular representation is completely reducible and decomposes as
 	\begin{equation}\label{eq:reg_rep_decomp}
 		\C^{G}\cong\bigoplus_j \bigoplus_{i=1}^{\dim (j)} V^j \cong \bigoplus_j V^j \otimes (V^j)^* ,
@@ -1341,10 +1340,10 @@
 	We can use these equations to drastically simplify the definition of the $U^{1/2}$ operator in the representation basis.
 	\begin{align*}
 		U^{1/2}_{m,m'}=\sum_{J} \sum_{\substack{M,N\\M',N'}}  &\bigg( \sqrt{\frac{2J+1}{2J+2}}\braket{J,M,\frac{1}{2},m}{J+\frac{1}{2},N}\braket{J+\frac{1}{2},N'}{J,M',\frac{1}{2},m'}a^{(J+\frac{1}{2})\dagger}_{NN'}a^J_{MM'} \\
-		&\qquad+\sqrt{\frac{2J+1}{2J}}\braket{J,M,\frac{1}{2},m}{J-\frac{1}{2},N}\braket{J-\frac{1}{2},N'}{J,M',\frac{1}{2},m'}a^{(J-\frac{1}{2})\dagger}_{NN'}a^J_{MM'} \bigg) \\
+		&+\sqrt{\frac{2J+1}{2J}}\braket{J,M,\frac{1}{2},m}{J-\frac{1}{2},N}\braket{J-\frac{1}{2},N'}{J,M',\frac{1}{2},m'}a^{(J-\frac{1}{2})\dagger}_{NN'}a^J_{MM'} \bigg) \\
 		=\sum_{J} \sum_{\substack{M,M'\\M',N'}} &\bigg( \sqrt{\frac{(J+2mM+1)(J+2m'M'+1)}{(2J+2)(2J+1)}}\delta_{N,M+m}\delta_{N',M'+m'} a^{(J+\frac{1}{2})\dagger}_{NN'}a^J_{MM'} \\
-		&\qquad+\sqrt{\frac{(J-2mM)(J-2m'M')}{(2J)(2J+1)}}4mm'\delta_{N,M+m}\delta_{N',M'+m'}a^{(J-\frac{1}{2})\dagger}_{NN'}a^J_{MM'} \bigg) \\
-		=\sum_{J} \bigg[\sum_{|M|,|M'|\leq J} &\bigg( \sqrt{\frac{(J+2mM+1)(J+2m'M'+1)}{(2J+2)(2J+1)}} a^{(J+\frac{1}{2})\dagger}_{M+m,M'+m'}a^J_{MM'}\bigg) \\
+		&+\sqrt{\frac{(J-2mM)(J-2m'M')}{(2J)(2J+1)}}4mm'\delta_{N,M+m}\delta_{N',M'+m'}a^{(J-\frac{1}{2})\dagger}_{NN'}a^J_{MM'} \bigg) \\
+		=\sum_{J} \bigg[&\sum_{|M|,|M'|\leq J} \bigg( \sqrt{\frac{(J+2mM+1)(J+2m'M'+1)}{(2J+2)(2J+1)}} a^{(J+\frac{1}{2})\dagger}_{M+m,M'+m'}a^J_{MM'}\bigg) \\
 		+&\sum_{\substack{|M+m|\leq J-\frac{1}{2}\\|M'+m'|\leq J-\frac{1}{2}}} \bigg(4mm'\sqrt{\frac{(J-2mM)(J-2m'M')}{(2J)(2J+1)}}a^{(J-\frac{1}{2})\dagger}_{M+m,M'+m'}a^J_{MM'} \bigg)\bigg] \\
 	\end{align*}
 	
