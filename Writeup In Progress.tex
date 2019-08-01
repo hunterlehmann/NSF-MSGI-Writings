@@ -803,7 +803,7 @@
 	The resulting Hamiltonian is
 	\begin{align}\label{eq:2dQEDHamiltonianLatticeDepend}
 	H_{QED}=&-\frac{1}{2a}\sum_{\vec{\ell}} \left( \psi^\dagger_{\vec{\ell}} U_{\vec{\ell},\vec{\ell}+\vec{x}} \psi_{\vec{\ell}+\vec{x}} + (-1)^{\ell_1} \psi^\dagger_{\vec{\ell}}U_{\vec{\ell},\vec{\ell}+\vec{y}} \psi_{\vec{\ell}+\vec{y}} + H.c. \right) + m\sum_{\vec{\ell}} (-1)^{\ell_1+\ell_2} \psi_{\vec{\ell}}^\dagger \psi_{\vec{\ell}} \nonumber \\
-	&+ \frac{g^2a}{2} \sum_{\vec{\ell}} \left(E^2_{\vec{\ell}+\vec{x}}+E^2_{\vec{\ell}+\vec{y}}\right) - \frac{a}{4g^2} \sum_{\Box} (U_\Box + U_\Box^\dagger).
+	&+ \frac{g^2a}{2} \sum_{\vec{\ell}} \left(E^2_{\vec{\ell}+\vec{x}}+E^2_{\vec{\ell}+\vec{y}}\right) - \frac{1}{4g^2a^3} \sum_{\Box} (U_\Box + U_\Box^\dagger).
 	\end{align}	
 	
 	As in the one dimensional case, we say that the subspace of eigenstates of $H_{QED}$ obeying Gauss's Law is the \emph{physical Hilbert state}. 
@@ -872,7 +872,7 @@
 	The theory can be applied with any finite group or compact Lie group $G$ used to model the gauge symmetries.
 	
 	Throughout the section, $g$ denotes elements of $G$, irreducible representations (irreps) of $G$ are indexed by $j$, and the elements of a basis for the associated vector space $V^j$ to the irrep $j$ are $\{\ket{jm} \}_{m=1}^{\dim j}$.
-	Without loss of generality, we can assuame any finite-dimensional irrep of $G$ is a unitary matrix representation since $G$ is finite or compact.
+	Without loss of generality, we can assume any finite-dimensional irrep of $G$ is a unitary matrix representation since $G$ is finite or compact.
 	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
 	To be completely rigorous, if $G$ is a continuous and compact group we should consider either the space $C(G)$ of continuous complex-valued functions on $G$ or the space $L^2(G)$ of equivalence classes of square-integrable functions on $G$ with respect to a Haar measure.
 	For finite or compact $G$, the regular representation is completely reducible and decomposes as
