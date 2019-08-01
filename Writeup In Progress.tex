@@ -7,7 +7,7 @@
 \usepackage{enumitem}
 \usepackage{pgf}
 \usepackage{mathrsfs}
-\usepackage[margin=1in]{geometry}
+\usepackage{geometry}
 \usepackage{etoolbox}
 \usepackage{hyperref}
 \usepackage{soul}
@@ -26,12 +26,25 @@
 \numberwithin{equation}{section}
 \allowdisplaybreaks
 \input{myCommands}
+\definecolor{myblue}{HTML}{0074D9}
+\definecolor{myorange}{HTML}{FF851B}
+\definecolor{myteal}{HTML}{39CCCC}
+\definecolor{myred}{HTML}{FF4136}
+\definecolor{mygray}{HTML}{AAAAAA}
+\definecolor{mysilver}{HTML}{EFEFEF}
+\hypersetup{colorlinks=true,citecolor=myblue,linkcolor=myblue,urlcolor=myred}
+\presetkeys{todonotes}{backgroundcolor=mysilver, bordercolor=white}{}
+\tikzset{/tikz/notestyleraw/.append style={text=myred}}
+
 \begin{document}
 	
 	\title{Notes from NSF-MSGI Internship}
 	\author{Hunter Lehmann}
 	\maketitle
-	
+
+\tableofcontents
+
+	\part{Transfer Matrix}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Introduction}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -42,7 +55,7 @@
 	Mass gap/correlation length?
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\section{Ising Models}
+	\section{Finite One-Site Spaces: Ising Models}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	The Ising models are a family of statistical mechanics models with nearest-neighbor interaction. 
@@ -305,7 +318,7 @@
     \end{enumerate}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\section{O(N) Model}
+	\section{Infinite Compact One-Site Spaces: O(N) Model}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	These models are extensively treated in \cite{FradkinSusskind78,HamerKogutSusskind79,KogutGaugeSummary}. 
@@ -460,7 +473,7 @@
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\section{(Mean) Spherical Model}
+	\section{Infinite Compact One-Site Spaces: Mean Spherical Model}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	Detailed analysis of the spherical model in various dimensions can be found in \cite{HenkelHoeger84,Thompson68}. 
@@ -538,8 +551,10 @@
 	\begin{equation}
 		\hat{H} = -\Delta+ \frac{1}{2}(\omega^2\vec{x}^2-\beta^2 \vec{x}^TM\vec{x}-\beta^2 h \sum_i x_i).
 	\end{equation}
+	
+		\part{Lattice Gauge Theories}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\section{Lattice Gauge Theories}
+	\section{Introduction}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	A \emph{gauge theory} is a physical model which is left invariant under the action of some set of \emph{gauge transformations} at points of the model.
@@ -548,7 +563,8 @@
 	In some cases, it can be useful to fix a particular gauge condition to simplify the description of a problem.	
 			
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Ising Lattice Gauge Theory}
+	\section{Finite One-Link Spaces}
+	\subsection{Ising Lattice Gauge}
 	
 	Outline/add details to some material from \cite{KogutGaugeSummary}, maybe discuss \cite{MuellerJohnstonJanke17} plaquette solution technique?
 	
@@ -614,7 +630,7 @@
 	
 	With free boundary conditions, there are nodes with only one adjacent temporal link, allowing us to change the number of links with spin $-1$ by one. \\
 	
-	TODO - draw diagram to illustrate this
+	\todo[inline]{draw diagram to illustrate this}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 1-d}
@@ -792,7 +808,7 @@
 	The resulting Hamiltonian is
 	\begin{align}\label{eq:2dQEDHamiltonianLatticeDepend}
 	H_{QED}=&-\frac{1}{2a}\sum_{\vec{\ell}} \left( \psi^\dagger_{\vec{\ell}} U_{\vec{\ell},\vec{\ell}+\vec{x}} \psi_{\vec{\ell}+\vec{x}} + (-1)^{\ell_1} \psi^\dagger_{\vec{\ell}}U_{\vec{\ell},\vec{\ell}+\vec{y}} \psi_{\vec{\ell}+\vec{y}} + H.c. \right) + m\sum_{\vec{\ell}} (-1)^{\ell_1+\ell_2} \psi_{\vec{\ell}}^\dagger \psi_{\vec{\ell}} \nonumber \\
-	&+ \frac{g^2a}{2} \sum_{\vec{\ell}} \left(E^2_{\vec{\ell}+\vec{x}}+E^2_{\vec{\ell}+\vec{y}}\right) - \frac{a}{4g^2} \sum_{\Box} (U_\Box + U_\Box^\dagger).
+	&+ \frac{g^2a}{2} \sum_{\vec{\ell}} \left(E^2_{\vec{\ell}+\vec{x}}+E^2_{\vec{\ell}+\vec{y}}\right) - \frac{1}{4g^2a^3} \sum_{\Box} (U_\Box + U_\Box^\dagger).
 	\end{align}	
 	
 	As in the one dimensional case, we say that the subspace of eigenstates of $H_{QED}$ obeying Gauss's Law is the \emph{physical Hilbert state}. 
@@ -843,17 +859,17 @@
 	For comparison, the dimension of the total Hilbert space is $2^{N_X N_Y} \cdot n^{N_X(N_Y+1)+(N_X+1)N_Y}$.
 	So we have the same saving factor of $n^{|\cL|}=n^{N_X N_Y}$ observed in the 1-dimensional case by restricting to physical states.\\
 	
-	TODO: figure out lattice scaling terms? \\
-	\qquad Update 7/9: made a guess that plaquette term coupling should be proportional to $a$ based on analogy to magnetic terms in previous setups.
-	Update 7/25: comparing to other literature e.g. \cite{KogutSusskind75} perhaps proportional to $\frac{1}{a}$? 
-	Note plaquette term should have trace in general but this is irrelevant when gauge group is $U(1)$. See \cite{ZoharBurrello15}\\	
+	%TODO: figure out lattice scaling terms? \\
+	%\qquad Update 7/9: made a guess that plaquette term coupling should be proportional to $a$ based on analogy to magnetic terms in previous setups.
+	%Update 7/25: comparing to other literature e.g. \cite{KogutSusskind75} perhaps proportional to $\frac{1}{a}$? 
+	%Note plaquette term should have trace in general but this is irrelevant when gauge group is $U(1)$. See \cite{ZoharBurrello15}\\	
 	
-	TODO: draw pictures of lattice gauss law state description?\\
+	\todo[inline]{draw pictures of lattice gauss law state description?}
 	
-	TODO: find references for continuum case/U(1) lattice computations in literature for 2d?
+	\todo[inline]{find references for continuum case/U(1) lattice computations in literature for 2d?}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Formulation of Lattice Gauge Theories}
+	\section{General Formulation of Lattice Gauge Theories}
 	
 	In \cite{ZoharBurrello15}, Zohar and Burrello describe a general theory for the formulation of Hamiltonians for lattice gauge theories with both matter and gauge fields. 
 	Their theory relies heavily on representation theory and so references \cite{hall_lglarep,teleman_rep_theory} may be useful.
@@ -861,8 +877,9 @@
 	The theory can be applied with any finite group or compact Lie group $G$ used to model the gauge symmetries.
 	
 	Throughout the section, $g$ denotes elements of $G$, irreducible representations (irreps) of $G$ are indexed by $j$, and the elements of a basis for the associated vector space $V^j$ to the irrep $j$ are $\{\ket{jm} \}_{m=1}^{\dim j}$.
-	Without loss of generality, we can assuame any finite-dimensional irrep of $G$ is a unitary matrix representation since $G$ is finite or compact.
-	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
+	Without loss of generality, we can assume any finite-dimensional irrep of $G$ is a unitary matrix representation since $G$ is finite or compact.
+	Recall that the \emph{regular representation} \todo{regular representation needs brief definition} 
+	of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
 	To be completely rigorous, if $G$ is a continuous and compact group we should consider either the space $C(G)$ of continuous complex-valued functions on $G$ or the space $L^2(G)$ of equivalence classes of square-integrable functions on $G$ with respect to a Haar measure.
 	For finite or compact $G$, the regular representation is completely reducible and decomposes as
 	\begin{equation}\label{eq:reg_rep_decomp}
@@ -878,8 +895,8 @@
 	
 	The general Hamiltonian proposed by Zohar and Burrello is
 	\begin{align}\label{eq:zohar_hamiltonian}
-	H&=\sum_{\ell,\vec{k}} \epsilon_{\ell,\ell+\vec{k}}(\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell \nonumber\\ 
-	&- \frac{1}{2t^2} \sum_{\Box} \left(\Tr(U_1^j U_2^j {U_3^j}^\dagger {U_4^j}^\dagger) + H.c.\right) + \frac{t^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(J)\Pi_J.
+	H^j&=-\frac{1}{a}\sum_{\ell,\vec{k}} \epsilon_{\ell,\ell+\vec{k}}(\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}+H.c.) + M\sum_\ell (-1)^\ell \psi_\ell^\dagger\psi_\ell \nonumber\\ 
+	&- \frac{1}{2\lambda^2} \sum_{\Box} \left(\Tr(U_1^j U_2^j {U_3^j}^\dagger {U_4^j}^\dagger) + H.c.\right) + \frac{\lambda^2}{2} \sum_{(\ell,\ell+1)} \sum_{J} \mathcal{E}(J)\Pi_J.
 	\end{align}
 	
 	We will discuss each term and the operators involved one by one.
@@ -969,10 +986,10 @@
 	Thus for example the term $\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}$ transforms to $\psi_\ell^\dagger D^j(g) D^j(g^{-1})U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}} = \psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}$ when the site $\ell$ is acted on by $g$.
 	So the hopping term of the Hamiltonian is now locally gauge invariant. \\
 	
-	\textbf{TODO}: There might be a choice of basis problem here. 
+	\todo[inline]{There might be a choice of basis problem here. 
 	\cite{TCL14} suggests that $h\cdot U^j \cdot k := \sum_{g} \ket{h^{-1}gk}\bra{g} \otimes D^j(g)$, which is not the same as just multiplying $U^j$ as a matrix of operators by $D^j(h^{-1})$ on the left and $D^j(k)$ on the right. 
 	The latter gives the same operator after further applying a change of basis in the domain taking $\ket{g} \mapsto \ket{hgk^{-1}}$. 
-	Since both references define the gauge transformations as the (right) action of $g$ on the states by left multiplication of the inverse, i.e. the action on the left in the group basis takes $\ket{g} \mapsto \ket{h^{-1}g}$ and in the rep basis takes $\ket{jmn}\mapsto \sum_{n}D^j_{nm}(g)\ket{jmn}$, I think the action on $U^j$ should probably be the one described in \cite{TCL14}.\\
+	Since both references define the gauge transformations as the (right) action of $g$ on the states by left multiplication of the inverse, i.e. the action on the left in the group basis takes $\ket{g} \mapsto \ket{h^{-1}g}$ and in the rep basis takes $\ket{jmn}\mapsto \sum_{n}D^j_{nm}(g)\ket{jmn}$, I think the action on $U^j$ should probably be the one described in \cite{TCL14}.}
 	%Alternatively, the \cite{ZoharBurrello15} transformation might be specified in the representation basis.
 	%Will check in $D_3$ example and update tomorrow 7/30.\\
 	
@@ -981,8 +998,8 @@
 	The final term of the proposed Hamiltonian is the ``electric'' term. 
 	In it, each $\mathcal{E}(J)$ is an operator that depends only on the representation and $\Pi_J$ is the projection from the link Hilbert space/Fock subspace to the subspace corresponding to only the $J$ representation. 
 	In terms of the ladder operators, $\Pi_J=\sum_{mn} a^{J\dagger}_{mn}a^J_{mn}$ since the lowering operators here are 0 on any vector with representation $K\neq J$.
-	The coefficient $t$ found on the electric and magnetic (trace of plaquette operator) terms is the gauge field coupling constant. 
-	Usually in the literature this is denoted $g$, but we use $t$ to avoid confusion with the use of $g$ as a group element.
+	The coefficient $\lambda$ found on the electric and magnetic (trace of plaquette operator) terms is the gauge field coupling constant. 
+	Usually in the literature this is denoted $g$, but we use $\lambda$ to avoid confusion with the use of $g$ as a group element.
 	Two examples of the $\mathcal{E}$ operators are the operator $E^2(\ket{j})=j^2$ seen above for QED and the Casimir operator $\mathcal{E}(J)=J(J+1)$ found in the usual treatment of lattice gauge theory for $G=SU(2)$ (see \cite{KogutSusskind75}).
 	
 	As in Sections 5.2 and 5.3 above, we want to restrict to the subspace of eigenspaces of the Hamiltonian satsifying Gauss's Law.
@@ -1007,6 +1024,8 @@
 	%This would explain both the dimension of the matrix and why there are Clebsch-Gordan coefficients appearing.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Examples}
+	
 	\subsection{Lattice $D_3\cong S_3$ Gauge Group Model in 1-d}	
 	
 	As an example of the general theory of the previous section applied to a finite group, we consider a 1-d lattice with gauge group $G\cong D_3$, extending the example found in \cite[Appendix 1]{ZoharBurrello15}.
@@ -1179,8 +1198,8 @@
 	Notice that the suboperators $U^2_{mn}$ are \textbf{not} unitary! 
 	In fact, in this form it is clear that $U^2_{01}$ and $U^2_{10}$ are not even invertible, let alone unitary.\\
 	
-	TODO: What is a ``good'' choice for the electric operator $\mathcal{E}(J)$ for $D_3$ gauge group?
-	
+	\todo[inline]{What is a ``good'' choice for the electric operator $\mathcal{E}(J)$ for $D_3$ gauge group? Or any other finite group}
+		
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $G$-SU(2) Model in 1-d}
 	Long term/ambitious: set up lattice Hamiltonian for QCD with SU(2) or SU(3) gauge group and find a sequence of finite groups $G$ to approximate by.
@@ -1238,29 +1257,15 @@
 	
 	As mentioned above, the Casimir operator $\mathcal{E}(J)=J(J+1)$ is an appropriate choice for the electric operator for $SU(2)$.
 
-	\textbf{The below material predates section 5.4}. \textit{Leaving it up for now, maybe comment out/delete later.}\\
-	
-	Don't understand description in \cite{KogutSusskind75,Wiese13} of the formulation of lattice Hamiltonian for SU(2) gauge group.
-	In particular, not clear how upper indices of $L,R$ are related to generators of SU(2) or what the defn of L,R ops in \cite{Wiese13} is.
-	
-	Wiese Hamiltonian for 1-d (no plaquette term) with color indices suppressed:
-	
-	\begin{equation}
-		H_{QCD}=-t\sum_{x} (\psi_x^\dagger U_{x,x+1} \psi_{x+1} + H.c) + m \sum_{x} (-1)^x \psi_x^\dagger\psi_x + \frac{g^2}{2} \sum_{x} (L_{x,x+1}^2+R_{x,x+1}^2),
-	\end{equation}
-	
-	where 
-		\[\psi_x^\dagger U_{x,x+1} \psi_{x+1} := \psi_x^{i\dagger} U_{x,x+1}^{ij} \psi_{x+1}^j =?= \sum_i \sum_j \psi_x^{i^\dagger} U_{x,x+1}^{ij} \psi_{x+1}^j,\]
-	and the ``color electric field'' is described by the flux operators $L,R$ which obey the following commutation relations for operators on the same link.
-		\[ [L^a,L^b]=2if_{abc}L^c, \quad [R^a,R^b]=2if_{abc}R^c, \quad [L^a,R^b]=0, \quad [L^a,U]=-\lambda^a U, \quad [R^a,U]=U\lambda^a. \]
-	Here the $\lambda^a,\lambda^b,\lambda^c$ are the Hermitian generators of the $\mathfrak{su(n)}$ algebra with structure constants $f_{abc}$.\\
-	
+	\todo[inline]{Gauss law for SU(2)}
+
+	Exercise for the reader, who should be now able to answer all questions below.
 	\noindent Q: What are color indices?\\
 	Q: Should the $U$ operators also be color-indexed?\\
 	Q: Why are the $L,R$ operators indexed by generators of the $\mathfrak{su(n)}$ algebra?\\
 	Q: Are $L,R$ conjugate operators to $U$ like position/momentum?\\
 	Q: I think the only difference between $L,R$ is which end of the link they act on/from?\\
-	Q: Should other terms also be understood to be sums over color indices? 
+	Q: Should other terms also be understood to be sums over color indices?
 
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
