@@ -29,7 +29,12 @@
 \definecolor{myblue}{HTML}{0074D9}
 \definecolor{myorange}{HTML}{FF851B}
 \definecolor{myteal}{HTML}{39CCCC}
-\hypersetup{colorlinks=true,citecolor=myorange,linkcolor=myblue,urlcolor=myblue}
+\definecolor{myred}{HTML}{FF4136}
+\definecolor{mygray}{HTML}{AAAAAA}
+\definecolor{mysilver}{HTML}{EFEFEF}
+\hypersetup{colorlinks=true,citecolor=myblue,linkcolor=myblue,urlcolor=myred}
+\presetkeys{todonotes}{backgroundcolor=mysilver, bordercolor=white}{}
+\tikzset{/tikz/notestyleraw/.append style={text=myred}}
 
 \begin{document}
 	
@@ -625,7 +630,7 @@
 	
 	With free boundary conditions, there are nodes with only one adjacent temporal link, allowing us to change the number of links with spin $-1$ by one. \\
 	
-	TODO - draw diagram to illustrate this
+	\todo[inline]{draw diagram to illustrate this}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $\Z_n$-QED Model in 1-d}
@@ -854,14 +859,14 @@
 	For comparison, the dimension of the total Hilbert space is $2^{N_X N_Y} \cdot n^{N_X(N_Y+1)+(N_X+1)N_Y}$.
 	So we have the same saving factor of $n^{|\cL|}=n^{N_X N_Y}$ observed in the 1-dimensional case by restricting to physical states.\\
 	
-	TODO: figure out lattice scaling terms? \\
-	\qquad Update 7/9: made a guess that plaquette term coupling should be proportional to $a$ based on analogy to magnetic terms in previous setups.
-	Update 7/25: comparing to other literature e.g. \cite{KogutSusskind75} perhaps proportional to $\frac{1}{a}$? 
-	Note plaquette term should have trace in general but this is irrelevant when gauge group is $U(1)$. See \cite{ZoharBurrello15}\\	
+	%TODO: figure out lattice scaling terms? \\
+	%\qquad Update 7/9: made a guess that plaquette term coupling should be proportional to $a$ based on analogy to magnetic terms in previous setups.
+	%Update 7/25: comparing to other literature e.g. \cite{KogutSusskind75} perhaps proportional to $\frac{1}{a}$? 
+	%Note plaquette term should have trace in general but this is irrelevant when gauge group is $U(1)$. See \cite{ZoharBurrello15}\\	
 	
-	TODO: draw pictures of lattice gauss law state description?\\
+	\todo[inline]{draw pictures of lattice gauss law state description?}
 	
-	TODO: find references for continuum case/U(1) lattice computations in literature for 2d?
+	\todo[inline]{find references for continuum case/U(1) lattice computations in literature for 2d?}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{General Formulation of Lattice Gauge Theories}
@@ -980,10 +985,10 @@
 	Thus for example the term $\psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}$ transforms to $\psi_\ell^\dagger D^j(g) D^j(g^{-1})U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}} = \psi_\ell^\dagger U_{\ell,\ell+\vec{k}}^j\psi_{\ell+\vec{k}}$ when the site $\ell$ is acted on by $g$.
 	So the hopping term of the Hamiltonian is now locally gauge invariant. \\
 	
-	\textbf{TODO}: There might be a choice of basis problem here. 
+	\todo[inline]{There might be a choice of basis problem here. 
 	\cite{TCL14} suggests that $h\cdot U^j \cdot k := \sum_{g} \ket{h^{-1}gk}\bra{g} \otimes D^j(g)$, which is not the same as just multiplying $U^j$ as a matrix of operators by $D^j(h^{-1})$ on the left and $D^j(k)$ on the right. 
 	The latter gives the same operator after further applying a change of basis in the domain taking $\ket{g} \mapsto \ket{hgk^{-1}}$. 
-	Since both references define the gauge transformations as the (right) action of $g$ on the states by left multiplication of the inverse, i.e. the action on the left in the group basis takes $\ket{g} \mapsto \ket{h^{-1}g}$ and in the rep basis takes $\ket{jmn}\mapsto \sum_{n}D^j_{nm}(g)\ket{jmn}$, I think the action on $U^j$ should probably be the one described in \cite{TCL14}.\\
+	Since both references define the gauge transformations as the (right) action of $g$ on the states by left multiplication of the inverse, i.e. the action on the left in the group basis takes $\ket{g} \mapsto \ket{h^{-1}g}$ and in the rep basis takes $\ket{jmn}\mapsto \sum_{n}D^j_{nm}(g)\ket{jmn}$, I think the action on $U^j$ should probably be the one described in \cite{TCL14}.}
 	%Alternatively, the \cite{ZoharBurrello15} transformation might be specified in the representation basis.
 	%Will check in $D_3$ example and update tomorrow 7/30.\\
 	
@@ -1192,7 +1197,7 @@
 	Notice that the suboperators $U^2_{mn}$ are \textbf{not} unitary! 
 	In fact, in this form it is clear that $U^2_{01}$ and $U^2_{10}$ are not even invertible, let alone unitary.\\
 	
-	TODO: What is a ``good'' choice for the electric operator $\mathcal{E}(J)$ for $D_3$ gauge group?
+	\todo[inline]{What is a ``good'' choice for the electric operator $\mathcal{E}(J)$ for $D_3$ gauge group? Or any other finite group}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Lattice $G$-SU(2) Model in 1-d}
