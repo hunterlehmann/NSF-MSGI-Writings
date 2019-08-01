@@ -26,12 +26,20 @@
 \numberwithin{equation}{section}
 \allowdisplaybreaks
 \input{myCommands}
+\definecolor{myblue}{HTML}{0074D9}
+\definecolor{myorange}{HTML}{FF851B}
+\definecolor{myteal}{HTML}{39CCCC}
+\hypersetup{colorlinks=true,citecolor=myorange,linkcolor=myblue,urlcolor=myblue}
+
 \begin{document}
 	
 	\title{Notes from NSF-MSGI Internship}
 	\author{Hunter Lehmann}
 	\maketitle
-	
+
+\tableofcontents
+
+	\part{Transfer Matrix}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Introduction}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -42,7 +50,7 @@
 	Mass gap/correlation length?
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\section{Ising Models}
+	\section{Finite One-Site Spaces: Ising Models}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	The Ising models are a family of statistical mechanics models with nearest-neighbor interaction. 
@@ -305,7 +313,7 @@
     \end{enumerate}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\section{O(N) Model}
+	\section{Infinite Compact One-Site Spaces: O(N) Model}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	These models are extensively treated in \cite{FradkinSusskind78,HamerKogutSusskind79,KogutGaugeSummary}. 
@@ -460,7 +468,7 @@
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\section{(Mean) Spherical Model}
+	\section{Infinite Compact One-Site Spaces: Mean Spherical Model}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	Detailed analysis of the spherical model in various dimensions can be found in \cite{HenkelHoeger84,Thompson68}. 
@@ -538,8 +546,10 @@
 	\begin{equation}
 		\hat{H} = -\Delta+ \frac{1}{2}(\omega^2\vec{x}^2-\beta^2 \vec{x}^TM\vec{x}-\beta^2 h \sum_i x_i).
 	\end{equation}
+	
+		\part{Lattice Gauge Theories}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\section{Lattice Gauge Theories}
+	\section{Introduction}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	A \emph{gauge theory} is a physical model which is left invariant under the action of some set of \emph{gauge transformations} at points of the model.
@@ -548,7 +558,8 @@
 	In some cases, it can be useful to fix a particular gauge condition to simplify the description of a problem.	
 			
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Ising Lattice Gauge Theory}
+	\section{Finite One-Link Spaces}
+	\subsection{Ising Lattice Gauge}
 	
 	Outline/add details to some material from \cite{KogutGaugeSummary}, maybe discuss \cite{MuellerJohnstonJanke17} plaquette solution technique?
 	
@@ -853,7 +864,7 @@
 	TODO: find references for continuum case/U(1) lattice computations in literature for 2d?
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Formulation of Lattice Gauge Theories}
+	\section{General Formulation of Lattice Gauge Theories}
 	
 	In \cite{ZoharBurrello15}, Zohar and Burrello describe a general theory for the formulation of Hamiltonians for lattice gauge theories with both matter and gauge fields. 
 	Their theory relies heavily on representation theory and so references \cite{hall_lglarep,teleman_rep_theory} may be useful.
@@ -1007,6 +1018,8 @@
 	%This would explain both the dimension of the matrix and why there are Clebsch-Gordan coefficients appearing.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Examples}
+	
 	\subsection{Lattice $D_3\cong S_3$ Gauge Group Model in 1-d}	
 	
 	As an example of the general theory of the previous section applied to a finite group, we consider a 1-d lattice with gauge group $G\cong D_3$, extending the example found in \cite[Appendix 1]{ZoharBurrello15}.
