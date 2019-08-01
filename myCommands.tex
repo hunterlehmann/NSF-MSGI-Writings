@@ -17,21 +17,14 @@
 \newcommand{\cL}{\mathcal{L}}
 \newcommand{\cM}{\mathcal{M}}
 \newcommand{\cU}{\mathcal{U}}
-\newcommand{\p}{\mathfrak{p}}
-\newcommand{\q}{\mathfrak{q}}
-\newcommand{\m}{\mathfrak{m}}
 \newcommand{\ol}[1]{\overline{#1}}
 \newcommand{\Mod}[1]{\ \left(\mathrm{mod}\ #1\right)}
 \newcommand{\del}{\partial}
 \newcommand{\sm}{\setminus}
 \newcommand{\0}{\emptyset}
-\newcommand{\cls}[1]{\overline{#1}}
 \newcommand{\tsr}[1]{\otimes_{#1}}
 \newcommand{\e}{\varepsilon}
-\newcommand{\LNorm}[1]{\|#1\|_{L^2[-\pi,\pi]}}
 \newcommand{\limup}[1]{\lim_{#1\rightarrow \infty}}
-\newcommand{\M}[2]{\mathcal{M}_{#1\times #2}}
-\newcommand{\IP}[2]{\langle#1,#2\rangle}
 \newcommand*{\fixitem}[1]{\item[]
 	\refstepcounter{enumi}\hskip-\labelwidth\hskip-\labelsep
 	#1 \labelenumi}
@@ -52,8 +45,6 @@
 \newtheorem*{note}{Note}
 \newtheorem*{claim}{Claim}
 
-\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\secpder}[2]{\frac{\partial^2 #1}{\partial #2^2}}
 \newsavebox{\smallblockbox}
 
 \newenvironment{smallblockarray}
@@ -66,65 +57,15 @@
 	\underset{\mathclap{\begin{smallmatrix}\\#2\end{smallmatrix}}}{#1}%
 }
 
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\rad}{rad}
-\DeclareMathOperator{\Inn}{Inn}
-\DeclareMathOperator{\gap}{gap}
-\DeclareMathOperator{\lgap}{lgap}
-\DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Jac}{Jac}
-\DeclareMathOperator{\Int}{Int}
-\DeclareMathOperator{\Ann}{Ann}
-\DeclareMathOperator{\Ass}{Ass}
-\DeclareMathOperator{\ch}{char}
-\DeclareMathOperator{\Gal}{Gal}
-\DeclareMathOperator{\Tor}{Tor}
-\DeclareMathOperator{\Ext}{Ext}
-\DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\End}{End}
-\DeclareMathOperator{\Spec}{Spec}
-\DeclareMathOperator{\ext}{ext}
-\DeclareMathOperator{\supp}{supp}
-\DeclareMathOperator{\coker}{coker}
-\DeclareMathOperator*{\ES}{ES}
-\DeclareMathOperator*{\esssup}{ess\,sup}
 \DeclareMathOperator{\rk}{rk}
-%\DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\eig}{eig}
-%\DeclareMathOperator{\ev}{ev}
-\DeclareMathOperator{\cl}{cl}
-\DeclareMathOperator{\Ht}{ht}
-\DeclareMathOperator{\inv}{inv}
-\DeclareMathOperator{\adj}{adj}
-\DeclareMathOperator{\des}{des}
-\DeclareMathOperator{\maj}{maj}
-\DeclareMathOperator{\Fr}{Fr}
-\DeclareMathOperator{\Orb}{Orb}
-\DeclareMathOperator{\Stab}{Stab}
-\DeclareMathOperator{\Ofr}{OFr}
-\DeclareMathOperator{\Map}{Map}
-\DeclareMathOperator{\sign}{sign}
-\DeclareMathOperator{\lcm}{lcm}
-\DeclareMathOperator{\conv}{conv}
-%\DeclareMathOperator{\Res}{Res}
-\DeclareMathOperator{\Log}{Log}
-\DeclareMathOperator{\Pic}{Pic}
-\DeclareMathOperator{\Div}{Div}
-\DeclareMathOperator{\indeg}{indeg}
-\DeclareMathOperator{\odeg}{outdeg}
-%\DeclareMathOperator{\Tr}{Tr}
-
-
-%\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
 	\hskip -\arraycolsep
 	\let\@ifnextchar\new@ifnextchar
 	\array{#1}}
 \makeatother
-\renewcommand{\Re}{\operatorname{Re}}
-\renewcommand{\Im}{\operatorname{Im}}
 
 
 \endinput

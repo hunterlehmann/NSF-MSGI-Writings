@@ -1,4 +1,4 @@
-\documentclass[11pt,reqno]{amsart}
+\documentclass[10pt,reqno]{amsart}
 \usepackage{amsfonts}
 \usepackage{amscd}
 \usepackage{amsmath}
@@ -7,7 +7,6 @@
 \usepackage{enumitem}
 \usepackage{pgf}
 \usepackage{mathrsfs}
-\usepackage{geometry}
 \usepackage{etoolbox}
 \usepackage{hyperref}
 \usepackage{soul}
@@ -227,20 +226,25 @@
 	The corresponding normalized eigenvectors are
 		\[v_0= \frac{1}{\sqrt{2(1+h^2+h\sqrt{1+h^2})}}\begin{pmatrix}
 		h+\sqrt{1+h^2} \\ 1
-		\end{pmatrix} \, \text{and} \, v_1= \frac{1}{\sqrt{2(1+h^2-h\sqrt{1+h^2})}}\begin{pmatrix}
+		\end{pmatrix} \] 
+	and 
+		\[ v_1= \frac{1}{\sqrt{2(1+h^2-h\sqrt{1+h^2})}}\begin{pmatrix}
 		h-\sqrt{1+h^2} \\ 1
 		\end{pmatrix}. \]
 	Now the ground state is $\ket{gs}=v_0$ and if we compute $\bra{gs} \sigma_3 \ket{gs}$, we get
-		\[\bra{gs} \sigma_3 \ket{gs} \rangle=\frac{1}{2(1+h^2+h\sqrt{1+h^2})}\begin{pmatrix}
-		h+\sqrt{1+h^2} & 1
-		\end{pmatrix}
-		\begin{pmatrix}
-		1 & 0 \\
-		0 & -1
-		\end{pmatrix}
-		\begin{pmatrix}
-		h+\sqrt{1+h^2} \\ 1
-		\end{pmatrix}=\frac{h}{\sqrt{1+h^2}} .\]
+		\begin{align*}
+			\bra{gs} \sigma_3 \ket{gs} \rangle &=\frac{1}{2(1+h^2+h\sqrt{1+h^2})}\begin{pmatrix}
+			h+\sqrt{1+h^2} & 1
+			\end{pmatrix}
+			\begin{pmatrix}
+			1 & 0 \\
+			0 & -1
+			\end{pmatrix}
+			\begin{pmatrix}
+			h+\sqrt{1+h^2} \\ 1
+			\end{pmatrix}\\
+			&=\frac{h}{\sqrt{1+h^2}}.
+		\end{align*}
 	
 	This demonstrates the correspondence between properties of the original statistical mechanics model and observables derived from operators applied to the ground state of the Hamiltonian.
 	
@@ -380,7 +384,7 @@
 			&=e^{1/\tau}\sum_{\ell\in \Z}e^{i\ell(\theta-\phi)}e^{-\tau\ell^2/2}. \label{eq:FourierTransformExpCosApprox}
 	\end{align}
 	
-	After substituting \cref{eq:FourierTransformExpCosApprox} into \cref{eq:1+0_O(2)_IntOperator}, we can use absolute convergence of the sum to rewrite the expression further.
+	After substituting \cref{eq:FourierTransformExpCosApprox} into \cref{eq:1+0_O(2)_IntOperator}, we can use the absolute convergence of the sum to rewrite the expression further.
 	\begin{align}
 		(\hat{T}\psi_m)(\theta) &\approx \frac{1}{\sqrt{2\pi}}e^{\frac{1}{2}\beta h \cos(\theta)} \int_{0}^{2\pi} e^{1/\tau} \left( \sum_{\ell\in \Z}e^{i\ell(\theta-\phi)}e^{-\tau\ell^2/2} \right) e^{\frac{1}{2}\beta h \cos(\phi)}e^{im\phi}\, d\phi \nonumber \\
 			&= \frac{1}{\sqrt{2\pi}}e^{\frac{1}{2}\beta h \cos(\theta)+1/\tau} \sum_{\ell\in \Z} e^{i\ell\theta-\tau\ell^2/2}\left(\int_{0}^{2\pi} e^{\frac{1}{2}\beta h \cos(\phi)}e^{i(m-\ell)\phi}\right) \, d\phi. \label{eq:1+0_O(2)_ApproxIntOperator}
@@ -1032,7 +1036,8 @@
 	$D_3$ has three irreducible representations.
 	Two are one-dimensional: the trivial representation and the sign representation which maps the rotations to $1$ and the reflections to $-1$.
 	The last is the defining representation of $D_3$ as $2\times 2$ rotation and reflection matrices:
-		\[D_3 \mapsto \left\{ \begin{pmatrix}
+	\begin{align*}
+		D_3 \mapsto \bigg\{ &\begin{pmatrix}
 		1 & 0\\ 0 & 1
 		\end{pmatrix},
 		\begin{pmatrix}
@@ -1040,8 +1045,8 @@
 		\end{pmatrix},
 		\begin{pmatrix}
 		-1/2 & -\sqrt{3}/2\\ \sqrt{3}/2 & -1/2
-		\end{pmatrix},
-		\begin{pmatrix}
+		\end{pmatrix}, \\	
+		&\begin{pmatrix}
 		1 & 0\\ 0 & -1
 		\end{pmatrix},
 		\begin{pmatrix}
@@ -1049,7 +1054,8 @@
 		\end{pmatrix},
 		\begin{pmatrix}
 		-1/2 & \sqrt{3}/2\\ \sqrt{3}/2 & 1/2
-		\end{pmatrix} \right\}, \]
+		\end{pmatrix} \bigg\}, 
+	\end{align*}
 	in the order $\{e, r, r^2, s, rs, r^2s\}$.
 		
 	The Hilbert space $\mathcal{H}$ associated to the links is then the 6-dimensional space coming from the regular representation of $D_3$ with basis $\{ \ket{I},\ket{p},\ket{200},\ket{210},\ket{201},\ket{211} \}$.
