@@ -983,7 +983,7 @@
 	
 	Throughout the section, $g$ denotes elements of $G$, irreducible representations (irreps) of $G$ are indexed by $j$, and the elements of a basis for the associated vector space $V^j$ to the irrep $j$ are $\{\ket{jm} \}_{m=1}^{\dim j}$.
 	Without loss of generality, we can assume any finite-dimensional irrep of $G$ is a unitary matrix representation since $G$ is finite or compact.
-	Recall that the \emph{regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
+	Recall that the \emph{left regular representation} of $G$ is the representation given by letting $G$ act on $\C^{G}$ with basis indexed by group elements $g$ such that $g\cdot \ket{h} = \ket{gh}$. 
 	To be completely rigorous, if $G$ is a continuous and compact group we should consider either the space $C(G)$ of continuous complex-valued functions on $G$ or the space $L^2(G)$ of equivalence classes of square-integrable functions on $G$ with respect to a Haar measure rather than $\C^G$.
 	For finite or compact $G$, the regular representation is completely reducible and decomposes as
 	\begin{equation}\label{eq:reg_rep_decomp}
@@ -1039,8 +1039,8 @@
 	\end{align}
 	The individual summands act on the Hilbert space on the link $(\ell,\ell+\vec{k})$ together with the space acted on by the fermionic spinor (matter) operators.
 	
-	Finally, we can apply a change of basis on each block $\C^G \otimes \langle \ket{v_i}\rangle$ to use the representation basis for $\C^G$.
-	This basis may be more tractable for continuous groups, where it is not clear how to work with a countable version of the by definition uncountable group basis. 
+	Finally, we can apply a change of basis on each block $\C^G \otimes \langle \ket{v_i}\rangle$ to use the representation Hilbert basis for $\C^G$.
+	This basis may be more tractable for continuous groups, where it is not clear how to work with a countable version of the by definition uncountable group Hamel basis. 
 	To do this, we introduce the Fock space over $\C^G$ with associated raising and lowering ladder operators $a^j_{mn}, a^{j\dagger}_{mn}$, where $j$ indexes an irrep of $G$, $n$ indexes the copy of the irrep appearing in \cref{eq:reg_rep_decomp}, and $m$ indexes the basis vectors of that copy.
 	The raising operator takes the local vacuum to the state $\ket{jmn}$: $a^{j\dagger}_{mn} \ket{\Omega} = \ket{jmn}$.
 	To avoid introducing extraneous states, we impose the restriction that the number of atoms in the Fock space on any link is always 1: $\sum_{jmn} a^{j\dagger}_{mn} a^j_{mn} =1$.
@@ -1319,7 +1319,7 @@
 	Recall that the irreps of $SU(2)$ are indexed by non-negative half-integers $j=0,1/2,1,3/2,2,\ldots$ and have dimension $2j+1$.
 	The basis vectors of the associated vector space for the representation $j$ are indexed by $m\in \{-j,-j+1,\ldots,j-1,j \}$.
 	In the $G=SU(2)$ case, we will choose the fundamental representation $j=1/2$ for the spinor and $U^j$ operators of Section 5.4.
-	For this representation we have $V^J \otimes V^{1/2} \cong V^{J-1/1}\oplus V^{J+1/2}$ for any $J>0$ and $V^0\otimes V^{1/2}\cong V^{1/2}$ since $V^0$ is the trivial representation.
+	For this representation we have $V^J \otimes V^{1/2} \cong V^{J-1/2}\oplus V^{J+1/2}$ for any $J>0$ and $V^0\otimes V^{1/2}\cong V^{1/2}$ since $V^0$ is the trivial representation.
 	
 	Therefore the Clebsch-Gordan coefficients $\braket{J,M,\frac{1}{2},m}{K,N}$ are $0$ unless $K=J\pm \frac{1}{2}$. 
 	Further, the coefficients are only nonzero when $N=M+m$.
